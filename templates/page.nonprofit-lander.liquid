@@ -1,0 +1,381 @@
+<style>
+  .storefrontHeader {
+    background-image: url({{ 'storefront_Header.jpg' | asset_url }});
+    background-size: cover;
+    padding: 120px 0;
+  }
+  h2 { margin-bottom: 4px; }  
+  .subCopy { margin-bottom: 20px; }  
+  .press img { opacity: 0.6; }
+  .press img:hover { opacity: 1; }
+  .btn-launch {
+        display: inline-block;
+        width: auto;
+        margin: 0;
+        line-height: 1.42;
+        font-weight: bold;
+        font-size: 20px;
+        text-decoration: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        cursor: pointer;
+        border: 1px solid transparent;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+        border-radius: 100px;
+        min-width: 100px;
+        background-color: #405862;
+        color: #fff;
+        padding: 15px 50px;
+        background-color: rgba( 231, 86, 37, 1);
+        box-shadow: 0 4px 8px rgba( 231, 86, 37, 0.5 );
+        -webkit-box-shadow: 0 4px 8px rgba( 231, 86, 37, 0.5 );
+        transition: all 0.25s ease;
+        -webkit-transition: all 0.25s ease;
+  }
+    .btn-launch:hover {
+        background-color: #1EB31E;
+        box-shadow: 0 4px 8px rgba( 30, 179, 30, 0.5 );
+        -webkit-box-shadow: 0 4px 8px rgba( 30, 179, 30, 0.5 );
+    }
+
+  .wufoo #saveForm {
+    background-color: #405862;
+    color: #fff;
+    background-color: rgba( 231, 86, 37, 1);
+    box-shadow: 0 4px 8px rgba( 231, 86, 37, 0.5 );
+    -webkit-box-shadow: 0 4px 8px rgba( 231, 86, 37, 0.5 );    
+  }
+
+  .wufoo #saveForm:hover {
+    border: none;
+    background-color: #1EB31E;
+    box-shadow: 0 4px 8px rgba( 30, 179, 30, 0.5 );
+    -webkit-box-shadow: 0 4px 8px rgba( 30, 179, 30, 0.5 );    
+  }
+      
+  ul.storefrontUL.nonprofit {
+    font-size: 17px;
+    margin: 0 0 5px 0px;
+  }
+
+  ul.storefrontUL.nonprofit li {
+    background: none;
+  }
+
+  ul.nonprofit li i.fa-check-circle {
+    font-size: 2rem;
+    color: #1EB31E;
+    margin-right: 6px;
+    bottom: -5px;
+    position: relative;
+  }
+</style>
+
+
+<!-- Main Header Section -->
+<section class="grid--full large--one-whole">
+  <div class="grid__item large--three-fifths medium--two-fifths huge-margin">
+    <h1 class="text-center">Your cause. Our designers.</h1>
+    <h1 class="text-center">Amazing products for your supporters</h1>
+    <p class="text-center"><i>(NO cost or effort for you)</i></p>
+    <div class="large--three-quarters push--large--one-sixth medium--one-whole small--one-whole big-margin">
+      <ul class="text-left storefrontUL nonprofit">        
+        <li>
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+          You receive <b>30%</b> of revenue
+        </li>
+        <li>
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+          Tees, Watches, Phone Cases and more
+        </li>
+        <li>
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+          Zero inventory. AKA there's <b>no risk</b> for you
+        </li>
+        <li>
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+          We do all the design for you. And, yes, it's free!
+        </li>
+      </ul>
+    </div>
+    <div class="grid__item large--one-quarter push--large--two-sixths text-center">
+      <a href="#form">
+        <button class="btn-launch small--text-center">Get Started</button>
+      </a>
+    </div>
+  </div>
+  <div class="grid__item large--two-fifths medium--three-fifths text-center huge-margin">
+    <img src="{{ 'computer.jpg' | asset_img_url: 'large' }}"/>
+    <h4 class="purpleText">Partners have already raised over $60,000!</h4>
+  </div>  
+</section>
+</main>
+<!-- Press Bubbles Section -->
+<section class="grid--full large--one-whole light-bg genSection big-margin">
+  <!-- Wrapper Grid -->
+  <main class="wrapper" role="main">
+    <h4 class="text-center big-margin">Some of the amazing organizations that already have custom merchandise</h4>
+    <div class="grid--uniform large--one-whole">
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" target="_blank" href="/collections/girls-on-the-run"><img src="{{ 'np_gotr.jpg' | file_url }}" alt="Girls on the Run" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" target="_blank" href="/collections/cystic-fibrosis-foundation"><img src="{{ 'np_cff.jpg' | file_url }}" alt="Cystic Fibrosis Foundation" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" target="_blank" href="/collections/center-for-great-apes"><img src="{{ 'np_cfga.jpg' | file_url }}" alt="Center for Great Apes" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" target="_blank" href="/collections/water-org"><img src="{{ 'water-org.png' | file_url }}" alt="Water.org" /></a>
+      <a name="form" class="grid__item large--one-sixth medium--one-quarter small--one-third" target="_blank" href="/collections/ucsf-childrens-hospital"><img class="trailing" src="{{ 'np_ucsf.jpg' | file_url }}" alt="UCSF Benioff Children's Hospital" /></a> 
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" target="_blank" href="/collections/bellarmine"><img src="{{ 'np_bellarmine.jpg' | file_url }}" alt="Bellarmine" /></a>
+    </div>
+  </main>
+</section>
+
+<section class="grid--full large--one-whole big-margin">
+  <div class="grid__uniform text-center">
+    <h2 class="orange-text">Open your shop today, its free!</h2>
+
+    <div class="grid__item large--one-half push--large--one-quarter medium--three-quarters push--medium--one-eighth">
+
+      <div id="wufoo-r10wdx041t52tqt">
+        Fill out my <a href="https://modifywatches.wufoo.com/forms/r10wdx041t52tqt/def/field1657=elantest">online form</a>.
+      </div>
+
+      <script type="text/javascript">
+        $(window).load(function() {   
+          function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+          }
+          
+          var email = getParameterByName('email');
+          var website = getParameterByName('website');
+          var organization_name = getParameterByName('organization_name');
+          var formPage =-1;   
+
+          {% if customer.id %}
+            var segment_user_id = {{ customer.id }};
+          {% else %}
+            var  segment_user_id = analytics.user().anonymousId();
+          {% endif %}    
+
+          var r10wdx041t52tqt;(function(d, t) {
+          var s = d.createElement(t), options = {
+            'userName':'modifywatches',
+            'formHash':'r10wdx041t52tqt',
+            'autoResize':true,
+            'height':'815',
+            'async':true,
+            'host':'wufoo.com',
+            'header':'hide',
+            'defaultValues':'field1657='+segment_user_id,
+            // 'defaultValues':'field1657='+segment_user_id+'&Field1371='+organization_name+'&Field1381='+email+'&Field1661='+website,
+            'ssl':true};
+            s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+            s.onload = s.onreadystatechange = function() {
+
+            var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+            try { r10wdx041t52tqt = new WufooForm();r10wdx041t52tqt.initialize(options);r10wdx041t52tqt.display(); } catch (e) {}
+
+          };
+
+          var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+          })(document, 'script');
+
+          analytics.page('Nonprofit Registration');
+
+        })
+      </script>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Open your shop CTA -->
+
+<!-- Press Bubbles Section -->
+<section class="grid--full large--one-whole genSection orange-bg press">
+  <!-- Wrapper Grid -->
+  <main class="wrapper" role="main">
+    <div class="grid--uniform large--one-whole">
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="https://www.youtube.com/watch?v=4ugFPIfG5b0#t=2m21s"><img class="five-sixths push--one-twelfth" src="{{ 'Press_Ellen.png' | asset_url }}" alt="Ellen" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="http://news.yahoo.com/deals-and-steals-beach-party-edition-173339934.html"><img class="five-sixths push--one-twelfth" src="{{ 'Press_GoodMorningAmerica.png' | asset_url }}" alt="CBS Good Morning America" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="http://www.menshealth.com/style/watches-brights"><img class="five-sixths push--one-twelfth" src="{{ 'Press_MensHealth.png' | asset_url }}" alt="Men's Health" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="http://old.modifywatches.com/templates/Modify/images/default/press/WomensHealthJune2013.pdf"><img class="five-sixths push--one-twelfth" src="{{ 'Press_WomensHealth.png' | asset_url }}" alt="Women's Health" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="http://www.today.com/id/49063771/ns/today-video/#51036431"><img class="five-sixths push--one-twelfth" src="{{ 'Press_Today.png' | asset_url }}" alt="Today Show" /></a>
+      <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="https://instagram.com/p/OooPktED28/"><img class="trailing" class="five-sixths push--one-twelfth" src="{{ 'Press_VanityFair.png' | asset_url }}" alt="Vanity Fair" /></a>
+      <a class="grid__item large--one-sixth push--large--one-twelfth medium--one-quarter small--one-third" href="#"><img class="leading" class="five-sixths push--one-twelfth" src="{{ 'Press_Self.png' | asset_url }}" alt="Self Magazine" /></a>
+      <a class="grid__item large--one-sixth push--large--one-twelfth medium--one-quarter small--one-third" href="http://boss.blogs.nytimes.com/2012/01/05/turning-facebook-followers-into-online-focus-groups/"><img class="five-sixths push--one-twelfth" src="{{ 'Press_NYT.png' | asset_url }}" alt="The New York Times" /></a>
+      <a class="grid__item large--one-sixth push--large--one-twelfth medium--one-quarter push--medium--one-eighth small--one-third" href="https://twitter.com/mitsu_tsuchiya/status/354314395058319362"><img class="five-sixths push--one-twelfth" src="{{ 'Press_Nylon.png' | asset_url }}" alt="Nylon" /></a>
+      <a class="grid__item large--one-sixth push--large--one-twelfth medium--one-quarter push--medium--one-eighth small--one-third push--small--one-twelfth" href="http://www.vogue.com/13295927/best-back-to-school-denim-kids-kidswear/"><img class="five-sixths push--one-twelfth" src="{{ 'Press_Vogue.png' | asset_url }}" alt="Vogue" /></a>
+      <a class="grid__item large--one-sixth push--large--one-twelfth medium--one-quarter push--medium--one-eighth small--one-third push--small--one-twelfth" href="http://www.inc.com/young-entrepreneur-council/3-customer-service-rules-to-work-by.html"><img class="five-sixths push--one-twelfth" src="{{ 'Press_Inc.png' | asset_url }}" alt="Inc" /></a>
+    </div>
+  </main>
+</section>
+<!-- Mini Partner FAQ Section -->
+<section class="grid__item large--one-whole genSection rte">
+  <!-- Wrapper Grid -->
+  <main class="wrapper" role="main">
+    <div class="large--one-whole">
+      <h2 class="text-center">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-center subCopy">
+        Here are some common questions about partnering with Modify.
+        <p>
+        </div>
+
+        <div class="grid genSection">    
+          <div class="grid__item large--one-half">
+            <h3>
+              What do you mean, No Cost and No Risk?
+            </h3>
+            <p>
+              You're busy. You are building your brand, helping folks/animals/the environment with your nonprofit, or maybe just creating exceptional art or music.
+            </p>
+            <p>
+              We are not busy! So we've invested in the ability to bring the best of what the "big guys" get, to you. 
+            </p>
+            <p>
+              That means: free design, print-on-demand production (you don't pay a cent!), great marketing advice and of course, fast fulfillment and great service.
+            </p>
+          </div>
+
+          <div class="grid__item large--one-half">
+            <h3>
+              Why print-on-demand?
+            </h3>
+            <p>
+              Waste stinks ... and so does risk. By creating everything print-on-demand, your fans will be getting the freshest product (literally hot off the presses). And no one will sit on inventory that is stale. 
+            </p>
+            <p>    
+              AND, well, sometimes a great design doesn't sell. So this gives you an opportunity to test out a lot of products before you make a commitment. That way your fans always get designs that they love.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid genSection">
+          <div class="grid__item large--one-half">
+            <h3>
+              How do I sign up?
+            </h3>
+            <p>
+              All you need to do to sign up is fill in this 
+              <a href="#form">form.</a>
+            </p>
+            <p>
+              Modify works with any individual or organization that has an audience. 1,000 fans on Facebook? That works for us. 2,500 people on a newsletter you send? GREAT. 
+            </p>
+            <p>
+              Your fans and supporters should be able to wear their passion ... we'll help you deliver this.
+            </p>
+          </div>
+
+          <div class="grid__item large--one-half">
+            <h3>
+              How much do I get?
+            </h3>
+            <p>
+              20% of the revenue of every sale goes to you! If you're a nonprofit - or if you want to donate your proceeds to a nonprofit - you get 30%. Not profit. Not margin. But revenue. Sell a shirt for $25? You get $5 (or $7.50).
+            </p>
+            <p>
+              Your fans love your story - help them wear their passion on a daily basis.
+            </p>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <!-- Support Section -->
+    <section class="grid__item large--one-whole genSection purple-bg text-white ">
+      <!-- Wrapper Grid -->
+      <main class="wrapper rte" role="main">
+
+        <h2 class="text-center">
+          Help when you need it.
+        </h2>
+        <p class="text-center subCopy">
+          Building your brand comes first. Got a question? Just ask!
+        </p>
+
+        <div class="grid genSection">
+          <div class="grid__item large--one-half medium--one-half small--one-half">
+            <img class="grid__item large--one-fifth medium--one-half push--medium--one-quarter" src="{{ 'Support_TalkIcon.png' | asset_url }}" alt="Talk to us" />
+            <div class="grid__item large--four-fifths">
+              <h3>
+                Talk to us
+              </h3>
+              <p>
+                Contact us whenever you have a question.<br />
+                Email us at <a href="mailto:partners@modify.com">partners@modify.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="grid__item large--one-half medium--one-half small--one-half">
+            <img class="grid__item large--one-fifth medium--one-half push--medium--one-quarter" src="{{ 'Support_GuideIcon.png' | asset_url }}" alt="Your guide to success" />
+            <div class="grid__item large--four-fifths">
+              <h3>
+                Your guide to success
+              </h3>
+              <p>
+                Learn the do's do not's, maybe do's and probably don't with our Partner Handbook.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid genSection">
+          <div class="grid__item large--one-half medium--one-half small--one-half">
+            <img class="grid__item large--one-fifth medium--one-half push--medium--one-quarter" src="{{ 'Support_NewsletterIcon.png' | asset_url }}" alt="Partner newsletters" />
+            <div class="grid__item large--four-fifths">
+              <h3>
+                Partner newsletters
+              </h3>
+              <p class="subCopy">
+                Every month we send out a newsletter just for our partners, with case studies and tips to help you grow!
+              </p>
+            </div>
+          </div>
+
+          <div class="grid__item large--one-half medium--one-half small--one-half">
+            <img class="grid__item large--one-fifth medium--one-half push--medium--one-quarter" src="{{ 'Support_DesignerIcon.png' | asset_url }}" alt="Your personal designer" />
+            <div class="grid__item large--four-fifths">
+              <h3>
+                Your personal designer
+              </h3>
+              <p>
+                Work with our designers to bring your new merchandise to life. They'll work with you until you can't wait to call all your friends and family.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+
+
+    <!-- Bottom CTA Section -->
+    <section class="grid--full large--one-whole small--one-whole genSection grey-bg text-center text-white">
+      <h1 style="margin-bottom: 4px;">
+        Open your store <u>today!</u>
+      </h1>
+      <p class="subCopy">
+        Help your fans rep the brand they love... yours! It's completely free to get started.
+      </p>
+
+      <a href="#form">
+        <button class="btn--secondary">
+          Get started, it's free!
+        </button>
+      </a>
+    </section>
+
+    <!-- Scripts -->
+    {{ 'smooth-scroll.js' | asset_url | script_tag }}

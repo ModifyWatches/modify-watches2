@@ -1,0 +1,208 @@
+<!-- Define Collab Categories -->
+{% assign category1 = linklists.artists %}
+{% assign category1link = "/pages/artists" %}
+
+{% assign category2 = linklists.nonprofits %}
+{% assign category2link = "/pages/nonprofits" %}
+
+{% assign category3 = linklists.musicians %}
+{% assign category3link = "/pages/musicians" %}
+
+{% assign category4 = linklists.influencers %}
+{% assign category4link = "/pages/influencers" %}
+
+{% assign category5 = linklists.brands %}
+{% assign category5link = "/pages/brands" %}
+
+{% assign category6 = linklists.all-collections %}
+{% assign category6link = "/pages/all-collections" %}
+
+<!-- LINK STYLESHEETS -->
+<link href="{{ 'collab_style.css' | asset_url }}" rel="stylesheet" type="text/css" media="all" />
+
+<!-- Break main wrapper -->
+</main>
+
+<!-- FEATURED COLLABS HEADER - DESKTOP -->
+<section class="collab-main-header">
+    <div>
+        <img src="{{ 'partnerHeader_main.jpg' | asset_url }}" alt="Great art by awesome brands!" />
+    </div>
+</section>
+
+<!-- COLLAB CATEGORY NAVIGATION -->
+<div class="collab-category-nav">
+    <ul>
+        <li><a href="#artists">Artists</a></li>
+        <li><a href="#nonprofits">Causes</a></li>
+        <li><a href="#musicians">Musicians</a></li>
+        <li><a href="#influencers">Influencers</a></li>
+        <li><a href="#brands">Brands</a></li>
+    </ul>
+</div>
+
+<!-- COLLAB PARTNER OFFER LINK -->
+<div class="collab-partner">
+    <p>Interested in partnering with us?
+        <a href="/pages/collaboration-form">
+            <button>
+                APPLY HERE            
+            </button>
+        </a>
+    </p>
+</div>
+
+<!-- COLLAB CATEGORIES FLEX SLIDERS --->
+<div class="collab-category leader">
+  <a name="artists" href="{{ category1link }}">
+  <h1>
+      {{ category1.title }}      
+  </h1>
+      See more >
+  </a>
+  
+  <div class="flexslider">
+    <ul class="slides">
+      {% for link in category1.links limit:24 %}
+       {% assign collection = link.object %}
+        <li class="">
+          <a class="collections" href="{{ collection.url }}" title="{{ collection.title }}">
+            <img class="" src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt }}" />
+            <div class="info collections">
+              <p class="title">{{ collection.title }}</p>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!--
+  <div class="custom-navigation">
+  	<a href="#" class="flex-prev">&lsaquo;</a>
+    <a href="#" class="flex-next">&rsaquo;</a>
+  </div>
+  -->
+</div>
+
+<div class="collab-category">
+  <a name="nonprofits" href="{{ category2link }}"><h1>{{ category2.title }}</h1>See more ></a>
+  <div class="flexslider">
+    <ul class="slides">
+      {% for link in category2.links limit:24 %}
+       {% assign collection = link.object %}
+        <li class="">
+          <a class="collections" href="{{ collection.url }}" title="{{ collection.title }}">
+            <img class="" src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt }}" />
+            <div class="info collections">
+              <p class="title">{{ collection.title }}</p>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="collab-category">
+  <a name="musicians" href="{{ category3link }}" ><h1>{{ category3.title }}</h1>See more ></a>
+  <div class="flexslider">
+    <ul class="slides">
+      {% for link in category3.links limit:24 %}
+       {% assign collection = link.object %}
+        <li class="">
+          <a class="collections" href="{{ collection.url }}" title="{{ collection.title }}">
+            <img class="" src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt }}" />
+            <div class="info collections">
+              <p class="title">{{ collection.title }}</p>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="collab-category">
+  <a name="influencers" href="{{ category4link }}" ><h1>{{ category4.title }}</h1>See more ></a>
+  <div class="flexslider">
+    <ul class="slides">
+      {% for link in category4.links limit:24 %}
+       {% assign collection = link.object %}
+        <li class="">
+          <a class="collections" href="{{ collection.url }}" title="{{ collection.title }}">
+            <img class="" src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt }}" />
+            <div class="info collections">
+              <p class="title">{{ collection.title }}</p>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="collab-category">
+  <a name="brands" href="{{ category5link }}" ><h1>{{ category5.title }}</h1>See more ></a>
+  <div class="flexslider">
+    <ul class="slides">
+      {% for link in category5.links limit:24 %}
+       {% assign collection = link.object %}
+        <li class="">
+          <a class="collections" href="{{ collection.url }}" title="{{ collection.title }}">
+            <img class="" src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt }}" />
+            <div class="info collections">
+              <p class="title">{{ collection.title }}</p>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Bottom Partner CTA -->
+<div class="grid__item large--one-whole light-bg genSection" >
+    <h4 class="grid__item large--one-half large--text-right medium--text-center small--text-center">
+        Interested in partnering with us?            
+    </h4>
+    <a class="grid__item large--one-half medium--text-center small--text-center" href="/pages/collaboration-form">
+        <button class="btn--secondary">
+            APPLY HERE                
+        </button>
+    </a>
+</div>
+    
+<!-- SCRIPTS -->
+<script defer src="https://cdn.shopify.com/s/files/1/0358/9733/t/3/assets/jquery.flexslider.js"></script>
+<script>
+/* FEATURE SLIDER SCRIPT */
+	$(window).ready(function() {
+		$('.collab-feature-wrap .feature-flexslider').flexslider({
+			animation : "slide",
+      itemWidth : 400,
+      minItems: 1,
+      maxItems: 3
+		});
+	});
+
+/* CATEGORY FLEXSLIDER SCRIPT */
+	$(window).ready(function() {
+		$('.collab-category .flexslider').flexslider({
+			animation : "slide",
+      animationLoop: false,
+			slideshow: false,
+			itemWidth : 300,
+      itemMargin: 10,
+      minItems: 2,
+      maxItems: 8
+		});
+	});
+  
+</script>
+
+<!-- Segment Viewed Homepage -->
+<script type="text/javascript">
+  analytics.page('All Partners List');
+</script>
+
+{{ 'smooth-scroll.js' | asset_url | script_tag }}

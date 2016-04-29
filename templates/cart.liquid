@@ -1,0 +1,188 @@
+<!-- /templates/cart.liquid -->
+{% comment %}
+
+  For info on test orders:
+    - General http://docs.shopify.com/manual/your-store/orders/test-orders
+    - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
+
+{% endcomment %}
+{% assign isMunged = false %}
+{% if cart.item_count > 0 %}
+
+  <h1>{{ 'cart.general.title' | t }}</h1>
+  <form action="/cart" method="post" novalidate class="cart table-wrap">
+	  
+<div class="grid_uniform text-left borderBottom medium-margin small--hide">
+	<div class="grid__item large--one-half medium--one-half">
+		<h4>{{ 'cart.label.product' | t }}</h4>
+	</div>
+	<div class="grid__item large--one-sixth medium--one-sixth">
+		<h4>{{ 'cart.label.price' | t }}</h4>
+	</div>
+	<div class="grid__item large--one-sixth medium--one-sixth">
+		<h4>{{ 'cart.label.quantity' | t }}</h4>
+	</div>
+	<div class="grid__item large--one-sixth medium--one-sixth">
+		<h4>{{ 'cart.label.total' | t }}</h4>
+	</div>
+	<div style="clear:both"></div>
+</div>
+{% for item in cart.items %}
+	{% for tag in item.product.tags %}
+		{% if tag == 'munged' %}
+			 {% assign isMunged = true %}
+		{% endif %}
+	{% endfor %}
+<div class="grid_uniform text-left small-margin borderBottom small-padding">
+	<div class="grid__item large--one-eighth medium--one-eighth small--one-whole noPads" data-label="{{ 'customer.order.product' | t }}" style="position: relative;">
+		<a href="{{ item.url | within: collections.all }}" class="cart__image">
+		{% if isMunged %}
+			{% assign suffix = item.product.type | handleize %} 
+			{% assign theCollor = item.variant.option1 | handleize %} 
+
+			{% assign product_art = item.product.images[1] | default: item.product.images[1] %}
+			{% if item.product.type == 'Watch' or item.product.type == 'Sport Watch'%}
+			{% assign template_art = suffix | append: '_' | append: theCollor | append: '.png' %}
+			
+			<img src="{{ 'Backplate.png' | asset_url }}" />
+	         <div class="watchArt">
+		       <img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id=""> 
+	        </div>
+	        <img src="{{ template_art | asset_url }}" data-type="Watch" class="watchOverlay" id="ProductPhotoImg">
+
+	        {% else %}
+	        {% assign template_art = suffix | append: '_' | append: theCollor | append: '.jpg' | asset_url %}
+			
+			<img src="{{ template_art }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg" class="munged-cart">
+		  	<div class="cartImageOverlay">
+			  	{% if suffix == 'womens-long-sleeve-t-shirt' %}
+			  		<img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" class="ladyCart"> 
+			  		
+			  	{% elsif  suffix =='womens-t-shirt' %}
+			  		<img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" class="shortLadyCart">
+			  	{% else %}
+			  		<img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id=""> 
+			  	{% endif %}	
+	        </div>
+	        
+	        {% endif %}
+	    {% else %}
+			<img src="{{ item | img_url: 'large' }}" alt="{{ item.title | escape }}">
+		{% endif %}	
+	</div>
+	<div class="grid__item large--three-eighths medium--three-eighths small--one-whole cartBox" data-label="{{ 'customer.order.product' | t }}">
+		 <a href="{{ item.url }}" class="h4">
+        {{ item.product.title }}
+      </a>
+      {% unless item.variant.title contains 'Default' %}
+        <small>{{ item.variant.title }}</small>
+      {% endunless %}
+
+      {% if settings.cart_vendor_enable %}
+        <p>{{ item.vendor }}</p>
+      {% endif %}
+     
+
+	</div>
+	<div class="grid__item large--one-sixth medium--one-sixth cartBox small--one-half" data-label="{{ 'cart.label.price' | t }}">
+		 <span id="ProductPrice" class="h6">
+            {{ item.price | money }}
+          </span>
+          {% for item in cart.items %}
+            {% for tag in item.product.tags %}
+                {% if tag == 'sports' %}
+                
+                {% else %}
+                    {% include 'product-partner-rev-msg' %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+	</div>	
+	<div class="grid__item large--one-sixth medium--one-sixth cartBox small--one-half small--text-right" data-label="{{ 'cart.label.quantity' | t }}">
+	<input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0">
+	 <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove hide small--show">
+        <small>{{ 'cart.general.remove' | t }}</small>
+      </a>
+	</div>	
+	<div class="grid__item large--one-sixth medium--one-sixth small--hide cartBox" data-label="{{ 'cart.label.total' | t }}">
+		<span class="h6">
+        {{ item.line_price | money }}
+      </span>
+       <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove">
+        <small>{{ 'cart.general.remove' | t }}</small>
+      </a>
+	</div>
+	<div style="clear:both"></div>
+</div>
+ {% assign isMunged = false %}
+{% endfor %}	  
+       <div class="grid cart__row">
+      {% if settings.cart_notes_enable %}
+        <div class="grid__item two-thirds small--one-whole">
+          <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+          <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+        </div>
+      {% endif %}
+      <div class="grid__item text-right{% if settings.cart_notes_enable %} one-third small--one-whole{% endif %}">
+        <p>
+          <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
+          <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
+        </p>
+        <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
+        <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
+        <input id="checkout" type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
+      </div>
+    </div>
+
+    <input type="hidden" id="identify_user_id" name="attributes[identify_user_id]" value="" />
+    <script>
+
+
+      $(window).load(function(){
+        {% if customer.id %}
+          $("#identify_user_id").val({{ customer.id }});
+        {% else %}
+          $("#identify_user_id").val(window.analytics.user().anonymousId());
+        {% endif %}
+      });
+
+    </script>
+
+  </form>
+{% else %}
+  {% comment %}
+    The cart is empty
+  {% endcomment %}
+  <h2>{{ 'cart.general.title' | t }}</h2>
+  <p>{{ 'cart.general.empty' | t }}</p>
+  <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+{% endif %}
+
+<!-- IS+ Product Recommendation Widget START -->
+<div title="You might also like..." sources="related_purchase,related_cart,related_views,related_keywords" layout="horizontal" max_suggest="4" id="isp-related-widget-1"></div>
+<div title="People Who Viewed This Also Viewed" sources="related_views" layout="vertical" max_suggest="5" id="isp-related-widget-2"></div>
+<div title="People Who Purchased This Also Purchased" sources="related_purchase,related_cart" layout="horizontal" max_suggest="5" id="isp-related-widget-3"></div>
+<div title="Recently Viewed Products" sources="related_recently_viewed,related_top_products" layout="horizontal" max_suggest="5" id="isp-related-widget-4"></div>
+<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.7&UUID=07233f61-ec24-4ef7-bd9d-80d9f82cd02a&store=11596060"></script>
+<!-- IS+ Product Recommendation Widget END -->
+
+<!-- Segment Cart Code -->
+<script type="text/javascript">
+  $(window).load(function() {
+	  analytics.page('Cart', {
+	    itemCount: {{ cart.item_count }},
+	    totalPrice: {{ cart.total_price | money_without_currency }},
+	    totalWeight: {{ cart.total_weight }}
+	  });
+	
+	  $(".cart__remove").click(function(){
+	    analytics.track('Removed item from Cart')
+	  });
+	  
+	  $("#checkout").click(function(){
+	    analytics.track('Click Check Out Button')
+	  });
+  });
+
+</script>

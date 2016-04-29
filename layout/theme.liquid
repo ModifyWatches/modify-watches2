@@ -1,0 +1,565 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  {% include 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link href='https://fonts.googleapis.com/css?family=Bitter:400,400italic,700|Open+Sans:400,700,300,400italic,700italic,300italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <!-- CSS ================================================== -->
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' | script_tag }}
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+  {{ 'jquery-ui.min.js' | asset_url | script_tag }}
+  {% include 'sca-quick-view-init' %} 
+
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  <!-- Header hook for Analytics ================================================== -->
+    <meta name="google-site-verification" content="EwIwa-8YQrdrdsQ9UnBWyfQfadFcpoHEceGhQyVmS9k" />
+    <meta name="google-site-verification" content="5MGhNKO8NRhrY0T5ZD5gJDSpCpqKXZJkFKGcsgEroHA" />
+    <meta name="google-site-verification" content="mRisER79hSvY9f5i1IFqSPoQ8NX0eCFvUw6nW7-bDLU" />
+    
+    <script src="//cdn.optimizely.com/js/5182341474.js"></script>
+    
+    <!-- Facebook Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '626325590828751');
+        fbq('track', "PageView");</script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=626325590828751&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- End Facebook Pixel Code -->
+    
+    <!-- Segment Code -->
+    <script type="text/javascript">
+      
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+
+      if (window.location.host == "modifymarket.myshopify.com") {
+        window.analytics.load("BYHUAfdMpzgfgXDduZp5qoHbggIZx9Qd");
+      } else { 
+        window.analytics.load("icEIlukUoiyYmMXt40Dp4U20WZ91oKzS");
+      }
+
+      // identify the customer if they have an account
+      {% if customer.id %}
+
+        analytics.alias({{ customer.id }});
+
+        analytics.identify({{customer.id}}, {
+          name: "{{ customer.name }}",
+          firstName: "{{ customer.first_name }}",
+          lastName: "{{ customer.last_name }}",
+          email: "{{ customer.email }}",
+          phone: "{{ customer.default_address.phone }}",
+          address: {  // uses the default address
+          street: "{{ customer.default_address.street }}",
+          city: "{{ customer.default_address.city }}",
+          state: "{{ customer.default_address.province }}",
+          stateCode: "{{ billing_address.province_code }}",
+          postalCode: "{{ customer.default_address.zip }}",
+          country: "{{ customer.default_address.country }}",
+          countryCode: "{{ customer.default_address.country_code }}"
+          },
+          totalSpent: "{{ customer.total_spent }}",
+          allOrdersCount: {{ customer.orders_count }},
+          allOrderIds: [{% for order in customer.orders %}{{ order.id }},{% endfor %}],
+          tags: ["{{ customer.tags | join: '", "' }}"]
+          }, {
+            integrations: {
+              'All': false,
+              'Mixpanel': true
+            }
+          });
+      {% else %}                
+        $(window).load(function() {
+          analytics.identify(window.analytics.user().anonymousId());
+          analytics.alias(window.analytics.user().anonymousId());
+        });
+      {% endif %}
+      
+      //  window.analytics.page();
+      }}();
+
+    </script>
+
+</head>
+
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+
+  <div id="NavDrawer" class="drawer drawer--left">
+    <div class="drawer__header">
+      <div class="drawer__title h3">{{ 'layout.drawers.browse' | t }}</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'layout.drawers.close_menu' | t }}</span>
+        </button>
+      </div>
+    </div>
+    <!-- begin mobile-nav -->
+    <ul class="mobile-nav">
+      <li class="mobile-nav__item mobile-nav__search">
+        {% include 'search-bar' %}
+      </li>
+      {% for link in linklists.main-menu.links %}
+        {% comment %}
+          Create a dropdown menu by naming a linklist the same as a link in the parent nav
+
+          More info on dropdowns:
+            - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
+        {% endcomment %}
+        {% assign child_list_handle = link.title | handleize %}
+        {% if linklists[child_list_handle].links != blank %}
+          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
+            <div class="mobile-nav__has-sublist">
+              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+              <div class="mobile-nav__toggle">
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-open">
+                  <span class="icon icon-plus" aria-hidden="true"></span>
+                  <span class="fallback-text">See More</span>
+                </button>
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-close">
+                  <span class="icon icon-minus" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                </button>
+              </div>
+            </div>
+            <ul class="mobile-nav__sublist">
+              {% for childlink in linklists[child_list_handle].links %}
+                <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
+                  <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">
+            <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% comment %}
+        If customer accounts are enabled, provide login and create account links
+      {% endcomment %}
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          <li class="mobile-nav__item">
+            {% if customer.first_name != blank %}
+              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+            {% else %}
+              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            {% endif %}
+          </li>
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.log_out' | t | customer_logout_link }}
+          </li>
+        {% else %}
+          <li class="mobile-nav__item">
+            {{ 'Log In' | customer_login_link }}
+          </li>
+          {% if shop.customer_accounts_optional %}
+          <li class="mobile-nav__item">
+              <a href="//pages/storefronts">Sell</a>
+          </li>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </ul>
+    <!-- //mobile-nav -->
+  </div>
+  <div id="CartDrawer" class="drawer drawer--right">
+    <div class="drawer__header">
+      <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+        </button>
+      </div>
+    </div>
+    <div id="CartContainer"></div>
+  </div>
+  <!--
+  <div id="bigPopup">
+	  <div class="popupPromo">
+
+		  	They're real and they're spectacular!<span class="small"></span><br>
+		  	<span class="mediumText">GET 25% OFF ALL <a href="/collections/cell-phone-cases">CELL PHONE CASES</a></span><br>
+		  	Use code <b>SPECTACULAR</b> at Checkout.<br>
+		  	<span class="small"></span>
+
+		  <div id="closePopup" class="icon icon-x"></div>
+	  </div>
+  </div>
+  -->
+    <div id="promoBar" class="grid__item one-whole text-center">
+        Free shipping on orders over $60		      	
+    </div>
+      
+      <header class="site-header small--hide" role="banner">
+	     
+      <div class="wrapper whiteBG">
+
+        <div class="grid--full grid ">
+	     
+          <div class="grid__item large--six-eighths medium--six-eighths small--one-whole">
+            {% comment %}
+              Use the uploaded logo from theme settings if enabled.
+              Site name gets precedence with H1 tag on homepage, div on other pages.
+            {% endcomment %}
+            
+              <h1 class="site-header__logo left large--one-sixth medium--one-sixth small--one-quarter" itemscope itemtype="http://schema.org/Organization">
+           
+              {% if settings.logo_use_image %}
+                <a href="/" itemprop="url" class="site-header__logo-link">
+                  <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+                </a>
+              {% else %}
+                <a href="/" itemprop="url">{{ shop.name }}</a>
+              {% endif %}
+            
+              </h1>
+           
+            <div id="browseBox" class="left large--one-sixth medium--one-eighth small--hide text-center">
+		        <a href="/collections/all">
+                    <b>Shop</b>
+                   
+                </a>
+		    </div>
+		    <div class="left  large--one-fifth medium--one-quarter small--hide large--text-left medium--text-center sellStore">
+			     <a href="/pages/storefronts"><h4>Partner with us</h4></a>
+		    </div>
+             <div class="site-header__search large--one-third medium--five-twelfths small--one-half small--right">
+              {% include 'search-bar' %}
+            </div>
+
+          </div>
+          <div class="grid__item large--one-quarter text-right medium--one-quarter small--hide">
+               <div class="storeCart">
+	           
+	            
+				{% if shop.customer_accounts_enabled %}
+	            <div class="grid__item large--five-sixths text-right medium--five-sixths"> 
+                {% if customer %}
+                  {% if customer.first_name != blank %}
+                   <a href="/account">{{ customer.first_name | truncate: 12}}</a>
+                   
+                  {% else %}
+                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                  {% endif %}
+                   | 
+                   {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                {% else %}
+                  {% if shop.customer_accounts_optional %}
+                   {{ 'Log In'| customer_login_link }}
+                  {% endif %}
+                {% endif %}  
+	            </div>     
+            {% endif %}
+            
+            
+			<a href="/cart" class="grid__item large--one-sixth text-right medium--one-sixth site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22"/>
+				 {% if cart.item_count > 0 %}
+				 <span id="CartCount">{{ cart.item_count }}</span>
+                {% endif %}
+               
+              </a>
+
+            </div>
+        </div>
+
+      </div>
+    </header>
+    
+    <nav class="nav-bar" role="navigation">
+	     
+      <div class="wrapper">
+        <div class="small-down--hide">
+          {% comment %}
+            List out your main-menu linklist (default)
+
+            More info on linklists:
+              - http://docs.shopify.com/themes/liquid-variables/linklists
+          {% endcomment %}
+          <!-- begin site-nav -->
+          <div class="navWrapper">
+	          <ul class="site-nav wrapper" id="AccessibleNav">
+	            {% for link in linklists.main-menu.links %}
+	              {% comment %}
+	                Create a dropdown menu by naming a linklist the same as a link in the parent nav
+	
+	                More info on dropdowns:
+	                  - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
+	              {% endcomment %}
+	              {% assign child_list_handle = link.title | handleize %}
+	              {% if linklists[child_list_handle].links != blank %}
+	                <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
+	                  <a href="{{ link.url }}" class="site-nav__link">
+	                    {{ link.title }}
+	                    
+	                  </a>
+	                  <ul class="site-nav__dropdown">
+	                    {% for childlink in linklists[child_list_handle].links %}
+	                      <li{% if childlink.active %} class="site-nav--active"{% endif %}>
+	                        <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+	                      </li>
+	                    {% endfor %}
+	                  </ul>
+	                </li>
+	              {% else %}
+	                <li {% if link.active %}class="site-nav--active"{% endif %}>
+	                  <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+	                </li>
+	              {% endif %}
+	            {% endfor %}
+	             <li class="site-nav partnerLink"><a href="/pages/storefronts" class="site-nav__link">Become a Partner</a>
+             <div class="partnerLinkInfo">
+	             <img src="{{ 'navImage.jpg' | asset_url }}" />
+				 <p>
+					Want to create great watches for your fans? Get started for free!<br>
+					<a href="/pages/storefronts">Learn more ></a> 
+				 </p>
+             </div>
+             </li>
+
+	          </ul>
+			</div>
+          <!-- //site-nav -->
+        </div>
+  
+  <div id="PageContainer" class="is-moved-by-drawer">
+
+        <div class="large--hide medium--hide small-down--show">
+          <div class="grid">
+            <div class="grid__item one-third">
+              <div class="site-nav--mobile">
+                <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
+                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+                  <span class="icon icon-search" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div class="grid__item one-third text-center mobile-logo">
+	             <a href="/" itemprop="url" class="site-header__logo-link">
+                  <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+                </a>	
+            </div>
+            <div class="grid__item one-third text-right">
+              <div class="site-nav--mobile">
+                <a href="/cart" class="text-right medium--one-quarter site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="20"/>
+				 {% if cart.item_count > 0 %}
+				 <span id="CartCount">{{ cart.item_count }}</span>
+                {% endif %}
+               
+              </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="wrapper main-content" role="main">
+
+      {{ content_for_layout }}
+
+    </main>
+
+    {% include 'footer' %}
+    
+    <!-- /snippets/old/old-footer.liquid -->
+
+  </div>
+
+  {{ 'fastclick.min.js' | asset_url | script_tag }}
+  {{ 'timber.js' | asset_url | script_tag }}
+  {{ 'app.js' | asset_url | script_tag }}
+
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  
+
+
+  <script>
+
+    $(function() {
+   
+      {% if customer %}
+        var customer_id = customer.id;
+      {% else %}
+        var customer_id = false;
+      {% endif %}
+  
+      $('#mc-embedded-subscribe-form').submit(function(){
+  
+        var email = $("#mail").val();
+
+        if (!customer_id) {
+          analytics.identify(email, { 
+            anonymousId: window.analytics.user().anonymousId(), 
+            email: email 
+          });
+        };
+
+        analytics.track('Subscribed to Newsletter', { email: email });
+      })
+
+      ///////// pop up promo //////////
+      if ( (!$.cookie('case_upsell')) ) {
+        $('#bigPopup').delay(200).fadeIn(300);
+      } else {
+        $('#promoBar').slideDown(0,function(){
+          $('.site-header').addClass('hasPromo');
+        });
+      };
+
+      // only show if hasn't been shown previously and don't show on mobile
+      if ( (!$.cookie('case_upsell')) ) {
+        setTimeout(function() {
+          $.cookie('case_upsell', 'true');
+          $('.email-container').show('fade');
+        }, 3000);
+      };
+    });
+
+    {% if resetPassword %}
+      $(function() {
+        timber.resetPasswordSuccess();
+      });
+    {% endif %}
+
+  </script>
+
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/timber#ajax-cart
+  {% endcomment %}
+  {% comment %}
+  {% if settings.ajax_cart_method == "drawer" %}
+    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    {% include 'ajax-cart-template' %}
+    {{ 'ajax-cart.js' | asset_url | script_tag }}
+    <script>
+      jQuery(function($) {
+        ajaxCart.init({
+          formSelector: '#AddToCartForm',
+          cartContainer: '#CartContainer',
+          addToCartSelector: '#AddToCart',
+          cartCountSelector: '#CartCount',
+          cartCostSelector: '#CartCost',
+          moneyFormat: {{ shop.money_format | json }}
+        });
+      });
+
+      jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+        // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+        timber.RightDrawer.open();
+      });
+    </script>
+  {% endif %}
+  {% endcomment %}
+    
+    {% comment %}
+    <!-- Power Tools view count code (Featured on top) -->
+    {% endcomment %}
+    {% if template contains 'product' %}
+        <script type="text/javascript">
+            (function () {
+                var oldonload = window.onload;
+                window.onload = function(){
+                    var scr = document.createElement("script");
+                    scr.setAttribute('async', 'true');
+                    scr.type = "text/javascript";
+                    scr.src = "//ping.shopifypowertools.com/ping/{{ shop.permanent_domain }}/{{ product.id }}?weight={% if product.tags contains 'Featured' or product.tags contains 'featured' %}100{% else %}1{% endif %}{% if collection %}&collection_id={{ collection.handle }}{% endif %}";
+                    ((document.getElementsByTagName('head') || [null])[0] || document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+                    if(oldonload){oldonload()}};
+            }());
+        </script>
+    {% endif %}
+ <script>
+	 $(document).ready(function () {
+		attachClickEvent();
+	});
+</script> 
+
+{% include 'sca-quick-view-template' %} 
+
+<script>
+  jQuery(function() {
+    jQuery('.swatch :radio').change(function() {
+      var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
+      var optionValue = jQuery(this).val();
+      jQuery(this)
+        .closest('form')
+        .find('.single-option-selector')
+        .eq(optionIndex)
+        .val(optionValue)
+        .trigger('change');
+    });
+  });
+</script>
+
+<!-- AddShoppers Tracking Code Start -->
+<script type="text/javascript">
+  AddShoppersTracking = {
+  image: '' // add URL for custom product image (RECOMMENDED if not using Product Schema)
+  }
+  var js = document.createElement('script'); js.type = 'text/javascript'; js.async = true; js.id = 'AddShoppers';
+  js.src = ('https:' == document.location.protocol ? 'https://shop.pe' : 'http://cdn.shop.pe') + '/widget/widget_async.js#56f1af4fbbddbd4e09729928';
+  document.getElementsByTagName("head")[0].appendChild(js);
+</script>
+<!-- AddShoppers Tracking Code End -->
+
+ </body>
+</html>

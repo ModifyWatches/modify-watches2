@@ -1,0 +1,29 @@
+</main>
+<!-- /snippets/trending-stores.liquid -->
+<div class="text-center light-bg genSection">
+    <!-- Wrapper Grid -->
+    <main class="wrapper main-content small-margin" role="main">
+        <h2>Check out these trending products</h2>
+
+        {% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
+		<div class="grid-uniform big-padding">
+					<ul class="trending">
+		 {% for product in collections.trending-designs.products limit:4 %}
+		 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }}">
+		  {% include 'art-grid' %}
+		 </li> 
+		 {% endfor %}
+		 <!--<li class="top"><a href="#pageTop">Back to Top</a></li>  -->      
+				 <div style="clear: both"></div>
+		</ul>
+		
+		
+		<a href="/pages/shops">Browse 1,000 more stores ></a>
+
+
+</div>
+
+        </div>
+            
+        </div>
+    </main>
