@@ -1,0 +1,256 @@
+{% comment %}
+	assign all initial variables 
+{% endcomment %}	
+
+<script>
+	var strapArray = {};
+	
+</script> 
+
+
+{% if product.available and product.variants.size > 1 %}
+	{% for option in product.options %}
+	  	{% if option == 'Color' %}
+	  		{% include 'swatch' with 'Color' %}
+	  	{% endif %}
+	  	{% if option == 'Strap Color' %}
+	  		{% include 'swatch' with 'Strap Color' %}
+	  	{% endif %}
+	  	{% if option == 'Size' %}
+	  		{% assign hasSizes = true %}
+	  	{% endif %}	
+	{% endfor %}	
+{% endif %}
+
+{% comment %}
+	get the right strap collection
+{% endcomment %}
+	
+{% assign straps = '' %}
+{% if product.type == 'Watch' %}
+	{% assign strapCol = 'Straps' %}
+{% else %}
+	{% assign strapCol = 'Nylon' %}
+{% endif %}		
+
+{% comment %}
+	 define strap array - colors and sizes 
+{% endcomment %}	  
+{% assign i = 0 %}
+{% for product in collections[strapCol].products %}
+	{% assign i = i | plus:1 %}
+	{% for variant in product.variants %}
+		{% if variant.available %}
+			{% assign theColor = product.title | replace: ' Strap' , '' %}
+			{% assign theColor = theColor | replace: ' Nylon' , '' %}
+			{% assign theColor = theColor | replace: ' Watch' , '' %}
+			{% assign theSize = variant.option1 %}
+			<script>
+				strapArray["{{i}}"] = {"color":"{{theColor}}","size":"{{theSize}}"};
+			
+			</script>
+		{% endif %}
+	{% endfor %}
+{% endfor %}	
+
+
+
+          <select name="id" id="productSelect" class="product-single__variants ">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                {% comment %}
+                  Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+                {% endcomment %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+		  
+		 		  
+		  
+          
+          
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            <p id="ComparePrice">
+              {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
+            </p>
+          {% endif %}
+           	{% if hasSizes == true %}	  
+           		  <div class="selector-wrappers right text-right">
+			  		{% else %}		
+			  			<div class="selector-wrappers left text-left">
+		  			{% endif %}	
+		  				  		
+		  		<label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+		  		<input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+		  </div>
+
+		  
+<script>
+	var currentImage ='';
+	var mainType = 'munged';
+	
+function checkVisible(Scolor, Ssize) {
+	var n = 0;
+	if(!Ssize) {
+		Ssize = 'Default Title';
+	}
+	$.each(strapArray, function(index) {
+		if(strapArray[index].size == Ssize && strapArray[index].color == Scolor) {
+			n = 1;
+		}
+	})
+	if(Scolor == 'No Strap') {
+		n = 1;
+	}
+	return n;
+}		
+  var selectCallback = function(variant, selector) {
+	  
+	 // BEGIN SWATCHES
+		if (variant) {
+			available = checkVisible(variant.option1, variant.option2);	
+			if(available == 0) {
+				console.log('not it');
+				 $('.swatch :radio[value="No Strap"]').click() 
+			}else {
+			  var form = jQuery('#' + selector.domIdPrefix).closest('form');
+			  for (var i=0,length=variant.options.length; i<length; i++) {
+			    var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+			    if (radioButton.size()) {
+			      radioButton.get(0).checked = true;
+			    }
+			  }
+			  theColor = $('input:radio:checked').val();
+			  theColor = theColor.toLowerCase();
+			  theColor = theColor.replace(' ','-');
+			  theColor = theColor.replace(' ','-');
+			  currentImage =  $('#ProductPhotoImg').attr('src');
+			  var path =  $('#ProductPhotoImg').attr('data-src');
+			  var type = $('#ProductPhotoImg').attr('data-type');
+			  var index = path.lastIndexOf('_');
+			  path = path.substring(0, index+1);
+			  
+			  path+=theColor+'.png';
+			  $('#ProductPhotoImg').attr('src',path );	
+			 
+			  $('.ImageOverlay').show();
+			  mainType = 'munged';
+		 
+		  }
+		  
+	}
+	// END SWATCHES 
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
+  };
+  
+  $('.swatch-element').mouseover(function() {
+	   	  theColor = $(this).attr('data-value');
+		  theColor = theColor.toLowerCase();
+		  theColor = theColor.replace(' ','-');
+		  theColor = theColor.replace(' ','-');
+		  currentImage =  $('#ProductPhotoImg').attr('src');
+		  var path =  $('#ProductPhotoImg').attr('data-src');
+		  var type = $('#ProductPhotoImg').attr('data-type');
+		  var index = path.lastIndexOf('_');
+		  path = path.substring(0, index+1);
+		  
+		   path+=theColor+'.png';
+		  $('#ProductPhotoImg').attr('src',path );	
+		
+	  		 $('.ImageOverlay').show();
+ 
+	  
+  })
+  $('.swatch-element').mouseout(function() {
+	  
+		  $('#ProductPhotoImg').attr('src',currentImage );
+		  if(mainType !='munged') {
+	  		 $('.ImageOverlay').hide();
+  		}
+	  
+	  
+  })
+  $('.product-single__thumbnail').mouseover(function() {
+	   currentImage =  $('#ProductPhotoImg').attr('src');
+	   $('.ImageOverlay').hide();
+	   path = $(this).attr('href');
+	    $('#ProductPhotoImg').attr('src',path );
+	    
+  });
+  $('.product-single__thumbnail').mouseout(function() { 
+  		$('#ProductPhotoImg').attr('src',currentImage );
+  		if(mainType =='munged') {
+	  		 $('.ImageOverlay').show();
+  		}
+  })
+   $('.product-single__thumbnail').click(function () {
+	    currentImage =  $('#ProductPhotoImg').attr('src');
+	    mainType = 'alternate';
+   })
+  jQuery(function($) {
+    new Shopify.OptionSelectors('productSelect', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback,
+      enableHistoryState: true
+    });
+
+    // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      $('.selector-wrapper:eq(0)').prepend('<label for="productSelect-option-0">{{ product.options.first | escape }}</label>');
+    {% endif %}
+
+    // Hide selectors if we only have 1 variant and its title contains 'Default'.
+    {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+      $('.selector-wrapper').hide();
+    {% endif %}
+  }); 
+  
+function hideHidden() {
+	//console.log(strapArray);
+	$('.swatch-element').hide();
+	if($('#productSelect-option-1').length>0) {
+		var theSize = $('#productSelect-option-1').val();
+	}else {
+		var theSize = "Default Title";
+	}
+
+	$.each(strapArray, function(index) {
+		if(strapArray[index].size == theSize) {
+			$('.swatch-element[data-value="'+strapArray[index].color+'"]').show();
+		}
+	})
+	$('.swatch-element[data-value="No Strap"]').show();
+}
+$(document).ready(function() {
+	$('#productSelect-option-1').on('change',function() {
+		hideHidden();
+	})
+	
+	hideHidden();
+	
+})
+$(window).load(function() {	
+	console.log('loaded');
+	if(!getUrlVars()["variant"]) {
+		$('.swatch :radio[value="No Strap"]').click()
+	}
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+		});
+		return vars;
+	}	
+})
+</script>

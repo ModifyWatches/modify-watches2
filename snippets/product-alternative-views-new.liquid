@@ -35,7 +35,7 @@
 {% endif %}
 
 <!-- Sport Watch Alt Images -->        
-{% if product.type == "Sport Watch" OR product.type == "Watch" %}
+{% if product.type == "Sport Watch" or product.type == "Watch" %}
     <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
        <li class="one-whole small--one-sixth small--left">
             <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail">
