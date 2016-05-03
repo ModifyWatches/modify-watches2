@@ -41,7 +41,7 @@
 			{% assign theCollor = item.variant.option1 | handleize %} 
 
 			{% assign product_art = item.product.images[1] | default: item.product.images[1] %}
-			{% if item.product.type == 'Watch' or item.product.type == 'Sport Watch'%}
+			{% if item.product.type == 'Watch' or item.product.type == 'Alloy watch'%}
 			{% assign template_art = suffix | append: '_' | append: theCollor | append: '.png' %}
 			
 			<img src="{{ 'Backplate.png' | asset_url }}" />
