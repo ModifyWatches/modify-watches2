@@ -27,7 +27,7 @@
 {% endcomment %}
 	
 {% assign straps = '' %}
-{% if product.type == 'Watch' %}
+{% if product.type == 'Watch' or product.type == 'Sport Watch'%}
 	{% assign strapCol = 'Straps' %}
 {% else %}
 	{% assign strapCol = 'Nylon' %}
@@ -137,7 +137,7 @@ function checkVisible(Scolor, Ssize) {
 			  var index = path.lastIndexOf('_');
 			  path = path.substring(0, index+1);
 			  
-			  path+=theColor+'.png';
+			  path+=theColor+'.png?v=1';
 			  $('#ProductPhotoImg').attr('src',path );	
 			 
 			  $('.ImageOverlay').show();
@@ -165,7 +165,7 @@ function checkVisible(Scolor, Ssize) {
 		  var index = path.lastIndexOf('_');
 		  path = path.substring(0, index+1);
 		  
-		   path+=theColor+'.png';
+		  path+=theColor+'.png?v=1';
 		  $('#ProductPhotoImg').attr('src',path );	
 		
 	  		 $('.ImageOverlay').show();

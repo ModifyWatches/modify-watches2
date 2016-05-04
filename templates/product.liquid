@@ -32,7 +32,11 @@
   {% assign current_variant = product.selected_or_first_available_variant %}
 
   {% include 'breadcrumb' %}
-  {% assign suffix = product.type | handleize %} 
+  {% if product.type == 'Sport Watch' %}
+  	{% assign suffix = 'watch' %}
+  {% else %}	
+  	{% assign suffix = product.type | handleize %} 
+  {% endif %}	
   {% assign product_art = product.images[1] | default: product.images[1] %}
   {% assign product_preview = product.images[0] | default: product.images[0] %}	
   
