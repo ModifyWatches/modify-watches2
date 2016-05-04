@@ -110,7 +110,7 @@ $colorNav: #ffffff;
 $colorNavText: #415862;
 
 // Site Footer
-$colorFooterBg: {{ settings.color_footer_bg }};
+$colorFooterBg: rgb(45,45,45);
 $colorFooterText: {{ settings.color_footer_text }};
 
 // Logo max width
@@ -831,6 +831,8 @@ h3 {
 
 h4 {
   font-size: em(20px);
+  font-family: $bodyFontStack;
+  
 }
 
 h5 {
@@ -1793,7 +1795,8 @@ label.error {
   z-index: 10000;
   top:0px !important;
   background-color: #ffffff;
-
+  border-bottom: 1px solid rgb(204, 204, 204);
+  text-transform: uppercase;
 
   .grid--table {
     display: table;
@@ -1834,7 +1837,9 @@ label.error {
 }
 .storeCart a{
 	line-height: 48px;
+	padding-left: 10px;
 }
+
 .site-header__cart-toggle {
   display: inline-block;
   font-size: 20px;
@@ -1865,28 +1870,19 @@ label.error {
   }
 }
 
-#browseBox {
-	font-size: 13px;
-	cursor: pointer;
-	padding-top: 0px;
-	padding-right: 0%;
-	padding-left: 0%;
-	line-height: 48px;
-	padding-bottom: 0px;
-	box-sizing: border-box;
-	text-align: center;
-	
-}
+
 .sellStore h4{
 	line-height: 40px;
 	margin-top: 5px;
-	font-size: 18px
+	font-size: 16px;
+	font-weight: 500;
 	
 }
-#browseBox b {
-	font-size: 18px;
-	display: block;
-	font-family: 'Bitter', serif;
+.site-header a {
+	color:rgb(136, 136, 136);
+}
+.site-header a:hover {
+	color:rgb(255, 142, 4);
 }
 #browseBox:hover {
 	color: #E4572F;
@@ -1896,7 +1892,13 @@ label.error {
 	color: #E4572F;
 	border-bottom: 1px solid #E4572F;
 }
-
+.site-header h4 {
+	font-size: 14px;
+}
+.site-header.fullSize {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
 /*============================================================================
   #Site Nav and Dropdowns
 ==============================================================================*/
@@ -2351,7 +2353,7 @@ label.error {
 .site-footer {
   background-color: $colorFooterBg;
   padding: $gutter 0;
-  color: $colorFooterText;
+  color: #ffffff;
   border-top: 1px solid #ccc;
   font-size: 15px;
   margin-top: 20px;
@@ -2364,7 +2366,12 @@ label.error {
 	padding-left: 5%;
 	padding-right: 5%;
 }
-
+.site-footer a {
+	color:#dfdfdf;	
+}
+.site-footer a:hover {
+	color:rgb(255, 142, 4);
+}
 /*============================================================================
   #Product and Collection Grids
 ==============================================================================*/
