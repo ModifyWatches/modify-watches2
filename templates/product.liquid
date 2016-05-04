@@ -59,7 +59,7 @@
 	        {% assign template_art = suffix | append: '_' | append: theOption | append: '.png' %}
 	        <img src="{{ 'Backplate.png' | asset_url }}" class="backplate" />
 	         <div class="watchArt">
-		          {% if suffix == 'Watch' %}
+		          {% if suffix == 'watch' %}
 					  	<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="sportWatch"> 
 				  	{% else %}
 				  		<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class=""> 
