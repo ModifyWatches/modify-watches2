@@ -1,9 +1,13 @@
 <style><!--
 @charset "UTF-8";
+	* {
+		transition: all 0.25s ease;
+		-webkit-transition: all 0.25s ease;
+	}
 	p {
-		font-size: 18px;
+		font-size: 16px;
 	}	
-	.topStack h2 {
+	.topStack h4 {
 		font-weight: 300;
 		font-style: italic;
 	}
@@ -27,6 +31,54 @@
 		padding: 10px 40px;
 		font-size: 18px;
 	}
+	.customOptions button {
+		position: relative;
+		margin-top: -50%;
+		background-color: rgba(255, 255, 255, 0.5);
+		border: 3px solid #000;
+		padding: 10px 40px;
+		font-size: 20px;   
+		opacity: 0.4;
+		color: #000;
+	}
+		.customOptions:hover button {
+			opacity: 1;
+		}
+		.customOptions:hover img {
+			opacity: 0.8;
+		}
+		.customOptions button:hover {
+		background-color: #000;
+		color: #fff;
+
+		}
+	.padding {
+		padding-bottom: 40px;
+		
+	}
+	.blue-button {
+		background-color: lightblue;
+	}
+		.blue-button:hover {
+			background-color: #000;
+			color: #fff;
+		}
+	.brown-button {
+		background-color: beige;
+		color: #222;
+	}
+		.brown-button:hover {
+			background-color: #000;
+			color: #fff;
+		}
+	.red-button {
+		background-color: lightcoral;
+	}
+		.red-button:hover {
+			background-color: #000;
+			color: #fff;
+		}
+	
 	@media (max-width: 767px) {
 		.wrapper {
 			max-width: 100%;
@@ -46,10 +98,78 @@
 		}
   	}
 --></style>
-</main>        
+
+
+<div class="grid-uniform topStack text-center">
+	<div class="grid__item one-whole medium-margin text-center">
+		<h1>CUSTOM WATCHES</h1>
+		<p>Design custom watches for you, a group, or any special occasion!</p>
+	</div>
+	<div class="one-whole">
+	<div class="grid__item large--one-third text-center">
+		<a class="customOptions" href="/apps/qstomizer/?product=791">
+			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/tofushark.jpg?11077002776917843248" alt="" />
+			<!--
+			<button class="btn--secondary">Start Designing</button>
+			-->
+		</a>
+		<div class="padding">
+			<hr class="orangeDash-center" />
+			<h3>SPORT</h3>
+			<h4>Starts at $44.99 for a face</h4>
+			<p>Fun, lightweight, silicone watch</p>
+						
+			<a href="/apps/qstomizer/?product=791">
+				<button class="btn--secondary blue-button">Start Designing</button>
+			</a>
+			
+		</div>
+	</div>
+	
+	<div class="grid__item large--one-third text-center">
+		<a class="customOptions" href="/apps/qstomizer/?product=2666">
+			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/surimetal.jpg?3328421903278847602" alt="" />
+			<!--
+			<button class="btn--secondary">Start Designing</button>
+			-->
+		</a>
+		<div class="padding">
+			<hr class="orangeDash-center" />
+			<h3>METAL</h3>
+			<h4>$89.99 for a watch with 1 strap</h4>
+			<p>Sleek, water-resistant, nylon straps</p>	
+				
+			<a href="/apps/qstomizer/?product=2666">
+				<button class="btn--secondary brown-button">Start Designing</button>
+			</a>
+			
+		</div>
+	</div>
+	
+	<div class="grid__item large--one-third text-center">
+		<a class="customOptions" href="mailto:custom@modifywatches.com">
+			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/b2b.jpg?2275844897330470224" alt="" />
+			<!--
+			<button class="btn--secondary">Get in touch</button>
+			-->
+		</a>
+		<div class="padding">
+			<hr class="orangeDash-center" />
+			<h3>GROUP GIFTS (25+)</h3>							
+			<h4><b>email: <a style="color: #E4572E" href="mailto:custom@modifywatches.com">custom@modifywatches.com</a></b></h4>
+			<p>We'll intro you to a great distributor</p>
+			<a href="mailto:custom@modifywatches.com">
+				<button class="btn--secondary red-button">Get in touch</button>
+			</a>
+		</div>
+	</div>
+	</div>
+</div>
+
+	<!--
 	<div class="grid--full text-center topStack">
 		<div class="grid__item large--one-half">
-			<div class="imageCell"><img src="//cdn.shopify.com/s/files/1/0358/9733/files/DesignYourOwnMetalAsset.jpg?17373280058522266437" alt="" /></div>
+			<div><img src="//cdn.shopify.com/s/files/1/0358/9733/files/DesignYourOwnMetalAsset.jpg?17373280058522266437" alt="" /></div>
 		</div>
 		
 		<div class="grid__item large--one-half">
@@ -65,7 +185,7 @@
 	
 	<div class="grid--full text-center topStack">
 		<div class="grid__item large--one-half right">
-			<div class="imageCell"><img src="//cdn.shopify.com/s/files/1/0358/9733/files/DesignYourOwnAsset.jpg?12823995003195788476" alt="" /></div>
+			<div><img src="//cdn.shopify.com/s/files/1/0358/9733/files/DesignYourOwnAsset.jpg?12823995003195788476" alt="" /></div>
 		</div>     
 		
 		<div class="grid__item large--one-half">
@@ -81,7 +201,7 @@
 	
 	<div class="grid--full text-center topStack">
 		<div class="grid__item large--one-half">
-			<div class="imageCell"><img src="//cdn.shopify.com/s/files/1/0358/9733/files/CorporateGiftsAsset.jpg?12823995003195788476" alt="" /></div>
+			<div><img src="//cdn.shopify.com/s/files/1/0358/9733/files/CorporateGiftsAsset.jpg?12823995003195788476" alt="" /></div>
 		</div>
 		
 		<div class="grid__item large--one-half">
@@ -94,19 +214,20 @@
 			</div>
 		</div>  
 	</div>                      		
-	
-	<div class="grid--full grid__item one-whole text-center light-bg genSection">
-		<h1>Interested in partnering with us instead?</h1>
-		Get sweet merch for your fans or to support a cause.<br />
-		<button class="btn--secondary"><a href="https://modify.com/pages/storefronts">Apply Here</a></button>
+	-->    
+	<div class="text-center">
+		<hr class="medium-margin" />	
+		<div class="medium-margin">
+			<h3>1,000+ AMAZING BRANDS HAVE ALREADY CHOSEN MODIFY</h3>			
+		</div>	
+		<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/customLineup2.jpg?658091872451289029" />
+		
 	</div>
-        
-<main class="wrapper" role="main">
+	
 	<div class="grid grid__item one-whole text-center">
-		<section class="genSection large--two-thirds push--large--one-sixth">
-			<h1>NEED HELP WITH YOUR DESIGN?</h1>
-			<hr class="orangeDash-center" />
-			<p>Our designers will personally help you to make sure your custom watch comes out just the way you want it! We have separate rates for this hands-on service, please see the pricing chart below:</p>
+		<hr class="medium-margin" />
+		<section class="large--two-thirds push--large--one-sixth">
+			<h1>BULK PRICING FOR CUSTOM WATCHES</h1>			
 		</section>
 		<section class="priceTable genSection">			
 			<div class="grid-uniform">
@@ -122,12 +243,12 @@
 				<div class="grid__item one-fifth"><b>Face</b></div>
 				<div class="grid__item one-fifth"><b>Watch</b><br /><span class="smaller">(1 face + 1 strap)</span></div>
 				<div class="grid__item one-fifth"><b>Set</b><br /><span class="smaller">(1 face + 2 straps)</span></div>
-				<div class="grid__item one-fifth"><b>Metal Watch</b><br /><span class="smaller">(w/ 1 strap)</span></div>
+				<div class="grid__item one-fifth"><b>Metal Watch</b><br /><span class="smaller">(1 face + 1 strap)</span></div>
 			</div>
 			
 			<div class="grid-uniform">
 				<div class="grid__item one-fifth"><b>1</b></div>
-				<div class="grid__item one-fifth">$49.99</div>
+				<div class="grid__item one-fifth">$44.99</div>
 				<div class="grid__item one-fifth">$59.99</div>
 				<div class="grid__item one-fifth">$74.99</div>
 				<div class="grid__item one-fifth">$89.99</div>
@@ -159,12 +280,13 @@
 		</section>
 		
 		<div>
-			<section class="genSection large--two-thirds push--large--one-sixth">
-				<h2>Our custom design service</h2>
+			
+			<section class="large--two-thirds push--large--one-sixth genSection">
+				<h2>Need help with your custom design?</h2>
 				<hr class="orangeDash-center" />
-				<p>Pay the Design Fee to have our design team help you create a custom watch from scratch. We charge $150 for this service, unless you order 10 or more units, in which case the custom design service is complimentary. :)</p>
+				<p>Our designers will help with cropping and centering. If you'd like more design help, we charge a fixed fee of $150 ... but if you order 10 or more watches, we'll waive it :)</p>
 			</section>
-			<section class="genSection large--two-thirds push--large--one-sixth">
+			<section class="large--two-thirds push--large--one-sixth genSection">
 				<h2>If you have trouble preparing a design...</h2>
 				<hr class="orangeDash-center" />
 				<p>Go ahead and still submit your form WITHOUT an attached design and we’ll get in touch!</p>
@@ -194,3 +316,11 @@
 		// ]]></script>
 		</div>
 	</div>
+	
+</main>
+	<div class="grid--full grid__item one-whole text-center light-bg genSection">
+		<h1>Interested in partnering with us instead?</h1>
+		Get sweet merch for your fans or to support a cause.<br />
+		<button class="btn--secondary"><a href="https://modifywatches.com/pages/collaboration-form">Apply Here</a></button>
+	</div>
+<main class="wrapper" role="main">
