@@ -131,7 +131,6 @@
 
   <div id="NavDrawer" class="drawer drawer--left">
     <div class="drawer__header">
-      <div class="drawer__title h3">{{ 'layout.drawers.browse' | t }}</div>
       <div class="drawer__close js-drawer-close">
         <button type="button" class="icon-fallback-text">
           <span class="icon icon-x" aria-hidden="true"></span>
@@ -241,7 +240,7 @@
         Free shipping on orders over $60		      	
     </div>
       
-      <header class="site-header fullSize small--hide" role="banner">
+      <header class="site-header fullSize" role="banner">
 	     
       <div class="wrapper whiteBG">
 
@@ -252,8 +251,26 @@
               Use the uploaded logo from theme settings if enabled.
               Site name gets precedence with H1 tag on homepage, div on other pages.
             {% endcomment %}
-            
-              <h1 class="site-header__logo left large--two-eighths medium--one-quarter small--one-quarter" itemscope itemtype="http://schema.org/Organization">
+             <div class="hide small--show left one-tenth hamburger">
+           	 <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left " aria-controls="NavDrawer" aria-expanded="false">
+                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+                  <span class="icon icon-search" aria-hidden="true"></span>
+                </button>
+           </div>
+		    <div class="hide small--show right one-tenth hamburger">
+              
+	              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+					 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22"/>
+					 {% if cart.item_count > 0 %}
+					 <span id="CartCount">{{ cart.item_count }}</span>
+	                {% endif %}
+	               
+	              </a>
+               </div>
+		   
+		   
+              <h1 class="site-header__logo large--left medium--left large--two-eighths medium--one-quarter small--one-whole small--text-center" itemscope itemtype="http://schema.org/Organization">
            
               {% if settings.logo_use_image %}
                 <a href="/" itemprop="url" class="site-header__logo-link">
@@ -262,19 +279,24 @@
               {% else %}
                 <a href="/" itemprop="url">{{ shop.name }}</a>
               {% endif %}
-            
+			    
               </h1>
-           
-             <div id="browseBox"class="left  large--one-eighth medium--one-eighth small--hide large--text-right medium--text-center sellStore">
+              
+              
+
+              
+              
+              
+                       <div id="browseBox"class="left  large--one-eighth medium--one-eighth small--one-third small--text-center large--text-right medium--text-center sellStore">
 		        <a href="/collections/all">
                     <h4>Shop</h4>
       
                 </a>
 		    </div>
-		    <div class="left  large--one-quarter medium--one-quarter small--hide large--text-center medium--text-center sellStore">
+		    <div class="left  large--one-quarter medium--one-quarter large--text-center medium--text-center small--one-third small--text-center sellStore">
 			     <a href="/pages/storefronts"><h4>collaborations</h4></a>
 		    </div>
-		     <div class="left  large--one-quarter medium--one-quarter small--hide large--text-left medium--text-center sellStore">
+		     <div class="left  large--one-quarter medium--one-quarter large--text-left medium--text-center small--one-third small--text-center sellStore">
 			     <a href="/pages/storefronts"><h4>custom watch</h4></a>
 		    </div>
            
@@ -381,7 +403,7 @@
   
   <div id="PageContainer" class="is-moved-by-drawer">
 
-        <div class="large--hide medium--hide small-down--show">
+        <div class="large--hide medium--hide small--hide">
           <div class="grid">
             <div class="grid__item one-third">
               <div class="site-nav--mobile">
