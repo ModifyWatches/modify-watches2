@@ -6,8 +6,6 @@
 	var strapArray = {};
 	
 </script> 
-
-
 {% if product.available and product.variants.size > 1 %}
 	{% for option in product.options %}
 		 {% if option == 'Size' %}
@@ -98,7 +96,7 @@
           
           {% if product.compare_at_price_max > product.price %}
             <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-            <p id="ComparePrice">
+            <p id="ComparePrice" class="hide">
               {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
             </p>
           {% endif %}
@@ -120,12 +118,12 @@
 function checkVisible() {
 	var n = 0;
 	var theSize = $('#productSelect-option-0').val();
-	console.log(theSize);
+//	console.log(theSize);
 	curColor = $('.swatch :radio:checked').val();
 	$('.swatch :radio').each(function() {
 	
 			if($(this).val()==curColor) {
-				console.log($(this).val());
+		//		console.log($(this).val());
 				n++;
 			}
 		
@@ -247,27 +245,79 @@ function hideHidden() {
 	$('.swatch-element[data-size="'+theSize+'"]').show();
 	$('.swatch-element[data-value="No Strap"]').show();
 }
+
+
 $(document).ready(function() {
 	$('#productSelect-option-0').on('change',function() {
-		hideHidden();
+				hideHidden();
 	})
 	
-	$('#AddToCartForm').on('submit',function(event){
-	 /*
-	  var products = {};
-	  $('.Your-Check-Boxes').each(function(){
-	    var id = parseInt($(this).attr('data-variant-id'));
-	    products[id] = 1;
-	  });
-	  $.post('/cart/updates.js', {updates: values});
-	*/
-	  event.preventDefault();
-	});
 	
+	$('#AddToCartForm').submit(function(event){
+	  Shopify.queue = [];
+	  $('.swatch :radio:checked').each(function(){
+		 if($(this).val() !='No Strap') {   
+			 var id = parseInt($(this).attr('data-sku'));
+			 Shopify.queue.push({
+			 variant_id: id,
+			 quantity: 1
+    		});
+			 
+		}
+	  });
+	   Shopify.queue.push({
+			 variant_id: $('#productSelect').val(),
+			 quantity: $('#Quantity').val()
+    	});
+
+	  event.preventDefault();
+	  Shopify.moveAlong();
+	  
+	});
+	Shopify.moveAlong = function() {
+	  // If we still have requests in the queue, let's process the next one.
+	  if (Shopify.queue.length) {
+	    var request = Shopify.queue.shift();
+	    Shopify.addItem(request.variant_id, request.quantity, Shopify.moveAlong);
+	  }
+	  // If the queue is empty, we will redirect to the cart page.
+	  else {
+	    // update cart value
+	    shopifyUpdateCart();
+	  //  blink('.header .cart');
+	 //   addedButtonFeedback();
+	  }
+	};
+
+	
+	
+	
+	function shopifyUpdateCart() {
+	  	location.reload();
+	  	
+	  	Shopify.getCart(function(data){
+	    count = data.item_count;
+	    cart_el = '<span id="CartCount">' + count + '</span>';
+	    cart_count = $('#CartCount');
+		//console.log(cart_count.text());
+	    // if cart count doesn't exist then add it
+	    if (cart_count.length == 0) {
+	      $('#cartIcon').append(cart_el);
+	    }else{
+	      cart_count.text("").text(count);
+		  console.log(count)
+		  $('#CartCount').hide();
+		}
+		
+	   })
+	  
+	   	
+	}		
+
 })
 
 $(window).load(function() {	
-	console.log('loaded');
+	//console.log(Shopify.getCart());
 	if(!getUrlVars()["variant"]) {
 		$('.swatch :radio[value="No Strap"]').click()
 	}
