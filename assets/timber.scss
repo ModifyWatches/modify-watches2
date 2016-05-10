@@ -3173,9 +3173,11 @@ ul.homeList {
 
 /* Full Section BGs */
 .genSection {
-    padding: 40px 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
     @include at-query ($max, $small) {
-	    padding: 10px 0;
+	    padding-top: 10px;
+      padding-bottom: 10px;
     }
 }
 .blueSection {
@@ -4115,7 +4117,7 @@ a.whiteLink {
 }
 
 #promoBar {
-	background-color: #3a3042;
+	background-color: #E4572E;
 	color:#ffffff;
 	font-size: 12px;
 	line-height: 30px;
