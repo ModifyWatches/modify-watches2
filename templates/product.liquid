@@ -46,7 +46,29 @@
   {% else %}
   	{% assign theOption = 'black' %}
   {% endif %}			
-  
+	{% assign hands= 'BlackHands' %}
+    {% for tag in product.tags %}
+    
+    	{% if tag == 'BlackHands' %}
+    		{% assign hands= 'BlackHands' %}
+    	{% endif %}
+    	{% if tag == 'WhiteHands' %}
+    		{% assign hands= 'WhiteHands' %}
+    	{% endif %}
+    	{% if tag == 'RedHands' %}
+    		{% assign hands= 'RedHands' %}
+    	{% endif %}
+    	{% if tag == 'BlueHands' %}
+    		{% assign hands= 'BlueHands' %}
+		{% endif %}
+    {% endfor %}
+    
+     {% if product.type == 'Sport Watch' %}
+    	{% assign handType = 'sport_' %}
+    {% else %}
+    	{% assign handType = '' %}
+    {% endif %}	 
+    {% assign handImage = handType |  append: hands | append: '.png' %}
 	    
        
         
@@ -66,7 +88,7 @@
 				  	{% endif %}
 	        </div>
 	        <img src="{{ template_art | asset_url }}" data-type="{{suffix}}" data-color="{{theOption}}" data-src="{{ template_art | asset_url }}" class="watchOverlay" id="ProductPhotoImg">
-	       
+	        <img src="{{ handImage | asset_url }}" data-type="Watch" data-color="{{theCollor}}" data-src="{{ handImage | asset_url }}" class="watchOverlay" id="wHands">
               </div>
 
       {% comment %}

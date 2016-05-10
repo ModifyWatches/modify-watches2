@@ -167,10 +167,13 @@ function checkVisible() {
 		  var index = path.lastIndexOf('_');
 		  path = path.substring(0, index+1);
 		  
-		  path+=theColor+'.png?v=1';
+		  path+=theColor+'.png?v=10';
 		  $('#ProductPhotoImg').attr('src',path );	
 		
-	  		 $('.ImageOverlay').show();
+	  		 $('.watchArt').show();
+	  		 $('#wHands').show();
+	  		 $('.backplate').removeClass('fauxHidden');
+
  
 	  
   })
@@ -187,10 +190,12 @@ function checkVisible() {
 		  var index = path.lastIndexOf('_');
 		  path = path.substring(0, index+1);
 		  
-		  path+=theColor+'.png?v=1';
+		  path+=theColor+'.png?v=10';
 		  $('#ProductPhotoImg').attr('src',path );	
-		
-	  		 $('.ImageOverlay').show();
+		  $('.watchArt').show();
+	  		$('#wHands').show();
+	  		$('.backplate').removeClass('fauxHidden');
+
  
 	  
   })
@@ -198,22 +203,29 @@ function checkVisible() {
 	  
 		  $('#ProductPhotoImg').attr('src',currentImage );
 		  if(mainType !='munged') {
-	  		 $('.ImageOverlay').hide();
+	  		$('.watchArt').hide();
+	  		$('#wHands').hide();
+	  		$('.backplate').addClass('fauxHidden');
+
   		}
 	  
 	  
   })
   $('.product-single__thumbnail').mouseover(function() {
 	   currentImage =  $('#ProductPhotoImg').attr('src');
-	   $('.ImageOverlay').hide();
+	   $('.watchArt').hide();
+	  		$('#wHands').hide();
+	  		$('.backplate').addClass('fauxHidden');
 	   path = $(this).attr('href');
-	    $('#ProductPhotoImg').attr('src',path );
+	   $('#ProductPhotoImg').attr('src',path );
 	    
   });
   $('.product-single__thumbnail').mouseout(function() { 
   		$('#ProductPhotoImg').attr('src',currentImage );
   		if(mainType =='munged') {
-	  		 $('.ImageOverlay').show();
+	  		 $('.watchArt').show();
+	  		$('#wHands').show();
+	  		$('.backplate').removeClass('fauxHidden');
   		}
   })
    $('.product-single__thumbnail').click(function () {
@@ -293,22 +305,18 @@ $(document).ready(function() {
 	
 	
 	function shopifyUpdateCart() {
-	  	location.reload();
-	  	
 	  	Shopify.getCart(function(data){
-	    count = data.item_count;
-	    cart_el = '<span id="CartCount">' + count + '</span>';
-	    cart_count = $('#CartCount');
-		//console.log(cart_count.text());
-	    // if cart count doesn't exist then add it
-	    if (cart_count.length == 0) {
-	      $('#cartIcon').append(cart_el);
-	    }else{
-	      cart_count.text("").text(count);
-		  console.log(count)
-		  $('#CartCount').hide();
-		}
-		
+		    count = data.item_count;
+		    cart_el = '<span id="CartCount">' + count + '</span>';
+		    cart_count = $('span#CartCount');
+			//console.log(cart_count.text());
+		    // if cart count doesn't exist then add it
+		    if (cart_count.length == 0) {
+		      $('a#cartIcon').append(cart_el);
+		    }else{
+		      cart_count.text("").text(count);
+			}
+			$('span#CartCount').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);	
 	   })
 	  
 	   	

@@ -3385,7 +3385,7 @@ button#AddToCart {
 	position: relative;
 	height:auto;
 	background-position: left center;
-	background-size: auto 100%;
+	background-size: cover;
 
 	@include at-query ($max, $small) {
 		background-position:center top;
@@ -3406,15 +3406,16 @@ button#AddToCart {
 	height: auto;
 }
 .collectionInfo {
-	width:50%;
+	width:80%;
+	max-width: 80%;
+    margin: 0px auto;
 	height: auto;
 	box-sizing: border-box;
-	padding:1%;
-	padding-right: 8%;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	position:relative;
-	float: right;
-	background-color: #ffffff;
-	min-height: 300px;
+	float: none;
+	min-height: 200px;
 	@include at-query ($max, $small) {
 		width: 100%;
 		min-height: 100px;	
@@ -3431,9 +3432,9 @@ button#AddToCart {
 	display: block;
 }
 .iconHolder {
-	width:15%;
+	width:200px;
 	height:auto;
-	text-align: center;
+	text-align: left;
 	min-width: 116px;
 	float: left;
 	@include at-query ($max, $small) {
@@ -3443,7 +3444,7 @@ button#AddToCart {
 }
 
 .iconHolder img {
-	width: 80%;
+	width: 100%;
 	height: auto;
 	@include at-query ($max, $small) {
 		width: 100px;
@@ -3470,9 +3471,11 @@ button#AddToCart {
 	}
 }
 .namesHolder {
-	width: 62%;
+	width: auto;
 	height: auto;
 	float: left;
+	margin-left: 20px;
+	margin-top: 35px;
 	box-sizing: border-box;
 	padding: 0%;
 	@include at-query ($max, $small) {
@@ -3480,6 +3483,34 @@ button#AddToCart {
 		width: 100%;
 	}
 }
+.namesHolder h1 {
+	background-color: rgba(0,0,0,0.7);
+	color: #ffffff;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	margin: 0px;	
+	margin-bottom: 10px;
+	display: block;
+	width: auto;
+	float: left;
+	clear: both;
+}
+.namesHolder h3 {
+	background-color: rgba(0,0,0,0.7);
+	color: #ffffff;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	margin: 0px;	
+	margin-bottom: 10px;
+	display: block;
+	width: auto;
+	float: left;
+	clear: both;
+	font-family: 'open sans';
+}
+
 .namesHolder2 {
 	width: 70%;
 	height: auto;
@@ -3504,6 +3535,20 @@ button#AddToCart {
 	@include at-query ($max, $small) {
 		line-height: 24px;	
 	}
+}
+.collabDesc {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 20px;
+}
+.orangeHR {
+	width: 30%;
+	display: inline-block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(228, 87, 46);
+    margin: 1em 0;
+    padding: 0; 
 }
 .minimalText {
 	@include at-query ($max, $small) {
@@ -3692,6 +3737,10 @@ button#AddToCart {
 	padding-top: 30px !important;
 	padding-bottom: 0px !important;
 }
+.bigger-padding {
+	padding-top: 30px !important;
+	padding-bottom: 30px !important;
+}
 .medium-padding {
 	padding-bottom: 15px !important;
 }
@@ -3807,13 +3856,15 @@ a.whiteLink {
 	padding-bottom: 7px;
 	float: left;
 	width: 100%;
+	margin-top: 15px;
 	@include at-query ($max, $small) {
 		max-width:100%;
 	}
 }
 #newfollowForm input {
-	width: 23%;
+	width: 50%;
 	font-size: 11px;
+	padding:2px 2px;
 	@include at-query ($max, $small) {
 		padding:2px 2px;
 		width:40%;
@@ -3823,9 +3874,9 @@ a.whiteLink {
 	
 	
 }
-#newfollowForm .button {
+#newfollowForm .btn {
 	float: right;
-	width: 25%;
+	width: 15%;
 	
 }	
 	
@@ -3901,6 +3952,16 @@ a.whiteLink {
 	padding:0px;
 	
 }
+.skinny {
+	width: 60%;
+	margin: 0 auto;
+}
+.skinnyImage {
+	width: 90%;
+}
+.lifestyle {
+	line-height: 0px;
+}
 .collabType {
 	  position: absolute;
    right: 0px;
@@ -3909,6 +3970,24 @@ a.whiteLink {
    background-size: cover;
    top: 5px;
    left: 5px;
+}
+#collabsWith a {
+	display: block;
+	position: relative;
+	.btn--secondary {
+		display: none;
+	}
+	
+}
+#collabsWith a:hover {
+	.btn--secondary {
+		display: block;
+		position: absolute;
+		bottom:50px;
+		right: 30%;
+		width: 40%;
+	}
+	
 }
 .artistCollab {
 	background-image: url('{{ "artistTriangle.png" | asset_url }}');
@@ -3933,6 +4012,29 @@ a.whiteLink {
 .sportsCollab {
 	background-image: url('{{ "sportsTriangle.png" | asset_url }}');
 
+}
+#paginations {
+	width: 100%;
+	text-align: center;
+	list-style: none;
+	font-size: 16px;
+	
+}
+#paginations li a {
+		padding-left: 8px;
+	padding-right: 8px;
+}
+#paginations li.active a{
+	background-color: #394963;
+	color: #ffffff;
+
+}
+#paginations li {
+	display: inline-block;
+}
+.fullimage{
+	width: 100%;
+	height: auto;
 }
 .collabText {
 	-webkit-transform: rotate(45deg);
@@ -4066,6 +4168,9 @@ a.whiteLink {
 	width:46.2%;
 	display: inline-block;
 	
+}
+.fauxHidden {
+	opacity: 0.0 !important;
 }
 .sportWatch {
 	width: 42% !important;

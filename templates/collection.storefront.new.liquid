@@ -11,11 +11,28 @@
 
 {% assign collection_mod_asset = 'collection_small_mod_asset2.jpg' | asset_url %}
 
-{% assign pagination_limit = 150 %}
+{% assign pagination_limit = 8 %}
 {% paginate collection.products by pagination_limit %}
 {% assign tag_count = collection.all_tags | size %}
 {% assign tag_threshold = 8 %}
  {% assign grid_item_width_half = 'one-half small--one-eighth' %}
+  {% assign collabType = 'artist' %}
+ {% for tag in product.tags %}
+
+				{% if tag == 'nonprofit' %}
+					 {% assign collabType = 'non-profit' %}	
+				{% elsif  tag == 'brand' %}
+					 {% assign collabType = 'brand' %}	
+				{% elsif  tag == 'artist' %}
+					 {% assign collabType = 'artist' %}
+				{% elsif  tag == 'musician' %}
+					 {% assign collabType = 'musician' %}		
+				{% elsif  tag == 'influencer' %}
+					 {% assign collabType = 'influencer' %}	
+				{% elsif  tag == 'sports' %}
+					 {% assign collabType = 'sports' %}	
+				{% endif %}	
+			{% endfor %}	
 
 </main> 
 <div class="expandedWidth newCollectionBanner" style="background-image: url('{{ collection_banner }}')">
@@ -25,11 +42,13 @@
 			 	<img src="{{ collection.image | img_url: 'medium' }}" alt="{{ collection.title }} tile image" class="partnerIcon roundedBorder">
 			</div>
 			<div class="namesHolder">
-			 	<h3 class="small--text-center">{{ collection.title }}</h3>
+			 	<h1 class="small--text-center">{{ collection.title }}</h1>
+			 	<h3 class="small--text-center">{{ collabType }}</h3>
 			 	{% include 'new-follow' %}
 			</div>
 			<div style="clear:both"></div>
 		</div>
+		{% comment %}
 		<div class="collectionBio">
 			 
 			 <div class="minimalText maxHeight">
@@ -41,6 +60,7 @@
 			 <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
 			 </div>
 		</div>
+		{% endcomment %}
 	</div>
 	<div style="clear:both"></div>
 </div>
@@ -55,7 +75,7 @@
 	 
   
         <div id="product-tab">
-	      <div class="one-fifth small--one-whole left mobilePad">
+	      <div class="one-fifth small--one-whole left mobilePad hide">
 		     
 		      <ul class="collection-matrix">
 			       <div class="grid__item small-top">
@@ -76,79 +96,80 @@
 				<div id="product-list-foot"></div>
 
 	      </div>  
-	       <div class="collection_product four-fifths small--one-whole left">
+	       <div class="collection_product one-whole small--one-whole left">
 		  
-		{% assign counter = 0 %}
-		{% for product in collection.products %}
-	 	 	{% if product.type !='Art' %}
-	 	 		{% assign counter = counter | plus: 1 %}
-	 	 	{% endif %}
-	 	{% endfor %}	 	
-				 	 
+						 	 
     	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
-		{% assign var = 0 %}	
+			
 				<ul class="collection-matrix">
 					 <div class="grid__item small-topper">
-			      <h5>Products</h5>
+			      
 				  </div>
 				 {% for product in collection.products  %}
-				 	 {% if product.type !='Art' %}
+				 	
 				 	 
-				 	 {% if var == 4  and counter > 7%}
-				 	 <li class="grid__item large--one-half medium--one-half small--one-whole lifestyle">
-				 	 	<img src="{{ collection_lifestyle_1 }}"/>
-				 	 </li>
-				 	  {% elsif var == 6 and counter > 7 %}
-				 	  <div style="clear:both" class="lifestyle"></div>
-				 	 {% elsif var == 8 %}
-				 	 <li class="grid__item grid__item large--one-half medium--one-half small--one-whole lifestyle">
-				 	 	<img src="{{ collection_lifestyle_2 }}"/>
-				 	 </li> 
-				 	  {% elsif var == 10 %}
-				 	  
-				 	 {% endif %}
-				 	 
+				 	 				 	 
 				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
 				  {% include 'product-grid-item' %}
 				  
-				   {% assign var = var | plus: 1 %}
+				  
 				 </li> 
 				 	
 				 	
-				 	{% endif %}
+				 	
 				 {% endfor %}
+				</ul>
+				<div style="clear: both"></div>  
+				<ul id="paginations">
+				{% assign count = paginate.pages %}
+				{% for part in (1..count) %}
+					{% if count > 1 %}
+				      <li {% if paginate.current_page == part %}class="active"{% endif %}><a href="{{ collection.url }}?page={{ forloop.index }}">{{ forloop.index }}</a></li>
+				    {% endif %}  
+				{% endfor %}
+				</ul>
+				  <div class="left large--one-half medium--one-half small--one-whole lifestyle">
+				 	 	<img src="{{ collection_lifestyle_1 }}" class="fullimage"/>
+				 	 </div>
+				 	  <div class="left large--one-half medium--one-half small--one-whole lifestyle">
+				 	 	<img src="{{ collection_lifestyle_2 }}" class="fullimage"/>
+				 	 </div>
+				 	  <div class="left large--one-half medium--one-half small--one-whole lifestyle">
+				 	 	<img src="{{ collection.image | img_url: 'grande' }}" alt="{{ collection.title }} tile image" class="fullimage">
+				 	 </div>
+				 	  <div class="left large--one-half medium--one-half small--one-whole big-padding grid__item">
+					 	 <div class="collabDesc">
+					 	   <h2>{{collection.title}}</h2>
+					 	   <hr class="orangeHR"/>
+					 	   <div class="">
+							 {{ collection.description }}
+						 	<div class="readMore"><a href="#">Read More</a></div>
+						 </div>
+						 <div id="shareHolder">
+							 Help share {{ collection.title }}'s story<br>
+						 <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
+						 </div>
+					 	 </div>
+					 	  
+				 	  </div>
 				 
-				 {% if var == 8 and counter == 8 %}
-				 <li class="grid__item grid__item large--one-half medium--one-half small--one-whole lifestyle">
-				 	 	<img src="{{ collection_lifestyle_2 }}"/>
-				 	 </li> 
-				 {% endif %}
-				 {% if var <= 7 %}
-				  <div style="clear: both"></div>  
-				  <li class="grid__item large--one-half medium--one-half small--one-whole lifestyle">
-				 	 	<img src="{{ collection_lifestyle_1 }}"/>
-				 	 </li>
-				 	  <li class="grid__item large--one-half medium--one-half small--one-whole lifestyle">
-				 	 	<img src="{{ collection_lifestyle_2 }}"/>
-				 	 </li>
-				 {% endif %}
 				  <div style="clear: both"></div>      
 				<div style="clear: both"></div>
-				</ul>
+			
 				
 				<div id="product-list-foot"></div>
-			
-
-    </div>
-    </div>
-     
+				
+				 
+				     </div>
+	{% include 'the-watches' %}			     
+     {% include 'collab-with' %}
     
 	
   </div>
   </div>
 </div>
 <div style="clear:both"></div>
-{% include 'trending-stores' %}
+
 
 
 {% include 'collab-signup-link' %}
