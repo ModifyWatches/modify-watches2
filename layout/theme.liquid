@@ -38,6 +38,7 @@
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
   {{ 'jquery-ui.min.js' | asset_url | script_tag }}
+   {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
   {% include 'sca-quick-view-init' %} 
 
   {% comment %}
@@ -131,7 +132,6 @@
 
   <div id="NavDrawer" class="drawer drawer--left">
     <div class="drawer__header">
-      <div class="drawer__title h3">{{ 'layout.drawers.browse' | t }}</div>
       <div class="drawer__close js-drawer-close">
         <button type="button" class="icon-fallback-text">
           <span class="icon icon-x" aria-hidden="true"></span>
@@ -241,19 +241,37 @@
         Free shipping on orders over $60		      	
     </div>
       
-      <header class="site-header small--hide" role="banner">
+      <header class="site-header fullSize" role="banner">
 	     
       <div class="wrapper whiteBG">
 
         <div class="grid--full grid ">
 	     
-          <div class="grid__item large--six-eighths medium--six-eighths small--one-whole">
+          <div class="grid__item large--seven-twelfths medium--eight-twelfths small--one-whole">
             {% comment %}
               Use the uploaded logo from theme settings if enabled.
               Site name gets precedence with H1 tag on homepage, div on other pages.
             {% endcomment %}
-            
-              <h1 class="site-header__logo left large--one-sixth medium--one-sixth small--one-quarter" itemscope itemtype="http://schema.org/Organization">
+             <div class="hide small--show left one-tenth hamburger">
+           	 <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left " aria-controls="NavDrawer" aria-expanded="false">
+                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+                  <span class="icon icon-search" aria-hidden="true"></span>
+                </button>
+           </div>
+		    <div class="hide small--show right one-tenth hamburger">
+              
+	              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+					 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22"/>
+					 {% if cart.item_count > 0 %}
+					 <span id="CartCount">{{ cart.item_count }}</span>
+	                {% endif %}
+	               
+	              </a>
+               </div>
+		   
+		   
+              <h1 class="site-header__logo large--left medium--left large--two-eighths medium--one-quarter small--one-whole small--text-center" itemscope itemtype="http://schema.org/Organization">
            
               {% if settings.logo_use_image %}
                 <a href="/" itemprop="url" class="site-header__logo-link">
@@ -262,29 +280,40 @@
               {% else %}
                 <a href="/" itemprop="url">{{ shop.name }}</a>
               {% endif %}
-            
+			    
               </h1>
-           
-            <div id="browseBox" class="left large--one-sixth medium--one-eighth small--hide text-center">
+              
+              
+
+              
+              
+              	<div class="mobileBreak"></div>
+                       <div id="browseBox"class="left  large--one-eighth medium--one-eighth small--one-third small--text-center large--text-right medium--text-center sellStore">
 		        <a href="/collections/all">
-                    <b>Shop</b>
-                   
+                    <h4>Shop</h4>
+      
                 </a>
 		    </div>
-		    <div class="left  large--one-fifth medium--one-quarter small--hide large--text-left medium--text-center sellStore">
-			     <a href="/pages/storefronts"><h4>Partner with us</h4></a>
+		    <div class="left  large--one-quarter medium--one-quarter large--text-center medium--text-center small--one-third small--text-center sellStore">
+			     <a href="/pages/more-collections"><h4>collaborations</h4></a>
 		    </div>
-             <div class="site-header__search large--one-third medium--five-twelfths small--one-half small--right">
-              {% include 'search-bar' %}
-            </div>
+		     <div class="left  large--one-quarter medium--one-quarter large--text-left medium--text-center small--one-third small--text-center sellStore">
+			     <a href="/pages/custom"><h4>custom watch</h4></a>
+		    </div>
+           
 
           </div>
-          <div class="grid__item large--one-quarter text-right medium--one-quarter small--hide">
-               <div class="storeCart">
+          <div class="grid__item large--five-twelfths text-right medium--four-twelfths small--hide">
+                 <div class="site-header__search large--two-thirds  medium--one-half small--one-half">
+	              {% include 'search-bar' %}
+	            </div>
+	               
+            <div class="storeCart right">
 	           
 	            
 				{% if shop.customer_accounts_enabled %}
-	            <div class="grid__item large--five-sixths text-right medium--five-sixths"> 
+	           
+		            
                 {% if customer %}
                   {% if customer.first_name != blank %}
                    <a href="/account">{{ customer.first_name | truncate: 12}}</a>
@@ -299,18 +328,18 @@
                    {{ 'Log In'| customer_login_link }}
                   {% endif %}
                 {% endif %}  
-	            </div>     
+	                
             {% endif %}
             
-            
-			<a href="/cart" class="grid__item large--one-sixth text-right medium--one-sixth site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+		           
+			<a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
 				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22"/>
 				 {% if cart.item_count > 0 %}
 				 <span id="CartCount">{{ cart.item_count }}</span>
                 {% endif %}
                
               </a>
-
+			  
             </div>
         </div>
 
@@ -375,7 +404,7 @@
   
   <div id="PageContainer" class="is-moved-by-drawer">
 
-        <div class="large--hide medium--hide small-down--show">
+        <div class="large--hide medium--hide small--hide">
           <div class="grid">
             <div class="grid__item one-third">
               <div class="site-nav--mobile">
@@ -535,20 +564,6 @@
 
 {% include 'sca-quick-view-template' %} 
 
-<script>
-  jQuery(function() {
-    jQuery('.swatch :radio').change(function() {
-      var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
-      var optionValue = jQuery(this).val();
-      jQuery(this)
-        .closest('form')
-        .find('.single-option-selector')
-        .eq(optionIndex)
-        .val(optionValue)
-        .trigger('change');
-    });
-  });
-</script>
 
 <!-- AddShoppers Tracking Code Start -->
 <script type="text/javascript">
