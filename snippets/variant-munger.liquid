@@ -27,7 +27,7 @@
 {% endcomment %}
 	
 {% assign straps = '' %}
-{% if product.type == 'Watch' %}
+{% if product.type == 'Watch' or product.type == 'Sport Watch'%}
 	{% assign strapCol = 'Straps' %}
 {% else %}
 	{% assign strapCol = 'Nylon' %}
@@ -137,7 +137,7 @@ function checkVisible(Scolor, Ssize) {
 			  var index = path.lastIndexOf('_');
 			  path = path.substring(0, index+1);
 			  
-			  path+=theColor+'.png';
+			  path+=theColor+'.png?v=10';
 			  $('#ProductPhotoImg').attr('src',path );	
 			 
 			  $('.ImageOverlay').show();
@@ -165,10 +165,12 @@ function checkVisible(Scolor, Ssize) {
 		  var index = path.lastIndexOf('_');
 		  path = path.substring(0, index+1);
 		  
-		   path+=theColor+'.png';
+		  path+=theColor+'.png?v=10';
 		  $('#ProductPhotoImg').attr('src',path );	
 		
-	  		 $('.ImageOverlay').show();
+	  		$('.watchArt').show();
+	  		$('#wHands').show();
+	  		$('.backplate').removeClass('fauxHidden');
  
 	  
   })
@@ -176,14 +178,19 @@ function checkVisible(Scolor, Ssize) {
 	  
 		  $('#ProductPhotoImg').attr('src',currentImage );
 		  if(mainType !='munged') {
-	  		 $('.ImageOverlay').hide();
+	  		$('.watchArt').hide();
+	  		$('#wHands').hide();
+	  		$('.backplate').addClass('fauxHidden');
   		}
 	  
 	  
   })
   $('.product-single__thumbnail').mouseover(function() {
 	   currentImage =  $('#ProductPhotoImg').attr('src');
-	   $('.ImageOverlay').hide();
+	   $('.watchArt').hide();
+	   $('#wHands').hide();
+	   $('.backplate').addClass('fauxHidden');
+	   
 	   path = $(this).attr('href');
 	    $('#ProductPhotoImg').attr('src',path );
 	    
@@ -191,8 +198,10 @@ function checkVisible(Scolor, Ssize) {
   $('.product-single__thumbnail').mouseout(function() { 
   		$('#ProductPhotoImg').attr('src',currentImage );
   		if(mainType =='munged') {
-	  		 $('.ImageOverlay').show();
-  		}
+	  		$('.watchArt').show();
+	  		$('#wHands').show();
+	  		$('.backplate').removeClass('fauxHidden');  		
+	  	}
   })
    $('.product-single__thumbnail').click(function () {
 	    currentImage =  $('#ProductPhotoImg').attr('src');
@@ -239,6 +248,56 @@ $(document).ready(function() {
 	
 	hideHidden();
 	
+	$('#AddToCartForm').submit(function(event){
+	  Shopify.queue = [];
+	   Shopify.queue.push({
+			 variant_id: $('#productSelect').val(),
+			 quantity: $('#Quantity').val()
+    	});
+
+	  event.preventDefault();
+	  Shopify.moveAlong();
+	  
+	});
+	Shopify.moveAlong = function() {
+	  // If we still have requests in the queue, let's process the next one.
+	  if (Shopify.queue.length) {
+	    var request = Shopify.queue.shift();
+	    Shopify.addItem(request.variant_id, request.quantity, Shopify.moveAlong);
+	  }
+	  // If the queue is empty, we will redirect to the cart page.
+	  else {
+	    // update cart value
+	    shopifyUpdateCart();
+	  //  blink('.header .cart');
+	 //   addedButtonFeedback();
+	  }
+	};
+
+	
+	
+	
+	function shopifyUpdateCart() {
+	  	Shopify.getCart(function(data){
+		    count = data.item_count;
+		    cart_el = '<span id="CartCount">' + count + '</span>';
+		    cart_count = $('span#CartCount');
+			//console.log(cart_count.text());
+		    // if cart count doesn't exist then add it
+		    if (cart_count.length == 0) {
+		      $('a#cartIcon').append(cart_el);
+		    }else{
+		      cart_count.text("").text(count);
+			}
+			$('span#CartCount').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+	   })
+	  
+	   	
+	}		
+
+	
+	
+	
 })
 $(window).load(function() {	
 	console.log('loaded');
@@ -251,6 +310,24 @@ $(window).load(function() {
 		vars[key] = value;
 		});
 		return vars;
-	}	
+	}
+	
 })
 </script>
+
+<script>
+	
+  jQuery(function() {
+    jQuery('.swatch :radio').change(function() {
+      var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
+      var optionValue = jQuery(this).val();
+      jQuery(this)
+        .closest('form')
+        .find('.single-option-selector')
+        .eq(optionIndex)
+        .val(optionValue)
+        .trigger('change');
+    });
+  });
+</script>
+

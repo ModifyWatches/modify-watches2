@@ -1,31 +1,82 @@
+{% comment %}
+	assign all initial variables 
+{% endcomment %}	
 
-          
-		   {% if product.available and product.variants.size > 1 %}
-		  	{% for option in product.options %}
-			  	{% if option == 'Size' %}
-			  		{% assign hasSizes = true %}
-			  	{% endif %}	
-		  	{% endfor %}	
-		  {% endif %}
-		  
-		  
-		 {{ product.title | replace: 'Awesome', 'Mega' }}
-		 
-		  {% for product in collections['straps'].products %} 
-		  	{{ product.title }}, 
-		  
-		  {% endfor %}
-		  
-		  
-		  
-		  
-		  
-		  
+<script>
+	var strapArray = {};
+	
+</script> 
+{% if product.available and product.variants.size > 1 %}
+	{% for option in product.options %}
+		 {% if option == 'Size' %}
+	  		{% assign hasSizes = true %}
+	  	{% endif %}	
+	{% endfor %}	
+{% endif %}
+
+{% comment %}
+	get the right strap collection
+{% endcomment %}
+	
+{% assign straps = '' %}
+{% if product.type == 'Watch' or product.type == 'Sport Watch'%}
+	{% assign strapCol = 'Straps' %}
+{% else %}
+	{% assign strapCol = 'Nylon' %}
+{% endif %}		
+
+{% comment %}
+	 define strap array - colors and sizes 
+{% endcomment %}	  
+{% assign i = 0 %}
+<style>
+      label[for="product-select-option-0"] { display: none; }
+      #product-select-option-0 { display: none; }
+      #product-select-option-0 + .custom-style-select-box { display: none !important; }
+ </style>
+
+<div class="swatch clearfix large--one-whole" data-option-index="0">
+
+
+<div class="header">Straps:</div>
+{% for product in collections[strapCol].products %}
+	{% assign i = i | plus:1 %}
+	{% for variant in product.variants %}
+		{% if variant.available %}
+			{% assign theColor = variant.option2 %}
+			{% assign theSize = variant.option1 %}
+			
+			{% if theSize == current_variant.option1 %}
+				<div data-value="{{theColor}}" id="{{theColor}}-{{theSize}}" class="swatch-element color {{ theColor | handleize }} available" data-size="{{theSize}}">
+			{% else %}
+				<div data-value="{{theColor}}" id="{{theColor}}-{{theSize}}" class="swatch-element color {{ theColor | handleize }} available" data-size="{{theSize}}" style="display: none;">		
+			{% endif %}	
+					<div class="tooltip">{{theColor}}</div>
+					<input id="swatch-0-{{ theColor | handleize }}-{{ theSize | handleize }}" type="radio" name="option-0" value="{{theColor }}" checked="" data-size="{{theSize}}" data-sku="{{variant.id}}">
+					<label class="circles" for="swatch-0-{{ theColor | handleize }}-{{ theSize | handleize }}" style="background-color: {{ theColor | handleize }}; background-image: url(//cdn.shopify.com/s/files/1/0787/5183/t/4/assets/{{ theColor | handleize }}.png?12609942016273308109)">
+          <img class="crossed-out" src="//cdn.shopify.com/s/files/1/0787/5183/t/4/assets/soldout.png?12609942016273308109">
+		  			</label>
+				</div>
+			<script>
+				strapArray["{{i}}"] = {"color":"{{theColor}}","size":"{{theSize}}"};
+			</script>
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+		{% assign theColor = "No Strap" %}	
+		<div data-value="{{theColor}}" class="swatch-element color {{ theColor | handleize }} available" data-size="{{theSize}}">
+					<div class="tooltip">{{theColor}}</div>
+					<input id="swatch-0-{{ theColor | handleize }}" type="radio" name="option-0" value="{{theColor }}" checked="">
+					<label class="circles" for="swatch-0-{{ theColor | handleize }}" style="background-color: {{ theColor | handleize }}; background-image: url(//cdn.shopify.com/s/files/1/0787/5183/t/4/assets/{{ theColor | handleize }}.png?12609942016273308109)">
+          <img class="crossed-out" src="//cdn.shopify.com/s/files/1/0787/5183/t/4/assets/soldout.png?12609942016273308109">
+		  			</label>
+				</div>
+</div>
+
+
           <select name="id" id="productSelect" class="product-single__variants ">
-	        {% for product in collections['straps'].products %}   
             {% for variant in product.variants %}
               {% if variant.available %}
-
                 {% comment %}
                   Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
                 {% endcomment %}
@@ -37,22 +88,18 @@
                 </option>
               {% endif %}
             {% endfor %}
-          {% endfor %}   
           </select>
 		  
 		 		  
 		  
           
-          {% comment %}
+          
           {% if product.compare_at_price_max > product.price %}
             <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-            <p id="ComparePrice">
+            <p id="ComparePrice" class="hide">
               {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
             </p>
           {% endif %}
-          
-         {% endcomment %} 
-         <div>
            	{% if hasSizes == true %}	  
            		  <div class="selector-wrappers right text-right">
 			  		{% else %}		
@@ -62,38 +109,44 @@
 		  		<label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
 		  		<input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
 		  </div>
-		  <div style="clear: both"></div>
-           		  </div>
 
+		  
 <script>
 	var currentImage ='';
 	var mainType = 'munged';
+	
+function checkVisible() {
+	var n = 0;
+	var theSize = $('#productSelect-option-0').val();
+//	console.log(theSize);
+	curColor = $('.swatch :radio:checked').val();
+	$('.swatch :radio').each(function() {
+	
+			if($(this).val()==curColor) {
+		//		console.log($(this).val());
+				n++;
+			}
+		
+	})
+	if(n!=2) {		
+		$('.swatch :radio[value="No Strap"]').click()
+	}else {
+		$('.swatch :radio[value="'+curColor+'"][data-size="'+theSize+'"]').click();
+	} 
+}	
+
   var selectCallback = function(variant, selector) {
 	 // BEGIN SWATCHES
 		if (variant) {
-		  var form = jQuery('#' + selector.domIdPrefix).closest('form');
-		  for (var i=0,length=variant.options.length; i<length; i++) {
-		    var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
-		    if (radioButton.size()) {
-		      radioButton.get(0).checked = true;
-		    }
-		  }
-		  theColor = $('input:radio:checked').val();
-		  theColor = theColor.toLowerCase();
-		  theColor = theColor.replace(' ','-');
-		  theColor = theColor.replace(' ','-');
-		  var path =  $('#ProductPhotoImg').attr('data-src');
-		  var type = $('#ProductPhotoImg').attr('data-type');
-		  var index = path.lastIndexOf('_');
-		  path = path.substring(0, index+1);
-		  
-		  path+=theColor+'.png';
-		  $('#ProductPhotoImg').attr('src',path );	
-		  currentImage =  $('#ProductPhotoImg').attr('src');
-		  $('.ImageOverlay').show();
-		  mainType = 'munged';
-  		
-
+			checkVisible();	
+			  var form = jQuery('#' + selector.domIdPrefix).closest('form');
+			  for (var i=0,length=variant.options.length; i<length; i++) {
+			    var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+			    if (radioButton.size()) {
+			      radioButton.get(0).checked = true;
+			    }
+			  }
+			 		 
 		  
 	}
 	// END SWATCHES 
@@ -103,9 +156,8 @@
       selector: selector
     });
   };
-  
-  $('.swatch-element').mouseover(function() {
-	   theColor = $(this).attr('data-value');
+   $('.swatch-element').mouseover(function() {
+	   	  theColor = $(this).attr('data-value');
 		  theColor = theColor.toLowerCase();
 		  theColor = theColor.replace(' ','-');
 		  theColor = theColor.replace(' ','-');
@@ -115,35 +167,65 @@
 		  var index = path.lastIndexOf('_');
 		  path = path.substring(0, index+1);
 		  
-		   path+=theColor+'.png';
+		  path+=theColor+'.png?v=10';
 		  $('#ProductPhotoImg').attr('src',path );	
 		
-	  		 $('.ImageOverlay').show();
-  		
+	  		 $('.watchArt').show();
+	  		 $('#wHands').show();
+	  		 $('.backplate').removeClass('fauxHidden');
 
+ 
 	  
+  })
+  
+  
+  $('.swatch-element').on('click',function() {
+	   	  theColor = $(this).attr('data-value');
+		  theColor = theColor.toLowerCase();
+		  theColor = theColor.replace(' ','-');
+		  theColor = theColor.replace(' ','-');
+		  currentImage =  $('#ProductPhotoImg').attr('src');
+		  var path =  $('#ProductPhotoImg').attr('data-src');
+		  var type = $('#ProductPhotoImg').attr('data-type');
+		  var index = path.lastIndexOf('_');
+		  path = path.substring(0, index+1);
+		  
+		  path+=theColor+'.png?v=10';
+		  $('#ProductPhotoImg').attr('src',path );	
+		  $('.watchArt').show();
+	  		$('#wHands').show();
+	  		$('.backplate').removeClass('fauxHidden');
+
+ 
 	  
   })
   $('.swatch-element').mouseout(function() {
 	  
 		  $('#ProductPhotoImg').attr('src',currentImage );
 		  if(mainType !='munged') {
-	  		 $('.ImageOverlay').hide();
+	  		$('.watchArt').hide();
+	  		$('#wHands').hide();
+	  		$('.backplate').addClass('fauxHidden');
+
   		}
 	  
 	  
   })
   $('.product-single__thumbnail').mouseover(function() {
 	   currentImage =  $('#ProductPhotoImg').attr('src');
-	   $('.ImageOverlay').hide();
+	   $('.watchArt').hide();
+	  		$('#wHands').hide();
+	  		$('.backplate').addClass('fauxHidden');
 	   path = $(this).attr('href');
-	    $('#ProductPhotoImg').attr('src',path );
+	   $('#ProductPhotoImg').attr('src',path );
 	    
   });
   $('.product-single__thumbnail').mouseout(function() { 
   		$('#ProductPhotoImg').attr('src',currentImage );
   		if(mainType =='munged') {
-	  		 $('.ImageOverlay').show();
+	  		 $('.watchArt').show();
+	  		$('#wHands').show();
+	  		$('.backplate').removeClass('fauxHidden');
   		}
   })
    $('.product-single__thumbnail').click(function () {
@@ -168,4 +250,91 @@
     {% endif %}
   }); 
   
+function hideHidden() {
+	//console.log(strapArray);
+	$('.swatch-element').hide();
+	var theSize = $('#productSelect-option-0').val();
+	$('.swatch-element[data-size="'+theSize+'"]').show();
+	$('.swatch-element[data-value="No Strap"]').show();
+}
+
+
+$(document).ready(function() {
+	$('#productSelect-option-0').on('change',function() {
+				hideHidden();
+	})
+	
+	
+	$('#AddToCartForm').submit(function(event){
+	  Shopify.queue = [];
+	  $('.swatch :radio:checked').each(function(){
+		 if($(this).val() !='No Strap') {   
+			 var id = parseInt($(this).attr('data-sku'));
+			 Shopify.queue.push({
+			 variant_id: id,
+			 quantity: 1
+    		});
+			 
+		}
+	  });
+	   Shopify.queue.push({
+			 variant_id: $('#productSelect').val(),
+			 quantity: $('#Quantity').val()
+    	});
+
+	  event.preventDefault();
+	  Shopify.moveAlong();
+	  
+	});
+	Shopify.moveAlong = function() {
+	  // If we still have requests in the queue, let's process the next one.
+	  if (Shopify.queue.length) {
+	    var request = Shopify.queue.shift();
+	    Shopify.addItem(request.variant_id, request.quantity, Shopify.moveAlong);
+	  }
+	  // If the queue is empty, we will redirect to the cart page.
+	  else {
+	    // update cart value
+	    shopifyUpdateCart();
+	  //  blink('.header .cart');
+	 //   addedButtonFeedback();
+	  }
+	};
+
+	
+	
+	
+	function shopifyUpdateCart() {
+	  	Shopify.getCart(function(data){
+		    count = data.item_count;
+		    cart_el = '<span id="CartCount">' + count + '</span>';
+		    cart_count = $('span#CartCount');
+			//console.log(cart_count.text());
+		    // if cart count doesn't exist then add it
+		    if (cart_count.length == 0) {
+		      $('a#cartIcon').append(cart_el);
+		    }else{
+		      cart_count.text("").text(count);
+			}
+			$('span#CartCount').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);	
+	   })
+	  
+	   	
+	}		
+
+})
+
+$(window).load(function() {	
+	//console.log(Shopify.getCart());
+	if(!getUrlVars()["variant"]) {
+		$('.swatch :radio[value="No Strap"]').click()
+	}
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+		});
+		return vars;
+	}	
+})
 </script>

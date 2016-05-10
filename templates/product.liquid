@@ -32,7 +32,11 @@
   {% assign current_variant = product.selected_or_first_available_variant %}
 
   {% include 'breadcrumb' %}
-  {% assign suffix = product.type | handleize %} 
+  {% if product.type == 'Sport Watch' %}
+  	{% assign suffix = 'watch' %}
+  {% else %}	
+  	{% assign suffix = product.type | handleize %} 
+  {% endif %}	
   {% assign product_art = product.images[1] | default: product.images[1] %}
   {% assign product_preview = product.images[0] | default: product.images[0] %}	
   
@@ -42,7 +46,29 @@
   {% else %}
   	{% assign theOption = 'black' %}
   {% endif %}			
-  
+	{% assign hands= 'BlackHands' %}
+    {% for tag in product.tags %}
+    
+    	{% if tag == 'BlackHands' %}
+    		{% assign hands= 'BlackHands' %}
+    	{% endif %}
+    	{% if tag == 'WhiteHands' %}
+    		{% assign hands= 'WhiteHands' %}
+    	{% endif %}
+    	{% if tag == 'RedHands' %}
+    		{% assign hands= 'RedHands' %}
+    	{% endif %}
+    	{% if tag == 'BlueHands' %}
+    		{% assign hands= 'BlueHands' %}
+		{% endif %}
+    {% endfor %}
+    
+     {% if product.type == 'Sport Watch' %}
+    	{% assign handType = 'sport_' %}
+    {% else %}
+    	{% assign handType = '' %}
+    {% endif %}	 
+    {% assign handImage = handType |  append: hands | append: '.png' %}
 	    
        
         
@@ -55,14 +81,14 @@
 	        {% assign template_art = suffix | append: '_' | append: theOption | append: '.png' %}
 	        <img src="{{ 'Backplate.png' | asset_url }}" class="backplate" />
 	         <div class="watchArt">
-		          {% if suffix == 'Watch' %}
+		          {% if suffix == 'watch' %}
 					  	<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="sportWatch"> 
 				  	{% else %}
 				  		<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class=""> 
 				  	{% endif %}
 	        </div>
 	        <img src="{{ template_art | asset_url }}" data-type="{{suffix}}" data-color="{{theOption}}" data-src="{{ template_art | asset_url }}" class="watchOverlay" id="ProductPhotoImg">
-	       
+	        <img src="{{ handImage | asset_url }}" data-type="Watch" data-color="{{theCollor}}" data-src="{{ handImage | asset_url }}" class="watchOverlay" id="wHands">
               </div>
 
       {% comment %}
