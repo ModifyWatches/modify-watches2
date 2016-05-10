@@ -726,9 +726,11 @@ body {
   max-width: 80%;
   margin: 0 auto;
   padding: 0 ($gutter / 2);
-
-  @include at-query ($min, $small) {
+  
+  
+  @include at-query ($max, $medium) {
     padding: 0 $gutter;
+    max-width: 100%;
   }
 }
 
@@ -3540,6 +3542,11 @@ button#AddToCart {
 	width: 90%;
 	margin-left: 5%;
 	margin-top: 20px;
+	@include at-query ($max, $medium) {
+		margin-left: 1%;
+		width: 98%;
+		margin-top: 1px;	
+	}
 }
 .orangeHR {
 	width: 30%;
@@ -3955,9 +3962,15 @@ a.whiteLink {
 .skinny {
 	width: 60%;
 	margin: 0 auto;
+	@include at-query ($max, $medium) {
+		width:80%;		
+	}
+	@include at-query ($max, $small) {
+		width: 100%;	
+	}
 }
 .skinnyImage {
-	width: 90%;
+	width: 100%;
 }
 .lifestyle {
 	line-height: 0px;
