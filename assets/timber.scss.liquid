@@ -3376,7 +3376,7 @@ button#AddToCart {
 	@include at-query ($max, $small) {
 		height: 125px;	
 		position: absolute;
-		top:60px;
+		top:0px;
 		left:0px;
 	}
 }
@@ -3391,7 +3391,7 @@ button#AddToCart {
 
 	@include at-query ($max, $small) {
 		background-position:center top;
-		background-size: 130% auto;
+		background-size: cover;
 		position: relative;
 		top:0px;
 		left:0px;
@@ -3420,10 +3420,11 @@ button#AddToCart {
 	min-height: 200px;
 	@include at-query ($max, $small) {
 		width: 100%;
+		max-width: 100%;
 		min-height: 100px;	
 		padding:1%;
 		position: relative;
-		margin-top:150px;
+		margin-top:0px;
 		left:0px;
 		text-align: center;
 	}
@@ -3441,7 +3442,8 @@ button#AddToCart {
 	float: left;
 	@include at-query ($max, $small) {
 		width: 100%;
-		float: none;	
+		float: none;
+		text-align: center;	
 	}
 }
 
@@ -3449,8 +3451,8 @@ button#AddToCart {
 	width: 100%;
 	height: auto;
 	@include at-query ($max, $small) {
-		width: 100px;
-		margin-top: -60px;
+		width: 150px;
+		margin-top: 20px;
 	}
 }
 .iconHolder2 {
@@ -3483,6 +3485,8 @@ button#AddToCart {
 	@include at-query ($max, $small) {
 		text-align: center;	
 		width: 100%;
+		margin-top: 5px;
+		margin-left: 0px;
 	}
 }
 .namesHolder h1 {
@@ -3497,6 +3501,10 @@ button#AddToCart {
 	width: auto;
 	float: left;
 	clear: both;
+	@include at-query ($max, $small) {
+		
+		float: none;	
+	}
 }
 .namesHolder h3 {
 	background-color: rgba(0,0,0,0.7);
@@ -3511,6 +3519,10 @@ button#AddToCart {
 	float: left;
 	clear: both;
 	font-family: 'open sans';
+		@include at-query ($max, $small) {
+		
+		float: none;	
+	}
 }
 
 .namesHolder2 {
@@ -3884,6 +3896,11 @@ a.whiteLink {
 #newfollowForm .btn {
 	float: right;
 	width: 15%;
+	@include at-query ($max, $small) {
+		display: inline-block;
+		float: none;
+			
+	}
 	
 }	
 	
