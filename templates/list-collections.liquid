@@ -6,36 +6,78 @@
 
   More info:
     - http://docs.shopify.com/manual/configuration/store-customization/taking-control-of-collections-listing
-
-{% endcomment %}
-
 {% include 'breadcrumb' %}
-
-{% comment %}
-  Loop through each collection, except 'frontpage'
 {% endcomment %}
-{% for collection in collections %}
 
-  {% unless collection.handle == 'frontpage' %}
 
-    {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
 
-    <div class="section-header">
-      <p class="h1 section-header__left">{{ collection_title }}</p>
-      <div class="section-header__right">
-        <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">More {{ collection_title }} &rsaquo;</a>
-      </div>
-    </div>
+<div class=" section-body-content featured-collections text-center">
+      <!--<h6>FEATURED</h6>-->
+      
+      <div class="grid__item one-half small--one-whole colPage">
+	      <a href="/collections/all-products">
+	      <img src="{{ 'AllProducts_Tile.jpg' | asset_url}}"/>
+	      <div class="imageLink">All Products</div> 
+	  </div>
+	   <div class="grid__item one-half small--one-whole colPage">
+	      <a href="/collections/basics">
+	      <img src="{{ 'basics-tile2_large.jpg' | asset_url}}"/>
+	      <div class="imageLink">Basics</div> 
+	  </div>
+	  
+	   <div class="grid__item one-third small--one-half colPage">
+	      <a href="/collections/nba">
+	      <img src="{{ 'NBA_Tile.jpg' | asset_url}}"/>
+	      <div class="imageLink">NBA</div> 
+	  </div>
+	   <div class="grid__item one-third small--one-half colPage">
+	      <a href="/collections/major-league-baseball">
+	      <img src="{{ 'MLB_Tile_grande.jpg' | asset_url}}"/>
+	      <div class="imageLink">Major League Baseball</div> 
+	  </div>
+	   <div class="grid__item one-third small--one-half colPage">
+	      <a href="/collections/major-league-soccer">
+	      <img src="{{ 'MLS_Tile2_grande.jpg' | asset_url}}"/>
+	      <div class="imageLink">Major League Soccer</div> 
+	  </div>
 
-    <div class="grid">
-      {% for product in collection.products limit:5 %}
-        {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
-        {% include 'product-grid-item' %}
-      {% endfor %}
-    </div>
+	   <div class="grid__item one-third small--one-half colPage">
+	      <a href="/collections/nhl">
+	      <img src="{{ 'NHL_tile_grande.png' | asset_url}}"/>
+	      <div class="imageLink">NHL&reg;</div> 
+	  </div>
+	   <div class="grid__item one-third small--one-half colPage">
+	      <a href="/collections/american-ultimate-disc-league">
+	      <img src="{{ 'AUDL_tile_large.png' | asset_url}}"/>
+	      <div class="imageLink">American Ultimate Disc League</div> 
+	  </div>
+	   <div class="grid__item one-third small--one-half colPage">
+	      <a href="/collections/greeks">
+	      <img src="{{ 'greek-tile_large.jpg' | asset_url}}"/>
+	      <div class="imageLink">Greeks</div> 
+	  </div>
+	  
+	   <div class="grid__item one-half small--one-whole colPage">
+	      <a href="/collections/watch-faces">
+	      <img src="{{ 'ALLFaces_Tile_large.jpg' | asset_url}}"/>
+	      <div class="imageLink">All Watch Faces</div> 
+	  </div>
+	   <div class="grid__item one-half small--one-whole colPage">
+	      <a href="/collections/straps">
+	      <img src="{{ 'ALLStraps_Tile_large.jpg' | asset_url}}"/>
+	      <div class="imageLink">All Straps</div> 
+	  </div>
+	  
+	   <div class="grid__item one-half small--one-whole colPage">
+	      <a href="/pages/custom">
+	      <img src="{{ 'Custom_Tile.jpg' | asset_url}}"/>
+	      <div class="imageLink">Custom print your own</div> 
+	  </div>
+	   <div class="grid__item one-half small--one-whole colPage">
+	      <a href="/pages/more-collections">
+	      <img src="{{ 'MoreCollections_Tile.jpg' | asset_url}}"/>
+	      <div class="imageLink">Collaborations</div> 
+	  </div>
 
-    {% unless forloop.last %}<hr>{% endunless %}
-
-  {% endunless %}
-
-{% endfor %}
+      
+</div>

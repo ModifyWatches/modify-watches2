@@ -3858,6 +3858,35 @@ a.whiteLink {
 	 
 	
 }
+.colPage {
+	margin-bottom: 10px;
+	
+}
+.colPage img {
+	width: 100%;
+}
+.colPage a {
+	position: relative;
+	.imageLink {
+		position: absolute;
+		bottom:3px;
+		left:0px;
+		width:100%;
+		line-height: 38px;
+		font-size: 18px;
+		text-align: center;
+		color: #ffffff;
+		background-color: rgba(0,0,0,0.6);
+		@include at-query ($max, $small) {
+			font-size: 14px;	
+		} 
+	}
+}
+.colPage a:hover {
+	.imageLink {
+		background-color: rgba(228, 87, 47, 1)
+	}
+}
 .collectionFollow {
 	@include at-query ($max, $small) {
 		position: absolute !important;
