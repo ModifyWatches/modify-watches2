@@ -55,18 +55,18 @@
   <a href="{{ product.url | within: collection }}" class="grid__image">
     <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
   </a>
-  <img src="{{ collections[collab].image | img_url: 'small' }}" class="tinyArt roundedBorder" />
+ 
   <div class="productsInfo">
-	  <p class="h6 text-left">
-	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:5 | truncate:30}}</a>
+	  <p class="h6 text-center">
+	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:6 | truncate:40}}</a>
 	  </p>
-	  <p class="super-small text-left">
+	  <p class="super-small text-center">
 		 By, <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a>
 	  </p>
-	   <p class="text-left orange-text">
+	   <p class="text-center orange-text">
 		  {% if product.type == 'Sport Watch' %}
 		  	$50.00
-		  {% elsif product.type == 'Watch' %}
+		  {% elsif product.type == 'Watch' or product.type == 'Alloy watch' %}
 		  	$75.00
 		  {% else %}	
 		   {{ product.price | money }}
