@@ -11,21 +11,55 @@ $('.navWrapper').mouseover(function() {
 	$('#browseBox').addClass('activeMenu');
 })
 $('.navWrapper').mouseout(function() {
-	$('.navWrapper').stop().fadeOut(200);
+	$('.navWrapper').stop().fadeOut(0);
 	$('#browseBox').removeClass('activeMenu');
 })
 
 $('#browseBox').mouseover(function() {
-	$('.navWrapper').stop().fadeIn(200);
+	$('.navWrapper').stop().fadeIn(0);
 	$(this).addClass('activeMenu');
 })
 $('#browseBox').mouseout(function() {
-	$('.navWrapper').stop().fadeOut(200);
+	$('.navWrapper').stop().fadeOut(0);
 	$(this).removeClass('activeMenu');
 	
 })
+var lastScrollTop = 0, delta = 15;
 
+  $(window).scroll(function() {
+  	 var nowScrollTop = $(this).scrollTop();
+    if(Math.abs(lastScrollTop - nowScrollTop) >= delta){
+		 if (nowScrollTop > lastScrollTop){
+			 if ($(document).scrollTop() > 70) {
+		      $('.site-header').removeClass('fullSize');
+		      $('.site-header__logo').addClass('scrollHide');
+		      $('.hamburger').addClass('scrollHide');
+		      $('.nav-bar').addClass('shortNav');
+		      $('.site-header__logo img').addClass('smallLogo');
+		    } 
+		 } else {
+		 	if ($(document).scrollTop() < 70) {
+		      $('.site-header').addClass('fullSize');
+		      $('.site-header__logo').removeClass('scrollHide');
+		      $('.hamburger').removeClass('scrollHide');
+		      $('.site-header__logo img').removeClass('smallLogo');
+		      $('.nav-bar').removeClass('shortNav');
+		      
+		    }
+			 if($(window).width()<=768) {
+			 	  $('.site-header').addClass('fullSize');
+			 	  $('.site-header__logo').removeClass('scrollHide');
+			 	  $('.hamburger').removeClass('scrollHide');
+			 	  $('.site-header__logo img').addClass('smallLogo');
+			 	  $('.nav-bar').removeClass('shortNav');
+			 }
+		 }
+		 lastScrollTop = nowScrollTop;
+	 }
 
+    
+    
+  });
 
 
 $('#closePopup').click(function() {
@@ -273,7 +307,7 @@ timber.accessibleNav = function () {
   }
 };
 
-timber.drawersInit = function () {
+	timber.drawersInit = function () {
   timber.LeftDrawer = new timber.Drawers('NavDrawer', 'left');
   /*
   timber.RightDrawer = new timber.Drawers('CartDrawer', 'right', {

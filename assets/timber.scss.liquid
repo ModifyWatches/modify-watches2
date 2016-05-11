@@ -110,8 +110,8 @@ $colorNav: #ffffff;
 $colorNavText: #415862;
 
 // Site Footer
-$colorFooterBg: {{ settings.color_footer_bg }};
-$colorFooterText: {{ settings.color_footer_text }};
+$colorFooterBg: #dedede;
+$colorFooterText: rgb(45,45,45);
 
 // Logo max width
 $logoMaxWidth: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;
@@ -710,7 +710,7 @@ $class-type: unquote(".");
   #Basic Styles
 ==============================================================================*/
 html {
-  background-color: $colorFooterBg;
+  background-color: #ffffff;
 }
 
 body {
@@ -723,12 +723,14 @@ body {
 
 .wrapper {
   @include clearfix();
-  max-width: $siteWidth;
+  max-width: 80%;
   margin: 0 auto;
   padding: 0 ($gutter / 2);
-
-  @include at-query ($min, $small) {
+  
+  
+  @include at-query ($max, $medium) {
     padding: 0 $gutter;
+    max-width: 100%;
   }
 }
 
@@ -737,9 +739,9 @@ body {
  
   padding-bottom:0;
   position: relative;
-  margin-top:60px;
+  margin-top:90px;
    @include at-query ($min, $small) {
-	    margin-top:60px;
+	    margin-top:90px;
 
 	}
 }
@@ -831,6 +833,8 @@ h3 {
 
 h4 {
   font-size: em(20px);
+  font-family: $bodyFontStack;
+  
 }
 
 h5 {
@@ -1786,14 +1790,17 @@ label.error {
   #Site Header
 ==============================================================================*/
 .site-header {
-  padding: ($gutter / 2) 0;
+  padding: 1px 0px;
   height: 60px;
   width:100%;
   position: fixed;
   z-index: 10000;
   top:0px !important;
   background-color: #ffffff;
-
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+-moz-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
 
   .grid--table {
     display: table;
@@ -1807,13 +1814,22 @@ label.error {
     }
   }
 }
-
+.site-header__logo img {
+	width:100%;
+}
+.smallLogo {
+	width: 85% !important;
+}
+.mobileBreak {
+	  @include at-query ($max, $small) {
+	  clear: both;
+  }
+}
 .site-header__logo {
   text-align: center;
   margin: 0 auto;
   max-width: 131px;
   padding-top: 7px;
-
   @include at-query ($min, $large) {
     text-align: left;
   }
@@ -1834,7 +1850,9 @@ label.error {
 }
 .storeCart a{
 	line-height: 48px;
+	padding-left: 10px;
 }
+
 .site-header__cart-toggle {
   display: inline-block;
   font-size: 20px;
@@ -1850,7 +1868,7 @@ label.error {
 .site-header__search input {
 	border:none;
 	outline:none;
-	border-bottom: 1px solid #979797;
+	border-bottom: 1px solid #cccccc;
 }
 .icon-fallback-text {
 	font-size: 20px;
@@ -1865,38 +1883,56 @@ label.error {
   }
 }
 
-#browseBox {
-	font-size: 13px;
-	cursor: pointer;
-	padding-top: 0px;
-	padding-right: 0%;
-	padding-left: 0%;
-	line-height: 48px;
-	padding-bottom: 0px;
-	box-sizing: border-box;
-	text-align: center;
-	
-}
+
 .sellStore h4{
 	line-height: 40px;
 	margin-top: 5px;
-	font-size: 18px
+	font-size: 16px;
+
 	
 }
-#browseBox b {
-	font-size: 18px;
-	display: block;
-	font-family: 'Bitter', serif;
+.site-header a {
+	color: #494949;
+	-moz-transition: none !important;
+    -webkit-transition: none !important;
+    -o-transition: color 0 ease-in !important;
+    transition: none !important;
+}
+.site-header a:hover {
+	color:rgb(255, 142, 4);
 }
 #browseBox:hover {
 	color: #E4572F;
-	border-bottom: 1px solid #E4572F;
+	
 }
-#browseBox.activeMenu {
-	color: #E4572F;
-	border-bottom: 1px solid #E4572F;
+#browseBox.activeMenu a{
+	color: #E4572F !important;
+	
 }
-
+.site-header h4 {
+	font-size: 14px;
+	font-weight: 500;
+	@include at-query ($max, $small) {
+		
+		font-size: 11px;	
+	}
+}
+.site-header.fullSize {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	 -webkit-box-shadow: none !important;
+	 -moz-box-shadow: none !important;
+	box-shadow: none !important;
+	@include at-query ($max, $small) {
+		padding-top: 0px;
+		padding-bottom: 0px;	 
+	}
+}
+.scrollHide {
+	@include at-query ($max, $small) {
+		display: none !important;	
+	}
+}
 /*============================================================================
   #Site Nav and Dropdowns
 ==============================================================================*/
@@ -1905,14 +1941,21 @@ label.error {
   width:100%;
   margin: 0 auto;
   position: fixed;
-  top:50px;
+  top:68px;
   left:0px;
-  z-index: 1000;
+  z-index: 15000;
+  	-moz-transition: none !important;
+    -webkit-transition: none !important;
+    -o-transition: color 0 ease-in !important;
+    transition: none !important;
   @include at-query ($max, $small) {
 	  top:0px; 
 	}
    
 
+}
+.shortNav {
+	top:48px !important;
 }
 .navWrapper {
 	left:0%;
@@ -1933,21 +1976,22 @@ label.error {
   cursor: default;
   margin: 0 auto;
   width: 100%;
+  padding-left: 10px;
   box-sizing: border-box;
-  padding-left: 2.5%;
-  padding-right: 2.5%;
   padding-top: 5px;
   
   li {
     margin: 0;
     display: block;
-    font-size: 24px;
-    line-height: 25px;
+    font-size: 18px;
+    line-height: 18px;
+    
     font-weight: normal;
     font-weight: normal;
     margin-right: 2%;
     width:auto;	
-    font-family: 'Bitter', serif;
+    margin-right: 0px;
+ 
   }
 
   > li {
@@ -1955,6 +1999,16 @@ label.error {
     display: inline-block;
     float: left;
     width: 15%;
+     @include at-query ($max, $small) {
+	 width: 29%;    
+	 position: relative;
+	 font-size: 14px;   
+		   
+		
+	 
+	     
+	 }
+	
        
   }
 }
@@ -1963,9 +2017,19 @@ label.error {
 	padding-left: 20px;
 	width: 25% !important;
 	line-height: 25px;
-	float: right;
 	font-weight: bold;
 	padding-top: 0px;
+	margin-left: 10% !important;
+	margin-top: 20px;
+	 @include at-query ($max, $small) {
+	 width: 100%;
+	 float: none;   
+	 clear:both; 
+	 display: none !important;
+	 margin-left: 0% !important;
+	     
+	 }
+	
 }
 .partnerLink a {
 	font-weight: bold;
@@ -1995,12 +2059,12 @@ label.error {
   text-decoration: none;
   padding: $gutter / 2;
   white-space: nowrap;
-  color: $colorNavText;
+
 
   &:hover,
   &:active,
   &:focus {
-    color: darken($colorNavText, 15%);
+   color: #E4572F;
   }
 
   .icon-arrow-down {
@@ -2022,10 +2086,12 @@ label.error {
 /*================ Dropdowns ================*/
 .site-nav__dropdown {
   display: block;
-  position: absolute;
+  position: relative;
   left: 0;
   margin: 0;
   z-index: $zindexNavDropdowns;
+  margin-top: 10px;
+ 
  
 
   .supports-no-touch .site-nav--has-dropdown:hover &,
@@ -2038,6 +2104,10 @@ label.error {
   line-height: 15px;
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
+   @include at-query ($max, $small) {
+	font-size: 12px;   
+	   
+	}
   }
   a {
     background:none;
@@ -2280,16 +2350,16 @@ label.error {
 
 .drawer__header {
   display: table;
-  height: 70px;
+  height: 10px;
   width: 100%;
+  text-align: right;
   margin-bottom: $gutter / 2;
   border-bottom: 1px solid $colorDrawerBorder;
 }
 
 .drawer__title,
 .drawer__close {
-  display: table-cell;
-  vertical-align: middle;
+  
 }
 
 .drawer__title {
@@ -2297,8 +2367,7 @@ label.error {
 }
 
 .drawer__close {
-  width: 1%;
-  text-align: center;
+  text-align: right;
   font-size: em(18px);
 }
 
@@ -2349,10 +2418,10 @@ label.error {
   #Site Footer
 ==============================================================================*/
 .site-footer {
-  background-color: $colorFooterBg;
+  background-color: #f1f1f1;
   padding: $gutter 0;
-  color: $colorFooterText;
-  border-top: 1px solid #ccc;
+  color: #6d6d6d;
+ 
   font-size: 15px;
   margin-top: 20px;
 
@@ -2364,7 +2433,16 @@ label.error {
 	padding-left: 5%;
 	padding-right: 5%;
 }
-
+.site-footer a {
+	color:#797979;	
+}
+.site-footer a:hover {
+	color:rgb(255, 142, 4);
+}
+.site-footer h6 {
+	font-family: 'open sans';
+	font-weight: 600;
+}
 /*============================================================================
   #Product and Collection Grids
 ==============================================================================*/
@@ -3325,7 +3403,7 @@ button#AddToCart {
 	@include at-query ($max, $small) {
 		height: 125px;	
 		position: absolute;
-		top:60px;
+		top:0px;
 		left:0px;
 	}
 }
@@ -3336,11 +3414,11 @@ button#AddToCart {
 	position: relative;
 	height:auto;
 	background-position: left center;
-	background-size: auto 100%;
+	background-size: cover;
 
 	@include at-query ($max, $small) {
 		background-position:center top;
-		background-size: 130% auto;
+		background-size: cover;
 		position: relative;
 		top:0px;
 		left:0px;
@@ -3357,21 +3435,23 @@ button#AddToCart {
 	height: auto;
 }
 .collectionInfo {
-	width:50%;
+	width:80%;
+	max-width: 80%;
+    margin: 0px auto;
 	height: auto;
 	box-sizing: border-box;
-	padding:1%;
-	padding-right: 8%;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	position:relative;
-	float: right;
-	background-color: #ffffff;
-	min-height: 300px;
+	float: none;
+	min-height: 200px;
 	@include at-query ($max, $small) {
 		width: 100%;
+		max-width: 100%;
 		min-height: 100px;	
 		padding:1%;
 		position: relative;
-		margin-top:150px;
+		margin-top:0px;
 		left:0px;
 		text-align: center;
 	}
@@ -3382,23 +3462,24 @@ button#AddToCart {
 	display: block;
 }
 .iconHolder {
-	width:15%;
+	width:200px;
 	height:auto;
-	text-align: center;
+	text-align: left;
 	min-width: 116px;
 	float: left;
 	@include at-query ($max, $small) {
 		width: 100%;
-		float: none;	
+		float: none;
+		text-align: center;	
 	}
 }
 
 .iconHolder img {
-	width: 80%;
+	width: 100%;
 	height: auto;
 	@include at-query ($max, $small) {
-		width: 100px;
-		margin-top: -60px;
+		width: 150px;
+		margin-top: 20px;
 	}
 }
 .iconHolder2 {
@@ -3421,16 +3502,56 @@ button#AddToCart {
 	}
 }
 .namesHolder {
-	width: 62%;
+	width: auto;
 	height: auto;
 	float: left;
+	margin-left: 20px;
+	margin-top: 35px;
 	box-sizing: border-box;
 	padding: 0%;
 	@include at-query ($max, $small) {
 		text-align: center;	
 		width: 100%;
+		margin-top: 5px;
+		margin-left: 0px;
 	}
 }
+.namesHolder h1 {
+	background-color: rgba(0,0,0,0.7);
+	color: #ffffff;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	margin: 0px;	
+	margin-bottom: 10px;
+	display: block;
+	width: auto;
+	float: left;
+	clear: both;
+	@include at-query ($max, $small) {
+		
+		float: none;	
+	}
+}
+.namesHolder h3 {
+	background-color: rgba(0,0,0,0.7);
+	color: #ffffff;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	margin: 0px;	
+	margin-bottom: 10px;
+	display: block;
+	width: auto;
+	float: left;
+	clear: both;
+	font-family: 'open sans';
+		@include at-query ($max, $small) {
+		
+		float: none;	
+	}
+}
+
 .namesHolder2 {
 	width: 70%;
 	height: auto;
@@ -3455,6 +3576,25 @@ button#AddToCart {
 	@include at-query ($max, $small) {
 		line-height: 24px;	
 	}
+}
+.collabDesc {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 20px;
+	@include at-query ($max, $medium) {
+		margin-left: 1%;
+		width: 98%;
+		margin-top: 1px;	
+	}
+}
+.orangeHR {
+	width: 30%;
+	display: inline-block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(228, 87, 46);
+    margin: 1em 0;
+    padding: 0; 
 }
 .minimalText {
 	@include at-query ($max, $small) {
@@ -3643,6 +3783,10 @@ button#AddToCart {
 	padding-top: 30px !important;
 	padding-bottom: 0px !important;
 }
+.bigger-padding {
+	padding-top: 30px !important;
+	padding-bottom: 30px !important;
+}
 .medium-padding {
 	padding-bottom: 15px !important;
 }
@@ -3714,6 +3858,35 @@ a.whiteLink {
 	 
 	
 }
+.colPage {
+	margin-bottom: 10px;
+	
+}
+.colPage img {
+	width: 100%;
+}
+.colPage a {
+	position: relative;
+	.imageLink {
+		position: absolute;
+		bottom:3px;
+		left:0px;
+		width:100%;
+		line-height: 38px;
+		font-size: 18px;
+		text-align: center;
+		color: #ffffff;
+		background-color: rgba(0,0,0,0.6);
+		@include at-query ($max, $small) {
+			font-size: 14px;	
+		} 
+	}
+}
+.colPage a:hover {
+	.imageLink {
+		background-color: rgba(228, 87, 47, 1)
+	}
+}
 .collectionFollow {
 	@include at-query ($max, $small) {
 		position: absolute !important;
@@ -3758,13 +3931,15 @@ a.whiteLink {
 	padding-bottom: 7px;
 	float: left;
 	width: 100%;
+	margin-top: 15px;
 	@include at-query ($max, $small) {
 		max-width:100%;
 	}
 }
 #newfollowForm input {
-	width: 23%;
+	width: 50%;
 	font-size: 11px;
+	padding:2px 2px;
 	@include at-query ($max, $small) {
 		padding:2px 2px;
 		width:40%;
@@ -3774,9 +3949,14 @@ a.whiteLink {
 	
 	
 }
-#newfollowForm .button {
+#newfollowForm .btn {
 	float: right;
-	width: 25%;
+	width: 15%;
+	@include at-query ($max, $small) {
+		display: inline-block;
+		float: none;
+			
+	}
 	
 }	
 	
@@ -3852,6 +4032,22 @@ a.whiteLink {
 	padding:0px;
 	
 }
+.skinny {
+	width: 60%;
+	margin: 0 auto;
+	@include at-query ($max, $medium) {
+		width:80%;		
+	}
+	@include at-query ($max, $small) {
+		width: 100%;	
+	}
+}
+.skinnyImage {
+	width: 100%;
+}
+.lifestyle {
+	line-height: 0px;
+}
 .collabType {
 	  position: absolute;
    right: 0px;
@@ -3860,6 +4056,24 @@ a.whiteLink {
    background-size: cover;
    top: 5px;
    left: 5px;
+}
+#collabsWith a {
+	display: block;
+	position: relative;
+	.btn--secondary {
+		display: none;
+	}
+	
+}
+#collabsWith a:hover {
+	.btn--secondary {
+		display: block;
+		position: absolute;
+		bottom:50px;
+		right: 30%;
+		width: 40%;
+	}
+	
 }
 .artistCollab {
 	background-image: url('{{ "artistTriangle.png" | asset_url }}');
@@ -3884,6 +4098,29 @@ a.whiteLink {
 .sportsCollab {
 	background-image: url('{{ "sportsTriangle.png" | asset_url }}');
 
+}
+#paginations {
+	width: 100%;
+	text-align: center;
+	list-style: none;
+	font-size: 16px;
+	
+}
+#paginations li a {
+		padding-left: 8px;
+	padding-right: 8px;
+}
+#paginations li.active a{
+	background-color: #394963;
+	color: #ffffff;
+
+}
+#paginations li {
+	display: inline-block;
+}
+.fullimage{
+	width: 100%;
+	height: auto;
 }
 .collabText {
 	-webkit-transform: rotate(45deg);
@@ -4000,7 +4237,7 @@ a.whiteLink {
 	
 }
 .ladyShirt {
-	width:22% !important;
+	width:22.5% !important;
 	margin-top: 0% !important;
 	margin-left:3% !important;
 }
@@ -4010,18 +4247,21 @@ a.whiteLink {
 	width:100%;
 	text-align: center;
 	left: 0%;
-	top:30.8%;
+	top:26.3%;
 	
 }
 .watchArt img {
-	width:37.4%;
+	width:46.2%;
 	display: inline-block;
 	
 }
+.fauxHidden {
+	opacity: 0.0 !important;
+}
 .sportWatch {
 	width: 42% !important;
-	margin-top: -3% !important;
-	margin-left: 1% !important;
+	margin-top: 1.5% !important;
+	margin-left: 1.2% !important;
 }
 .watchOverlay {
 	position: absolute;

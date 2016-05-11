@@ -22,10 +22,10 @@
       </div>
       <!-- Shop Linklist -->
       <div class="grid__item large--one-sixth push--large--one-sixth medium--one-quarter small--one-half">
-        <h6>{{ linklists.shop.title }}</h6>
+        <h6>{{ linklists.main-menu.title }}</h6>
         <hr class="orangeDash" />
         <ul class="homeList">
-          {% for link in linklists.shop.links %}
+          {% for link in linklists.main-menu.links %}
           <li>
             <a href="{{ link.url }}" title="{{ link.title | escape }}">{{ link.title }}</a>
           </li>
