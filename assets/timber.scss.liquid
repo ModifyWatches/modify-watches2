@@ -1949,7 +1949,7 @@ box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
     -o-transition: color 0 ease-in !important;
     transition: none !important;
   @include at-query ($max, $small) {
-	  top:0px; 
+	  top:80px; 
 	}
    
 
@@ -2648,6 +2648,9 @@ box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
   a, img {
     display: inline-block;
     margin: 0 auto;
+    @include at-query ($max, $small) {
+		padding-left: 2px; padding-right: 2px;    
+	}
   }
 
   li {
@@ -3338,7 +3341,11 @@ button#AddToCart {
 	width:100%;
 	height: auto;
 }
-
+#instafeed img {
+	width: 49%;
+	float: left;
+	margin-bottom: 10px;
+}
 
 .hideAll {
 	display: none !important;
@@ -3368,7 +3375,7 @@ button#AddToCart {
 .productsInfo {
 	position: relative;
 	float: left;
-	width:88%;
+	width:100%;
 	height:auto;
 	@include at-query ($max, $small) {
 		
@@ -3545,6 +3552,7 @@ button#AddToCart {
 	width: auto;
 	float: left;
 	clear: both;
+	font-weight: 400;
 	font-family: 'open sans';
 		@include at-query ($max, $small) {
 		
@@ -3586,6 +3594,9 @@ button#AddToCart {
 		width: 98%;
 		margin-top: 1px;	
 	}
+}
+.collabDesc p {
+	font-size: 16px;
 }
 .orangeHR {
 	width: 30%;
@@ -3987,7 +3998,19 @@ a.whiteLink {
 	}
 
 }
-
+#followText {
+	background-color: rgba(0,0,0,0.7);
+	color: #ffffff;
+	padding: 3px;
+	padding-left: 8px;
+	padding-right: 8px;
+	float: right;
+	@include at-query ($max, $small) {
+		float:none;
+		display: inline-block;	
+	}
+	
+}
 .required {
 	border:1px solid #d40000;
 }
@@ -4033,13 +4056,15 @@ a.whiteLink {
 	
 }
 .skinny {
-	width: 60%;
+	width: 70%;
 	margin: 0 auto;
+	font-size: 16px;
 	@include at-query ($max, $medium) {
 		width:80%;		
 	}
 	@include at-query ($max, $small) {
-		width: 100%;	
+		width: 100%;
+		font-size: 12px;	
 	}
 }
 .skinnyImage {
@@ -4057,9 +4082,14 @@ a.whiteLink {
    top: 5px;
    left: 5px;
 }
+.prodName {
+	margin-bottom: 7px !important;
+}
 #collabsWith a {
 	display: block;
 	position: relative;
+	padding-left: 3px;
+	padding-right: 3px;
 	.btn--secondary {
 		display: none;
 	}
