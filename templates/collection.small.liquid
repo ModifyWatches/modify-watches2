@@ -2,15 +2,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900">
-{% assign prefix = collection.handle | prepend: '' %}
+{% assign prefix = collection.handle | prepend: 'collection-' %}
 
-{% assign collection_banner = prefix | append: '_banner.jpg' | asset_url %}
-{% assign collection_tile = prefix | append: '_tile.jpg' | asset_url %}
-{% assign collection_lifestyle_1 = prefix | append: '_lifestyle-1.jpg' | asset_url %}
-{% assign collection_lifestyle_2 = prefix | append: '_lifestyle-2.jpg' | asset_url %}
+{% assign collection_banner = prefix | append: '-banner.jpg' | file_url %}
+{% assign collection_tile = prefix | append: '-tile.jpg' | file_url %}
+{% assign collection_lifestyle_1 = prefix | append: '-lifestyle-1.jpg' | file_url %}
+{% assign collection_lifestyle_2 = prefix | append: '-lifestyle-2.jpg' | file_url %}
 
 {% assign collection_mod_asset = 'collection_small_mod_asset2.jpg' | asset_url %}
-
 {% if product.vendor %}
 	{% assign collaboration = product.vendor %}
 	{% assign handles = product.vendor | handleize %}
@@ -55,7 +54,7 @@
 <div class="expandedWidth newCollectionBanner" style="background-image: url('{{ collection_banner }}')">
 	<div class="collectionInfo">
 		<div class="collectNames">
-			<div class="namesHolder">
+			<div class="namesHolder right">
 			 	<h1 class="small--text-center">{{ collection.title }}</h1>
 			 </div>
 			 <div style="clear:both"></div>

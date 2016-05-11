@@ -58,7 +58,7 @@
  
   <div class="productsInfo">
 	  <p class="h6 text-center">
-	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:6 | truncate:40}}</a>
+	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:5 | truncate:40}}</a>
 	  </p>
 	  <p class="super-small text-center">
 		 By, <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a>
