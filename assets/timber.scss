@@ -3398,6 +3398,11 @@ button#AddToCart {
 .iconHolder img {
 	width: 80%;
 	height: auto;
+  border: 6px solid white;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
 	@include at-query ($max, $small) {
 		width: 100px;
 		margin-top: -60px;
