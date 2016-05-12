@@ -3436,6 +3436,10 @@ button#AddToCart {
 }
 .simple {
 	background-position: left top !important;
+	min-height: 300px !important;
+	@include at-query ($max, $small) {
+		min-height: 100px !important;	
+	}
 }
 .newBannerImage {
 	width:100%;
@@ -3456,7 +3460,7 @@ button#AddToCart {
 	padding-bottom: 20px;
 	position:relative;
 	float: none;
-	min-height: 270px;
+	min-height: 240px;
 	@include at-query ($max, $small) {
 		width: 100%;
 		max-width: 100%;
