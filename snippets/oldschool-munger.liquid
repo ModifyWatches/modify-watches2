@@ -190,6 +190,12 @@ function checkVisible() {
 		  var index = path.lastIndexOf('_');
 		  path = path.substring(0, index+1);
 		  
+		  if(theColor != "no-strap") {
+			 
+			  $('span#strapPrice').show();
+		  }else {
+			  $('span#strapPrice').hide();
+		  }
 		  path+=theColor+'.png?v=10';
 		  $('#ProductPhotoImg').attr('src',path );	
 		  $('.watchArt').show();

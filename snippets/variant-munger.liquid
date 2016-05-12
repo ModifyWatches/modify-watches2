@@ -47,7 +47,7 @@
 			{% assign theSize = variant.option1 %}
 			<script>
 				strapArray["{{i}}"] = {"color":"{{theColor}}","size":"{{theSize}}"};
-			
+				//console.log("{{theColor}}"+ '-'+"{{theSize}}");
 			</script>
 		{% endif %}
 	{% endfor %}
@@ -98,18 +98,25 @@
 	
 function checkVisible(Scolor, Ssize) {
 	var n = 0;
-	if(!Ssize) {
-		Ssize = 'Default Title';
-	}
+	
+	
 	$.each(strapArray, function(index) {
-		if(strapArray[index].size == Ssize && strapArray[index].color == Scolor) {
-			n = 1;
+		if(!Ssize) {	
+			if(strapArray[index].color == Scolor) {
+				n = 1;
+			}
+		}else {
+			if(strapArray[index].size == Ssize && strapArray[index].color == Scolor) {
+				n = 1;
+			}
 		}
+	
 	})
 	if(Scolor == 'No Strap') {
 		n = 1;
 	}
 	return n;
+	
 }		
   var selectCallback = function(variant, selector) {
 	  
@@ -227,12 +234,17 @@ function checkVisible(Scolor, Ssize) {
   }); 
   
 function hideHidden() {
-	//console.log(strapArray);
+	var theType = "{{product.type}}";
+	console.log(theType);
 	$('.swatch-element').hide();
 	if($('#productSelect-option-1').length>0) {
 		var theSize = $('#productSelect-option-1').val();
 	}else {
-		var theSize = "Default Title";
+		if(theType=='Sport Watch') {
+			var theSize = "Sport";
+		}else {
+			var theSize = "Default Title";
+		}
 	}
 
 	$.each(strapArray, function(index) {

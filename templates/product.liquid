@@ -133,9 +133,9 @@
         
         <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
           <span id="ProductPrice" class="h3" itemprop="price">
-            {{ current_variant.price | money }}
+            {{ current_variant.price | money }} 
           </span>
-          
+          <span id="strapPrice" style="display: none;">+ $15.00 with Strap</span>
          {% if munged %}	
          	{% include 'variant-munger' %}		  				
 		 {% else %}	
