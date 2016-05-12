@@ -235,7 +235,7 @@ function checkVisible(Scolor, Ssize) {
   
 function hideHidden() {
 	var theType = "{{product.type}}";
-	console.log(theType);
+	
 	$('.swatch-element').hide();
 	if($('#productSelect-option-1').length>0) {
 		var theSize = $('#productSelect-option-1').val();
@@ -248,10 +248,14 @@ function hideHidden() {
 	}
 
 	$.each(strapArray, function(index) {
-		if(strapArray[index].size == theSize) {
-			$('.swatch-element[data-value="'+strapArray[index].color+'"]').show();
-		}
+      	console.log(strapArray[index].color);
+	
+			//if(strapArray[index].size == theSize) {
+				$('.swatch-element[data-value="'+strapArray[index].color+'"]').show();
+			//}
+		
 	})
+
 	$('.swatch-element[data-value="No Strap"]').show();
 }
 $(document).ready(function() {
