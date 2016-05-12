@@ -44,6 +44,7 @@
 			{% assign theColor = product.title | replace: ' Strap' , '' %}
 			{% assign theColor = theColor | replace: ' Nylon' , '' %}
 			{% assign theColor = theColor | replace: ' Watch' , '' %}
+			{% assign theColor = theColor | replace: 'SF ' , '' %}
 			{% assign theSize = variant.option1 %}
 			<script>
 				strapArray["{{i}}"] = {"color":"{{theColor}}","size":"{{theSize}}"};
