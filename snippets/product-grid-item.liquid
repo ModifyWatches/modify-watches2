@@ -64,14 +64,15 @@
 		 By, <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a>
 	  </p>
 	   <p class="text-center orange-text">
-		  {% if product.type == 'Sport Watch' or product.type == 'Watch' %}
-		  	$50.00
-		  {% elsif product.type == 'Alloy watch' %}
-		  	$75.00
-		  {% else %}	
-		   {{ product.price | money }}
-		   {% endif %}
+	
+		   {% if product.compare_at_price_min > product.price %} 
+		 <del>{{ product.compare_at_price_min | money }}</del>
+	{% endif %}
+	{{ product.price | money }}
+		   
 	  </p>
-		    
+		  <p class="super-small text-center">
+			  (face only)  
+		  </p>
 	</div>
 </div>
