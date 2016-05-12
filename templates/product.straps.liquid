@@ -70,6 +70,7 @@
 			{% endif %}
           
 		  <div style="clear:both"></div>
+		   {% if product.variants.size >1 %}
 		  Size:<br>
 		    <select name="id" id="productSelect" class="product-single__variants ">
             {% for variant in product.variants %}
@@ -86,7 +87,7 @@
               {% endif %}
             {% endfor %}
           </select>
-		  
+		  {% endif %}
 		 		  
 		  
           
