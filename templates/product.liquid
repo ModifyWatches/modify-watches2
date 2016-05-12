@@ -121,7 +121,7 @@
 
     <div class="grid__item large--four-twelfths  medium--five-twelfths push--large--one-twelfth small--one-whole">
 
-      <h2 itemprop="name">{{ product.title }}</h2>
+      <h2 itemprop="name" class="prodName">{{ product.title }}</h2>
 	  <h5 itemprop="vendor">by <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a></h5>
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="small--text-left">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
@@ -193,7 +193,7 @@
  </div>
 </div>
 
-	<div class="grid__item large--grid-uniform text-center">
+	<div class=" large--grid-uniform text-center">
 	   		<h3>More products by {{ product.vendor }}</h3>
 	   
 	   			{% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
