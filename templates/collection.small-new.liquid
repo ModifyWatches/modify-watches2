@@ -36,7 +36,7 @@
   {% assign collabType = 'artist' %}
  {% for tag in product.tags %}
 
-				{% if tag == 'nonprofit' %}
+				{% if tag == 'nonprofit' or tag == 'nonprofits' or tag == 'Nonprofits' %}
 					 {% assign collabType = 'non-profit' %}	
 				{% elsif  tag == 'brand' %}
 					 {% assign collabType = 'brand' %}	
