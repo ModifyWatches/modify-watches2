@@ -33,25 +33,24 @@
 {% assign tag_count = collection.all_tags | size %}
 {% assign tag_threshold = 8 %}
  {% assign grid_item_width_half = 'one-half small--one-eighth' %}
-  {% assign collabType = 'artist' %}
- {% for tag in product.tags %}
+{% for tag in collection.all_tags %}
 
-				{% if tag == 'nonprofit' or tag == 'nonprofits' or tag == 'Nonprofits' %}
+				{% if tag contains 'profit'  %}
 					 {% assign collabType = 'non-profit' %}	
 				{% endif %}	 
-				{% if  tag == 'brand' %}
+				{% if  tag contains 'brand' %}
 					 {% assign collabType = 'brand' %}
 				{% endif %}		
-				{% if  tag == 'artist' %}
+				{% if  tag contains 'artist' %}
 					 {% assign collabType = 'artist' %}
 				{% endif %}	
-				{% if  tag == 'musician' %}
+				{% if  tag contains 'musician' %}
 					 {% assign collabType = 'musician' %}
 				{% endif %}			
-				{% if  tag == 'influencer' %}
+				{% if  tag contains 'influencer' %}
 					 {% assign collabType = 'influencer' %}	
 				{% endif %}	 
-				{% if  tag == 'sports' %}
+				{% if  tag contains 'sports' %}
 					 {% assign collabType = 'sports' %}		
 				{% endif %}	
 			{% endfor %}	
