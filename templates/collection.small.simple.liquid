@@ -1,0 +1,256 @@
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900">
+{% assign prefix = collection.handle | prepend: '' %}
+
+{% assign collection_banner = prefix | append: '_banner.jpg' | asset_url %}
+{% assign collection_tile = prefix | append: '_tile.jpg' | asset_url %}
+{% assign collection_lifestyle_1 = prefix | append: '_lifestyle-1.jpg' | asset_url %}
+{% assign collection_lifestyle_2 = prefix | append: '_lifestyle-2.jpg' | asset_url %}
+
+{% assign collection_mod_asset = 'collection_small_mod_asset2.jpg' | asset_url %}
+{% if product.vendor %}
+	{% assign collaboration = product.vendor %}
+	{% assign handles = product.vendor | handleize %}
+	{% assign colID = collections[handles].id %}
+	{% assign followers = collections[handles].metafields.followers %}
+	<div id="followFrame">
+{% else %}
+	{% assign collaboration = collection.title %}
+	{% assign colID = collection.id %}
+	{% assign followers = collection.metafields.followers %}
+	<div id="followFrame">
+{% endif %}	
+	{% assign followed = followers | size %}
+	{% assign following = followed | divided_by: 2 %}
+
+
+
+{% assign pagination_limit = 48 %}
+{% paginate collection.products by pagination_limit %}
+{% assign tag_count = collection.all_tags | size %}
+{% assign tag_threshold = 8 %}
+ {% assign grid_item_width_half = 'one-half small--one-eighth' %}
+  {% assign collabType = 'artist' %}
+ {% for tag in product.tags %}
+
+				{% if tag == 'nonprofit' %}
+					 {% assign collabType = 'non-profit' %}	
+				{% elsif  tag == 'brand' %}
+					 {% assign collabType = 'brand' %}	
+				{% elsif  tag == 'artist' %}
+					 {% assign collabType = 'artist' %}
+				{% elsif  tag == 'musician' %}
+					 {% assign collabType = 'musician' %}		
+				{% elsif  tag == 'influencer' %}
+					 {% assign collabType = 'influencer' %}	
+				{% elsif  tag == 'sports' %}
+					 {% assign collabType = 'sports' %}	
+				{% endif %}	
+			{% endfor %}	
+
+</main> 
+<div class="expandedWidth newCollectionBanner" style="background-image: url('{{ collection_banner }}')">
+	<div class="collectionInfo">
+		<div class="collectNames">
+			<div class="namesHolder right">
+			 	<h1 class="small--text-center">{{ collection.title }}</h1>
+			 </div>
+			 <div style="clear:both"></div>
+		</div>
+		{% comment %}
+		<div class="collectionBio">
+			 
+			 <div class="minimalText maxHeight">
+				 {{ collection.description }}
+			 	<div class="readMore"><a href="#">Read More</a></div>
+			 </div>
+			 <div id="shareHolder">
+				 Help share {{ collection.title }}'s story<br>
+			 <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
+			 </div>
+		</div>
+		{% endcomment %}
+	</div>
+	<div style="clear:both"></div>
+</div>
+ <main class="wrapper main-content small-margin" role="main">
+
+<div class="grid--rev">
+  <div class="one-whole">
+  
+  
+  
+  <div id="tabs">
+	 
+  
+        <div id="product-tab">
+	      <div class="one-fifth small--one-whole left mobilePad hide">
+		     
+		      <ul class="collection-matrix">
+			       <div class="grid__item small-top">
+			      <h5>Sort by Artwork</h5>
+				  </div>
+				 {% for product in collection.products %}
+				 	 {% if product.type =='Art' %}
+					 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item  previewLI {{ grid_item_width_half }}">
+					  {% include 'art-preview-grid' %}
+					 </li> 
+				 	{% endif %}
+				 {% endfor %}
+				  <div style="clear: both"></div>
+				      
+								 <div style="clear: both"></div>
+				</ul>
+				<div class="btn--secondary" id="viewAll">View all products</div>
+				<div id="product-list-foot"></div>
+
+	      </div>  
+	       <div class="collection_product one-whole small--one-whole left">
+		  
+						 	 
+    	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
+			
+				<ul class="collection-matrix">
+					 <div class="grid__item small-topper">
+			      
+				  </div>
+				 {% for product in collection.products  %}
+				 	
+				 	 
+				 	 				 	 
+				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
+				  {% include 'product-grid-item' %}
+				  
+				  
+				 </li> 
+				 	
+				 	
+				 	
+				 {% endfor %}
+				</ul>
+				<div style="clear: both"></div>  
+				<ul id="paginations">
+				{% assign count = paginate.pages %}
+				{% for part in (1..count) %}
+					{% if count > 1 %}
+				      <li {% if paginate.current_page == part %}class="active"{% endif %}><a href="{{ collection.url }}?page={{ forloop.index }}">{{ forloop.index }}</a></li>
+				    {% endif %}  
+				{% endfor %}
+				</ul>
+	       </div>
+        </div>
+  </div>
+  </main>
+<div class="grid--full one-whole text-center genSection bigger-padding">
+	<div class="left large--one-half medium--one-half small--one-whole lifestyle">
+	 	<img src="{{ collection_lifestyle_1 }}" class="fullimage"/>
+	</div>
+	<div class="left large--one-half medium--one-half small--one-whole lifestyle">
+	 	<img src="{{ collection_lifestyle_2 }}" class="fullimage"/>
+	</div>
+	<div class="left large--one-half medium--one-half small--one-whole lifestyle">
+	 	<img src="{{ collection.image | img_url: 'grande' }}" alt="{{ collection.title }} tile image" class="fullimage">
+	</div>
+	<div class="left large--one-half medium--one-half small--one-whole big-padding grid__item text-left">
+ 	<div class="collabDesc">
+ 	   <h2>{{collection.title}}</h2>
+ 	   <hr class="orangeHR"/>
+ 	   <div class=""><p>
+		 {{ collection.description }}
+ 	   </p>
+		</div>
+	 <div id="shareHolder">
+		 Help share {{ collection.title }}'s story<br>
+	 <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
+	 </div>
+ </div>
+</div>
+</div>
+<main class="wrapper" role="main">
+<div style="clear: both"></div>      
+<div style="clear: both"></div>
+
+
+<div id="product-list-foot"></div>
+
+
+ </div>
+ <div style="clear:both"></div>
+	{% include 'the-watches' %}			     
+     {% include 'collab-with' %}
+    
+	
+  </div>
+  </div>
+</div>
+<div style="clear:both"></div>
+
+
+
+{% include 'collab-signup-link' %}
+
+
+
+{% endpaginate %}
+
+{% include 'vertical-tracking' %}
+
+<!-- Scripts -->
+<script>
+
+ 
+
+  analytics.page('Partner Storefront', {
+    title: "{{ collection.title }}",
+    url: window.location.href,
+    path: '{{ collection.url }}',
+	vertical: '{{ vertical }}', 
+    referrer: document.referrer
+  });
+$(document).ready(function() {
+	var currentArt = '';
+	$('.artPreview').click(function(e) {
+		e.preventDefault();
+		
+		if($(this).hasClass('selectedPreview')) {
+			currentArt = '';
+				$('.artPreview').removeClass('selectedPreview');
+				$('.artPreview').removeClass('noPreview');
+				$('.theProducts').show();
+				$('.lifestyle').show();
+		}else {	
+			$('.artPreview').removeClass('selectedPreview');
+			$('.artPreview').removeClass('noPreview');
+			$('.artPreview').addClass('noPreview');
+			
+			currentArt = $(this).attr('data-title');
+			$('.lifestyle').hide();
+			
+			$('.theProducts').each(function() {
+				theTags = $(this).attr('data-tags');
+				console.log(theTags+' '+currentArt);
+				if (theTags.indexOf(currentArt) >= 0) {
+					$(this).show();
+				}else {
+					$(this).hide();
+				}
+				
+				
+			})
+			$(this).addClass('selectedPreview');
+			$(this).removeClass('noPreview');
+		}
+	})
+	
+	$('#viewAll').click(function() {
+		currentArt = '';
+		$('.artPreview').removeClass('selectedPreview');
+		$('.artPreview').removeClass('noPreview');
+		$('.theProducts').show();
+		$('.lifestyle').show();
+		
+	})
+})
+</script>
