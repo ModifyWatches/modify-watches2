@@ -1,0 +1,216 @@
+<!-- /templates/product.liquid -->
+{% comment %}
+
+  Rich snippets (itemscope, itemtype, etc.) for products are a theme requirement,
+  and allow search engines to easily understand what the content is.
+
+  For more information on these Scheme.org tags, visit:
+    - http://schema.org/docs/gs.html
+
+{% endcomment %}
+
+{% assign hasSizes = false %}
+{% assign productType = product.type %}
+{% assign munged = false %}
+
+
+
+<div itemscope itemtype="http://schema.org/Product">
+
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+
+  {% comment %}
+    Get first variant, or deep linked one
+  {% endcomment %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+
+  {% include 'breadcrumb' %}
+  {% if product.type == 'Sport Watch' %}
+  	{% assign suffix = 'watch' %}
+  {% else %}	
+  	{% assign suffix = product.type | handleize %} 
+  {% endif %}	
+  {% assign product_preview = product.images[0] | default: product.images[0] %}	       
+        
+  <div class="grid product-single">
+    <div class="grid__item large--six-twelfths  medium--six-twelfths large--one-whole text-center">
+
+           <div class="product-single__photos ProductPhoto  ten-twelfths large--left medium--left small--one-whole" id="ProductPhoto">
+
+	        <img src="{{ product.featured_image.src | img_url: 'large' }}"  class="" id="ProductPhotoImg">
+		</div>     
+      
+    </div>
+
+    <div class="grid__item large--four-twelfths  medium--five-twelfths push--large--one-twelfth small--one-whole">
+
+      <h2 itemprop="name" class="prodName">{{ product.title }}</h2>
+	  <h5 itemprop="vendor">by <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a></h5>
+      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="small--text-left">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+        {% comment %}
+          ID addToCartForm is a selector for the ajax cart plugin
+        {% endcomment %}
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
+        
+        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+        	
+          <span id="ProductPrice" class="h3" itemprop="price">
+			{{ product.price | money }}
+          </span>
+          <span id="strapPrice" style="display: none;">+ <span id="actualPrice"></span> with Strap</span>
+          {% if product.compare_at_price_min > product.price %} 
+			 <br><span class="super-small orange-text hide">
+			 <del>{{ product.compare_at_price_min | money }}</del>
+			 </span>
+			{% endif %}
+          
+		  <div style="clear:both"></div>
+		  Size:<br>
+		    <select name="id" id="productSelect" class="product-single__variants ">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                {% comment %}
+                  Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+                {% endcomment %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.option1 }}</option>
+
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+		  
+		 		  
+		  
+          
+          
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            <p id="ComparePrice">
+              {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
+            </p>
+          {% endif %}
+           	
+		  				  		
+		  		<label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+		  		<input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+		
+
+          <button type="submit" name="add" id="AddToCart" class="btn">
+            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+          </button>
+          
+          <div style="clear: both"></div>
+        </form>
+
+      </div>
+      {% comment &}
+      {% include 'product-info' %}
+	  {% endcomment %}
+      <div class="product-description rte" itemprop="description">
+         <h5>Help share {{ product.vendor }}'s story</h5>
+      
+     <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
+
+      </div>
+	  
+      {% comment %}
+        If the user is on a collection product page (ie with /collections/collection-handle/products/product-handle)
+        in the URL, we can show next/previous links to other products in the collection.
+     
+      {% if collection %}
+        {% if collection.previous_product or collection.next_product %}
+          <p>
+            {% if collection.previous_product %}
+              <span class="left">
+                {{ 'products.general.previous_product_html' | t | link_to: collection.previous_product }}
+              </span>
+            {% endif %}
+            {% if collection.next_product %}
+              <span class="right">
+                {{ 'products.general.next_product_html' | t | link_to: collection.next_product }}
+              </span>
+            {% endif %}
+          </p>
+        {% endif %}
+      {% endif %}
+	   {% endcomment %}
+    </div>
+  </div>
+   
+  <div class="grid-uniform text-left big-margin">
+
+{% include 'product-info-general' %}
+<div style="clear:both"></div>
+ </div>
+</div>
+
+	<div class=" large--grid-uniform text-center">
+	   		<h3>More products by {{ product.vendor }}</h3>
+	   
+	   			{% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
+			{% paginate collections[collab].products by 12 %}
+				<ul class="collection-matrix big-padding">
+				 {% for product in collections[collab].products %}
+				 	 {% if product.type !='Art' %}
+				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }}">
+				  {% include 'product-grid-item' %}
+				 </li> 
+				 	{% endif %}
+				 {% endfor %}
+				  <div style="clear: both"></div>
+				     
+				 {% if paginate.next %}
+				  <li class="more"> <a href="{{ paginate.next.url }}">More</a></li>        
+				 {% endif %}
+				 <div style="clear: both"></div>
+				</ul>
+				
+				<div id="product-list-foot"></div>
+			{% endpaginate %}
+
+	   
+	   
+	   
+	   
+		  
+		   <div style="clear: both"></div>
+	</div>
+
+<div class="grid__item large--grid-uniform text-center">           
+{% comment %}
+  To take advantage of a callback on the select dropdown, add option_selection.js
+  and customize the JS in timber.productPage as needed.
+
+  Currently, timber.productPage does the following:
+    - Hides your <select> tag from above
+    - Breaks out the product variants into separate product options, if more than one exists
+    - Generates a <select> tag for each product option
+    - Enables/disables elements based on variant availability
+
+  Callback notes:
+    - Keep the callback available to the global scope (window.selectCallback) so that advanced
+      addons can override it.
+      * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
+{% endcomment %}
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+<!-- IS+ Product Recommendation Widget START -->
+<div title="Recommended Products" sources="related_purchase,related_cart,related_views,similar_products" layout="horizontal" max_suggest="4" id="isp-related-widget-1"></div>
+<div title="People Who Viewed This Also Viewed" sources="related_views" layout="vertical" max_suggest="5" id="isp-related-widget-2"></div>
+<div title="People Who Purchased This Also Purchased" sources="related_purchase,related_cart" layout="horizontal" max_suggest="5" id="isp-related-widget-3"></div>
+<div title="Recently Viewed Products" sources="related_recently_viewed,related_top_products" layout="horizontal" max_suggest="5" id="isp-related-widget-4"></div>
+<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.7&UUID=e281201f-5bfe-420c-9ede-d9be0c42da18&store=3589733"></script>
+<!-- IS+ Product Recommendation Widget END -->
+						
+    </div>
+
+
+{% include 'product-events' %}
