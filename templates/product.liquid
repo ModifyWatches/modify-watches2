@@ -132,10 +132,17 @@
         <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
         
         <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+        	
           <span id="ProductPrice" class="h3" itemprop="price">
-            {{ current_variant.price | money }} 
+			{{ product.price | money }}
           </span>
-          <span id="strapPrice" style="display: none;">+ $15.00 with Strap</span>
+          <span id="strapPrice" style="display: none;">+ <span id="actualPrice"></span> with Strap</span>
+          {% if product.compare_at_price_min > product.price %} 
+			 <br><span class="super-small orange-text hide">
+			 <del>{{ product.compare_at_price_min | money }}</del>
+			 </span>
+			{% endif %}
+          
          {% if munged %}	
          	{% include 'variant-munger' %}		  				
 		 {% else %}	
