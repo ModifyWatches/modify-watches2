@@ -71,16 +71,6 @@
             {% endfor %}
           </select>
 		  
-		 		  
-		  
-          
-          
-          {% if product.compare_at_price_max > product.price %}
-            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-            <p id="ComparePrice">
-              {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
-            </p>
-          {% endif %}
            	{% if hasSizes == true %}	  
            		  <div class="selector-wrappers right text-right">
 			  		{% else %}		
