@@ -45,14 +45,14 @@
 		{% if variant.available %}
 			{% assign theColor = variant.option2 %}
 			{% assign theSize = variant.option1 %}
-			
+			{% assign thePrice = variant.price | money %}
 			{% if theSize == current_variant.option1 %}
-				<div data-value="{{theColor}}" id="{{theColor}}-{{theSize}}" class="swatch-element color {{ theColor | handleize }} available" data-size="{{theSize}}">
+				<div data-value="{{theColor}}" id="{{theColor}}-{{theSize}}" class="swatch-element color {{ theColor | handleize }} available" data-size="{{theSize}}" data-price="{{thePrice}}">
 			{% else %}
-				<div data-value="{{theColor}}" id="{{theColor}}-{{theSize}}" class="swatch-element color {{ theColor | handleize }} available" data-size="{{theSize}}" style="display: none;">		
+				<div data-value="{{theColor}}" id="{{theColor}}-{{theSize}}" class="swatch-element color {{ theColor | handleize }} available" data-size="{{theSize}}" data-price="{{thePrice}}" style="display: none;">		
 			{% endif %}	
 					<div class="tooltip">{{theColor}}</div>
-					<input id="swatch-0-{{ theColor | handleize }}-{{ theSize | handleize }}" type="radio" name="option-0" value="{{theColor }}" checked="" data-size="{{theSize}}" data-sku="{{variant.id}}">
+					<input id="swatch-0-{{ theColor | handleize }}-{{ theSize | handleize }}" type="radio" name="option-0" value="{{theColor }}" checked="" data-size="{{theSize}}" data-sku="{{variant.id}}" data-price="{{thePrice}}">
 					<label class="circles" for="swatch-0-{{ theColor | handleize }}-{{ theSize | handleize }}" style="background-color: {{ theColor | handleize }}; background-image: url(//cdn.shopify.com/s/files/1/0787/5183/t/4/assets/{{ theColor | handleize }}.png?12609942016273308109)">
           <img class="crossed-out" src="//cdn.shopify.com/s/files/1/0787/5183/t/4/assets/soldout.png?12609942016273308109">
 		  			</label>
@@ -191,7 +191,7 @@ function checkVisible() {
 		  path = path.substring(0, index+1);
 		  
 		  if(theColor != "no-strap") {
-			 
+			 $('span#actualPrice').text($(this).attr('data-price'));
 			  $('span#strapPrice').show();
 		  }else {
 			  $('span#strapPrice').hide();
