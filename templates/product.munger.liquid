@@ -13,6 +13,12 @@
 {% assign artwork = product.title %}
 {% assign hasSizes = false %}
 {% assign productType = product.type %}
+{% assign munged = false %}
+{% for tag in product.tags %}
+ 	{% if tag contains 'munged' %}
+ 		{% assign munged = true %}
+ 	{% endif %}
+{% endfor %}
 
 
 <div itemscope itemtype="http://schema.org/Product">
@@ -26,46 +32,62 @@
   {% assign current_variant = product.selected_or_first_available_variant %}
 
   {% include 'breadcrumb' %}
-{% assign suffix = product.type | handleize %} 
-	    {% assign theCollor = product.variants.first.options.first | handleize %} 
-        {% assign product_art = product.images[1] | default: product.images[1] %}
-        {% assign product_preview = product.images[0] | default: product.images[0] %}
+  {% if product.type == 'Sport Watch' %}
+  	{% assign suffix = 'watch' %}
+  {% else %}	
+  	{% assign suffix = product.type | handleize %} 
+  {% endif %}	
+  {% assign product_art = product.images[1] | default: product.images[1] %}
+  {% assign product_preview = product.images[0] | default: product.images[0] %}	
+  
+  
+  {% if munged %}	
+  	{% assign theOption = product.variants.first.options.first | handleize %} 
+  {% else %}
+  	{% assign theOption = 'black' %}
+  {% endif %}			
+	{% assign hands= 'BlackHands' %}
+    {% for tag in product.tags %}
+    
+    	{% if tag == 'BlackHands' %}
+    		{% assign hands= 'BlackHands' %}
+    	{% endif %}
+    	{% if tag == 'WhiteHands' %}
+    		{% assign hands= 'WhiteHands' %}
+    	{% endif %}
+    	{% if tag == 'RedHands' %}
+    		{% assign hands= 'RedHands' %}
+    	{% endif %}
+    	{% if tag == 'BlueHands' %}
+    		{% assign hands= 'BlueHands' %}
+		{% endif %}
+    {% endfor %}
+    
+     {% if product.type == 'Sport Watch' %}
+    	{% assign handType = 'sport_' %}
+    {% else %}
+    	{% assign handType = '' %}
+    {% endif %}	 
+    {% assign handImage = handType |  append: hands | append: '.png' %}
+	    
+       
         
   <div class="grid product-single">
     <div class="grid__item large--seven-twelfths  medium--seven-twelfths large--one-whole text-center">
 
-	{% if product.type == "6/6s Case" or product.type == "5/5s Case" or product.type == "iPhone Case" or product.type == "Watch" or product.type == "Sport Watch" or product.type == "Men's T-Shirt" or product.type == "Women's T-Shirt" %}
            <div class="product-single__photos ProductPhoto  ten-twelfths push--large--one-twelfth large--right medium--right small--one-whole" id="ProductPhoto">
-	{% else %}
-	<div class="product-single__photos ProductPhoto  one-whole" id="ProductPhoto">
-	{% endif %}    
-        {% if suffix == 'watch' or suffix == 'sport-watch' %}
-	        {% assign template_art = suffix | append: '_' | append: theCollor | append: '.png' %}
+	        {% assign template_art = suffix | append: '_' | append: theOption | append: '.png' %}
 	        <img src="{{ 'Backplate.png' | asset_url }}" class="backplate" />
 	         <div class="watchArt">
-		          {% if suffix == 'sport-watch' %}
+		          {% if suffix == 'watch' %}
 					  	<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="sportWatch"> 
 				  	{% else %}
 				  		<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class=""> 
 				  	{% endif %}
 	        </div>
-	        <img src="{{ template_art | asset_url }}" data-type="{{suffix}}" data-color="{{theCollor}}" data-src="{{ template_art | asset_url }}" class="watchOverlay" id="ProductPhotoImg">
-	       
-        {% else %}
-        	 {% assign template_art = suffix | append: '_' | append: theCollor | append: '.jpg' | asset_url %}
-        	<img src="{{ template_art }}" alt="{{ featured_image.alt | escape }}" data-type="{{suffix}}" data-src="{{ template_art }}" id="ProductPhotoImg">
-	        <div class="ImageOverlay">
-		        {% if product.type == "Women's T-Shirt" %}
-		       <img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="ladyShirt"> 
-		       {% elsif product.type == "Women's Long Sleeve T-Shirt" %}
-		       	<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="longLadyShirt">
-		       {% else %}
-		       	<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="">
-		       {% endif %}
-	        </div>
-
-        {% endif %}
-      </div>
+	        <img src="{{ template_art | asset_url }}" data-type="{{suffix}}" data-color="{{theOption}}" data-src="{{ template_art | asset_url }}" class="watchOverlay" id="ProductPhotoImg">
+	        <img src="{{ handImage | asset_url }}" data-type="Watch" data-color="{{theCollor}}" data-src="{{ handImage | asset_url }}" class="watchOverlay" id="wHands">
+              </div>
 
       {% comment %}
         Create thumbnails if we have more than one product image
@@ -85,11 +107,11 @@
         </ul>
       {% endif %}
 	  {% endcomment %}
-	  {% if product.type == "6/6s Case" or product.type == "5/5s Case" or product.type == "iPhone Case" or product.type =='Watch' or product.type == 'Sport Watch' or product.type == "Men's T-Shirt" or product.type == "Women's T-Shirt" %}
+
        <div class="grid__item one-eighth left small--one-whole">
 		 {% include 'product-alternative-views-new' %}
 	 </div>
-	 {% endif %}
+
       
         
       
@@ -97,7 +119,7 @@
 
     <div class="grid__item large--four-twelfths  medium--five-twelfths push--large--one-twelfth small--one-whole">
 
-      <h2 itemprop="name">{{ product.title }}</h2>
+      <h2 itemprop="name" class="prodName">{{ product.title }}</h2>
 	  <h5 itemprop="vendor">by <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a></h5>
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="small--text-left">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
@@ -114,73 +136,11 @@
             {{ current_variant.price | money }}
           </span>
           
-          {% comment %}
-            Add product variants as a dropdown.
-              - By default, each variant (or combination of variants) will display as its own <option>
-              - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
-
-            You can leverage jQuery to add a callback on page load and each time the select element changes:
-              - Include option_selection.js (as seen at the bottom of this file)
-              - This allows you to use JavaScript anytime the variant dropdown changes
-              - This also separates out your v	ariant options (ie. size, color, etc.) to separate select elements
-
-            For more information on products with multiple options, visit:
-              - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
-          {% endcomment %}
-          
-          
-		   {% if product.available and product.variants.size > 1 %}
-		  	{% for option in product.options %}
-			  	{% if option == 'Color' %}
-			  		{% include 'swatch' with 'Color' %}
-			  	{% endif %}
-			  	{% if option == 'Strap Color' %}
-			  		{% include 'swatch' with 'Strap Color' %}
-			  	{% endif %}
-			  	{% if option == 'Size' %}
-			  		{% assign hasSizes = true %}
-			  	{% endif %}	
-		  	{% endfor %}	
-		  {% endif %}
-
-          <select name="id" id="productSelect" class="product-single__variants ">
-            {% for variant in product.variants %}
-              {% if variant.available %}
-
-                {% comment %}
-                  Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
-                {% endcomment %}
-                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-
-              {% else %}
-                <option disabled="disabled">
-                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
-                </option>
-              {% endif %}
-            {% endfor %}
-          </select>
-		  
-		 		  
-		  
-          
-          
-          {% if product.compare_at_price_max > product.price %}
-            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-            <p id="ComparePrice">
-              {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
-            </p>
-          {% endif %}
-           	{% if hasSizes == true %}	  
-           		  <div class="selector-wrappers right text-right">
-			  		{% else %}		
-			  			<div class="selector-wrappers left text-left">
-		  			{% endif %}	
-		  				  		
-		  		<label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
-		  		<input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
-		  </div>
-		  				
-					
+         {% if munged %}	
+         	{% include 'variant-munger' %}		  				
+		 {% else %}	
+			{% include 'oldschool-munger' %}	
+		{% endif %}			
 		  <div style="clear:both"></div>
           <button type="submit" name="add" id="AddToCart" class="btn">
             <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
@@ -231,25 +191,7 @@
  </div>
 </div>
 
-</main> 
-	<div style="clear:both"></div>
-  <div class="grid__item light-bg big-padding big-margin">
-	   <div class="grid__item large--one-third medium--one-half small--one-whole artBanner">
-		   <a href="{{ collections[collab].url}}" ><img src="{{ collections[collab].image | img_url: 'medium' }}" class="artImage roundedBorder" /></a>
-	   		<h3>By <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a></h3>
-	   		
-	   		{% include 'follow' %}
-	   		
-	   </div>
-	   </div>
-	   <div style="clear:both"></div>
-<!-- restart full width -->
-	
-    </div>
-	   <!-- restart full width -->
-<div style="clear:both"></div>
-<main class="wrapper main-content" role="main">
-	<div class="grid__item large--grid-uniform text-center">
+	<div class=" large--grid-uniform text-center">
 	   		<h3>More products by {{ product.vendor }}</h3>
 	   
 	   			{% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
@@ -298,126 +240,15 @@
       * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
 {% endcomment %}
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
-<script>
-	var currentImage ='';
-	var mainType = 'munged';
-  var selectCallback = function(variant, selector) {
-	 // BEGIN SWATCHES
-		if (variant) {
-		  var form = jQuery('#' + selector.domIdPrefix).closest('form');
-		  for (var i=0,length=variant.options.length; i<length; i++) {
-		    var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
-		    if (radioButton.size()) {
-		      radioButton.get(0).checked = true;
-		    }
-		  }
-		  theColor = $('input:radio:checked').val();
-		  theColor = theColor.toLowerCase();
-		  theColor = theColor.replace(' ','-');
-		  theColor = theColor.replace(' ','-');
-		  var path =  $('#ProductPhotoImg').attr('data-src');
-		  var type = $('#ProductPhotoImg').attr('data-type');
-		  var index = path.lastIndexOf('_');
-		  path = path.substring(0, index+1);
-		  
-		  if(type == 'watch' || type =='sport-watch') {
-		  	path+=theColor+'.png';
-		  }else {
-			 path+=theColor+'.jpg'; 
-		  }
-		  $('#ProductPhotoImg').attr('src',path );	
-		  currentImage =  $('#ProductPhotoImg').attr('src');
-		  $('.ImageOverlay').show();
-		  mainType = 'munged';
-  		
-
-		  
-	}
-	// END SWATCHES 
-    timber.productPage({
-      money_format: "{{ shop.money_format }}",
-      variant: variant,
-      selector: selector
-    });
-  };
-  
-  $('.swatch-element').mouseover(function() {
-	   theColor = $(this).attr('data-value');
-		  theColor = theColor.toLowerCase();
-		  theColor = theColor.replace(' ','-');
-		  theColor = theColor.replace(' ','-');
-		  currentImage =  $('#ProductPhotoImg').attr('src');
-		  var path =  $('#ProductPhotoImg').attr('data-src');
-		  var type = $('#ProductPhotoImg').attr('data-type');
-		  var index = path.lastIndexOf('_');
-		  path = path.substring(0, index+1);
-		  
-		   if(type == 'watch' || type =='sport-watch') {	
-		  	path+=theColor+'.png';
-		  }else {
-			 path+=theColor+'.jpg'; 
-		  }
-		  $('#ProductPhotoImg').attr('src',path );	
-		
-	  		 $('.ImageOverlay').show();
-  		
-
-	  
-	  
-  })
-  $('.swatch-element').mouseout(function() {
-	  
-		  $('#ProductPhotoImg').attr('src',currentImage );
-		  if(mainType !='munged') {
-	  		 $('.ImageOverlay').hide();
-  		}
-	  
-	  
-  })
-  $('.product-single__thumbnail').mouseover(function() {
-	   currentImage =  $('#ProductPhotoImg').attr('src');
-	   $('.ImageOverlay').hide();
-	   path = $(this).attr('href');
-	    $('#ProductPhotoImg').attr('src',path );
-	    
-  });
-  $('.product-single__thumbnail').mouseout(function() { 
-  		$('#ProductPhotoImg').attr('src',currentImage );
-  		if(mainType =='munged') {
-	  		 $('.ImageOverlay').show();
-  		}
-  })
-   $('.product-single__thumbnail').click(function () {
-	    currentImage =  $('#ProductPhotoImg').attr('src');
-	    mainType = 'alternate';
-   })
-  jQuery(function($) {
-    new Shopify.OptionSelectors('productSelect', {
-      product: {{ product | json }},
-      onVariantSelected: selectCallback,
-      enableHistoryState: true
-    });
-
-    // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
-    {% if product.options.size == 1 and product.options.first != 'Title' %}
-      $('.selector-wrapper:eq(0)').prepend('<label for="productSelect-option-0">{{ product.options.first | escape }}</label>');
-    {% endif %}
-
-    // Hide selectors if we only have 1 variant and its title contains 'Default'.
-    {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-      $('.selector-wrapper').hide();
-    {% endif %}
-  }); 
-  
-</script>
 
 <!-- IS+ Product Recommendation Widget START -->
-<div title="You might also like..." sources="related_purchase,related_cart,related_views,related_keywords" layout="horizontal" max_suggest="4" id="isp-related-widget-1"></div>
+<div title="Recommended Products" sources="related_purchase,related_cart,related_views,similar_products" layout="horizontal" max_suggest="4" id="isp-related-widget-1"></div>
 <div title="People Who Viewed This Also Viewed" sources="related_views" layout="vertical" max_suggest="5" id="isp-related-widget-2"></div>
 <div title="People Who Purchased This Also Purchased" sources="related_purchase,related_cart" layout="horizontal" max_suggest="5" id="isp-related-widget-3"></div>
 <div title="Recently Viewed Products" sources="related_recently_viewed,related_top_products" layout="horizontal" max_suggest="5" id="isp-related-widget-4"></div>
-<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.7&UUID=07233f61-ec24-4ef7-bd9d-80d9f82cd02a&store=11596060"></script>
+<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.7&UUID=e281201f-5bfe-420c-9ede-d9be0c42da18&store=3589733"></script>
 <!-- IS+ Product Recommendation Widget END -->
+						
     </div>
 
 
