@@ -38,16 +38,21 @@
 
 				{% if tag == 'nonprofit' or tag == 'nonprofits' or tag == 'Nonprofits' %}
 					 {% assign collabType = 'non-profit' %}	
-				{% elsif  tag == 'brand' %}
-					 {% assign collabType = 'brand' %}	
-				{% elsif  tag == 'artist' %}
+				{% endif %}	 
+				{% if  tag == 'brand' %}
+					 {% assign collabType = 'brand' %}
+				{% endif %}		
+				{% if  tag == 'artist' %}
 					 {% assign collabType = 'artist' %}
-				{% elsif  tag == 'musician' %}
-					 {% assign collabType = 'musician' %}		
-				{% elsif  tag == 'influencer' %}
+				{% endif %}	
+				{% if  tag == 'musician' %}
+					 {% assign collabType = 'musician' %}
+				{% endif %}			
+				{% if  tag == 'influencer' %}
 					 {% assign collabType = 'influencer' %}	
-				{% elsif  tag == 'sports' %}
-					 {% assign collabType = 'sports' %}	
+				{% endif %}	 
+				{% if  tag == 'sports' %}
+					 {% assign collabType = 'sports' %}		
 				{% endif %}	
 			{% endfor %}	
 
