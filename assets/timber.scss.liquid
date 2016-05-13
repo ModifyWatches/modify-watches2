@@ -3473,6 +3473,35 @@ button#AddToCart {
 	}
 	
 }
+.collectionInfoSimple {
+	width:100%;
+	max-width: 100%;
+    margin: 0px auto;
+	height: auto;
+	box-sizing: border-box;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position:absolute;
+	float: none;
+	left: 0px;
+	bottom:0px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.7);
+	@include at-query ($max, $small) {
+		width: 100%;
+		padding:1%;
+		left:0px;
+		text-align: center;
+	}
+	
+}
+.collectionInfoSimple h1 {
+	display: inline-block;
+	color: #ffffff;
+	@include at-query ($max, $small) {
+		font-size: 16px !important;	
+	}
+}
 .collectionNames {
 	width:100%;
 	display: block;
@@ -4306,6 +4335,11 @@ a.whiteLink {
 	width: 42% !important;
 	margin-top: 1.5% !important;
 	margin-left: 1.2% !important;
+}
+.watchCase {
+	width: 100% !important;
+	margin-top: -26.5% !important;
+	margin-left: 0% !important;
 }
 .watchOverlay {
 	position: absolute;
