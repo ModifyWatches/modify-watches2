@@ -37,14 +37,16 @@
   {% else %}	
   	{% assign suffix = product.type | handleize %} 
   {% endif %}	
-  {% assign product_art = product.images[1] | default: product.images[1] %}
+
   {% assign product_preview = product.images[0] | default: product.images[0] %}	
   
   
   {% if munged %}	
-  	{% assign theOption = product.variants.first.options.first | handleize %} 
+  	{% assign theOption = product.variants.last.options.first | handleize %}
+  	{% assign product_art = product.images[1] | default: product.images[1] %} 
   {% else %}
   	{% assign theOption = 'black' %}
+  	{% assign product_art = product.images[0] | default: product.images[0] %}
   {% endif %}			
 	{% assign hands= 'BlackHands' %}
     {% for tag in product.tags %}
@@ -63,7 +65,7 @@
 		{% endif %}
     {% endfor %}
     
-     {% if product.type == 'Sport Watch' %}
+     {% if product.type == 'Sport Watch' or product.type == 'Watch' %}
     	{% assign handType = 'sport_' %}
     {% else %}
     	{% assign handType = '' %}
@@ -80,13 +82,20 @@
 	        <img src="{{ 'Backplate.png' | asset_url }}" class="backplate" />
 	         <div class="watchArt">
 		          {% if suffix == 'watch' %}
-					  	<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="sportWatch"> 
+		          	{% if munged %}
+					  		<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class="sportWatch">
+					  	 {% else %}
+					  	 	<img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id="" class="watchCase">
+					  	 {% endif %}
 				  	{% else %}
 				  		<img src="{{ product_art | img_url: 'medium' }}" alt="{{ featured_image.alt | escape }}" id="" class=""> 
 				  	{% endif %}
 	        </div>
 	        <img src="{{ template_art | asset_url }}" data-type="{{suffix}}" data-color="{{theOption}}" data-src="{{ template_art | asset_url }}" class="watchOverlay" id="ProductPhotoImg">
-	        <img src="{{ handImage | asset_url }}" data-type="Watch" data-color="{{theCollor}}" data-src="{{ handImage | asset_url }}" class="watchOverlay" id="wHands">
+	        {% if munged %}
+				<img src="{{ handImage | asset_url }}" data-type="Watch" data-color="{{theCollor}}" data-src="{{ handImage | asset_url }}" class="watchOverlay" id="wHands">
+			{% endif %}
+	        
               </div>
 
       {% comment %}
