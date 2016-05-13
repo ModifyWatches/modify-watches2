@@ -71,7 +71,7 @@
     	{% assign handType = '' %}
     {% endif %}	 
     {% assign handImage = handType |  append: hands | append: '.png' %}
-	    
+	{% assign art_image = product.images[1] | default: product.images[1] %}    
        
         
   <div class="grid product-single">
