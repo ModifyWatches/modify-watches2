@@ -167,7 +167,7 @@ function checkVisible() {
 		  var index = path.lastIndexOf('_');
 		  path = path.substring(0, index+1);
 		  
-		  path+=curColor+'.png?v=10';
+		  path+=curColor+'.png';
 		  $('#ProductPhotoImg').attr('src',path );	
 		  if(curColor =='no-strap') {
 			 
@@ -205,7 +205,7 @@ function checkVisible() {
 			 
 		  }
 		  mainType = 'munged';
-		  path+=theColor+'.png?v=10';
+		  path+=theColor+'.png';
 		  $('#ProductPhotoImg').attr('src',path );	
 		  $('.watchArt').show();
 	  		$('#wHands').show();
