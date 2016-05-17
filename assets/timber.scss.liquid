@@ -3329,6 +3329,12 @@ button#AddToCart {
 	font-weight: bold;
   margin-bottom: 1.5rem;
 }
+.red-text {
+	color: #ee0000;
+	font-weight: bold;
+  margin-bottom: 1.5rem;
+
+}
 .purpleText {
 	color: #3A3042;
 }
@@ -3441,7 +3447,7 @@ button#AddToCart {
 	}
 }
 .simple {
-	background-position: left top !important;
+	background-position: left bottom !important;
 	min-height: 300px !important;
 	@include at-query ($max, $small) {
 		min-height: 100px !important;	
@@ -3492,7 +3498,7 @@ button#AddToCart {
 	left: 0px;
 	bottom:0px;
 	text-align: center;
-	background-color: rgba(0,0,0,0.7);
+	background-color: rgba(255,255,255,1);
 	@include at-query ($max, $small) {
 		width: 100%;
 		padding:1%;
@@ -3503,7 +3509,7 @@ button#AddToCart {
 }
 .collectionInfoSimple h1 {
 	display: inline-block;
-	color: #ffffff;
+	color: rgb(51, 51, 51);
 	@include at-query ($max, $small) {
 		font-size: 16px !important;	
 	}
