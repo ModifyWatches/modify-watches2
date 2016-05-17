@@ -6,6 +6,7 @@
 
 {% assign collection_banner = prefix | append: '_banner.jpg' | asset_url %}
 {% assign collection_tile = prefix | append: '_tile.jpg' | asset_url %}
+{% assign collection_profile = prefix | append: '_profile.jpg' | asset_url %}
 {% assign collection_lifestyle_1 = prefix | append: '_lifestyle-1.jpg' | asset_url %}
 {% assign collection_lifestyle_2 = prefix | append: '_lifestyle-2.jpg' | asset_url %}
 
@@ -60,7 +61,7 @@
 	<div class="collectionInfo">
 		<div class="collectNames">
 			<div class="iconHolder">
-			 	<img src="{{ collection.image | img_url: 'medium' }}" alt="{{ collection.title }} tile image" class="partnerIcon roundedBorder">
+			 	<img src="{{ collection_profile }}" alt="{{ collection.title }} tile image" class="partnerIcon roundedBorder" id="colProfile">
 			</div>
 			<div class="namesHolder">
 			 	<h1 class="small--text-center">{{ collection.title }}</h1>
@@ -266,5 +267,16 @@ $(document).ready(function() {
 		$('.lifestyle').show();
 		
 	})
+	var image_url = $('#colProfile').attr('src');
+	$.get(image_url)
+    .done(function() { 
+       console.log('good');
+
+    }).fail(function() { 
+      $('#colProfile').attr('src',"{{ collection.image | img_url: 'medium' }}");
+
+    })
+	
+	
 })
 </script>
