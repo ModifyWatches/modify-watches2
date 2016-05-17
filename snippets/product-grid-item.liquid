@@ -60,10 +60,12 @@
 	  <p class="h6 text-center">
 	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:4 | truncate:35}}</a>
 	  </p>
-	  <p class="super-small text-center">
+	   	  <p class="super-small text-center">
 		 By, <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a>
+		
 	  </p>
-	   <p class="text-center orange-text">
+	  {% if product.available %}
+	  <p class="text-center orange-text">
 	
 		   {% if product.compare_at_price_min > product.price %} 
 		 <del>{{ product.compare_at_price_min | money }}</del>
@@ -74,6 +76,11 @@
 		  <p class="super-small text-center">
 			 {% if product.type == 'Watch' or product.type == 'Sport Watch' or product.type =='Alloy watch' %}(face only){% else %} &nbsp; {% endif %}  
 		  </p>
-	</div>
+
+		 {% else %}
+		 	<p class="text-center red-text">Sold Out</p>
+		 {% endif %}	
+
+	   	</div>
 	<div style="clear:both"></div>
 </div>
