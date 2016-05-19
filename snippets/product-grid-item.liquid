@@ -68,12 +68,12 @@
 	  <p class="text-center super-small small-margin">
 	
 		   {% if product.compare_at_price_min > product.price %} 
-		 <del>{{ product.compare_at_price_min | money }}</del>
+		 <del>{{ product.compare_at_price_min | money }}</del><br>
 	{% endif %}
 	 {% if product.price_max > product.price %}
         {{ product.price_min | money }} - {{ product.price_max | money }}
         {% else %}
-        {{ product.price }}
+        {{ product.price | money }}
         {% endif %}
 	
 		   
@@ -83,7 +83,7 @@
 		  </p>
 
 		 {% else %}
-		 	<p class="text-center red-text">Sold Out</p>
+		 	<p class="text-center red-text small-margin">Sold Out</p>
 		 {% endif %}	
 
 	   	</div>
