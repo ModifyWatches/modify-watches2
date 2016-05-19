@@ -173,11 +173,15 @@
         </form>
 
       </div>
+      
+      
+     
+      
       {% comment &}
       {% include 'product-info' %}
 	  {% endcomment %}
       <div class="product-description rte" itemprop="description">
-         <h5>Help share {{ product.vendor }}'s story</h5>
+         <h5>Share this with your friends</h5>
       
      <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
 
@@ -206,6 +210,9 @@
 	   {% endcomment %}
     </div>
   </div>
+   
+   
+   {% include 'strap-upsell' %}
    
   <div class="grid-uniform text-left big-margin">
 
