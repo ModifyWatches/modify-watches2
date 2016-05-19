@@ -29,9 +29,10 @@
 						
 						<div  id="{{ variant.id }}" class="strap-element large--one-twelfth   medium--one-eighth small--one-sixth color available " data-price="{{thePrice}}">
 					{% endif %}	
+						<a href="#" class="addOneStrap" data-id="{{ variant.id }}">	
 							<div class="tooltop"><span class="orange-text">{{variant.price | money}}</span><br><span class="plusAdd">+</span></div>
-						<img src="{{ product.images[0] | img_url: 'medium' }}" />
-						
+							<img src="{{ product.images[0] | img_url: 'medium' }}" />
+						</a>
 					</div>
 			{% endif %}
 		{% endfor %}
@@ -41,10 +42,10 @@
 </div>
 <script>
 	$(document).ready(function() {
-	$('.strap-element').click(function(event){
+	$('.addOneStrap').click(function(event){
 	  Shopify.queue = [];
 	   Shopify.queue.push({
-			 variant_id: $(this).attr('id'),
+			 variant_id: $(this).attr('data-id'),
 			 quantity: 1
     	});
 
