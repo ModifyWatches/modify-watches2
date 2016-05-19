@@ -3450,7 +3450,7 @@ button#AddToCart {
 	background-position: left bottom !important;
 	min-height: 400px !important;
 	@include at-query ($max, $small) {
-		min-height: 100px !important;	
+		min-height: 350px !important;	
 	}
 }
 .newBannerImage {
@@ -3653,6 +3653,15 @@ button#AddToCart {
 }
 .orangeHR {
 	width: 30%;
+	display: inline-block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(228, 87, 46);
+    margin: 1em 0;
+    padding: 0; 
+}
+.longOrange {
+	width: 60%;
 	display: inline-block;
     height: 1px;
     border: 0;
@@ -4563,11 +4572,14 @@ a.whiteLink {
 .strap-element {
 	cursor: pointer;
 	position: relative;
+	display:inline-block;
+	margin-bottom: 5px;
 }
  
 .strap-element img{
 	width: 100%; 
- }
+}
+ 
  .tooltop {
 	 position: absolute;
 	 width:100%;
@@ -4577,11 +4589,14 @@ a.whiteLink {
 	 padding-top: 2px;
 	 padding-bottom: 2px;
 	 color: #7f7f7f;
-	 bottom:0px;
+	 bottom:-5px;
 	 left: 0px;
 	 line-height: 10px;
  }
-
+.plusAdd {
+	font-weight: 100;
+	font-size: 18px;
+}
 /* 
    Swatches Styles
 */

@@ -289,9 +289,11 @@ function checkVisible() {
 function hideHidden() {
 	//console.log(strapArray);
 	$('.swatch-element').hide();
+	$('.sport').hide();
 	var theSize = $('#productSelect-option-0').val();
 	$('.swatch-element[data-size="'+theSize+'"]').show();
 	$('.swatch-element[data-value="No Strap"]').show();
+	$('.sport[data-size="'+theSize+'"]').show();
 }
 
 
