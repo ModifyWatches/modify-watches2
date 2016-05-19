@@ -20,7 +20,6 @@
  	{% endif %}
 {% endfor %}
 
-
 <div itemscope itemtype="http://schema.org/Product">
 
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
@@ -136,7 +135,8 @@
     <div class="grid__item large--four-twelfths  medium--five-twelfths push--large--one-twelfth small--one-whole">
 
       <h2 itemprop="name" class="prodName">{{ product.title }}</h2>
-	  <h5 itemprop="vendor">by <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a></h5>
+	  <h5 itemprop="vendor">- <a href="{{ collections[collab].url}}"> {{ product.vendor }} </a></h5>
+	 
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="small--text-left">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
@@ -145,11 +145,11 @@
         {% comment %}
           ID addToCartForm is a selector for the ajax cart plugin
         {% endcomment %}
-        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical small-margin">
         
         <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
         	
-          <span id="ProductPrice" class="h3" itemprop="price">
+          <span id="ProductPrice" class="h3" itemprop="price" style="opacity: 0;">
 			{{ product.price | money }}
           </span>
           <span id="strapPrice" style="display: none;">+ <span id="actualPrice"></span> with Strap</span>
