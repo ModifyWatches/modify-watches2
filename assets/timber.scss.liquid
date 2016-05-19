@@ -3448,7 +3448,7 @@ button#AddToCart {
 }
 .simple {
 	background-position: left bottom !important;
-	min-height: 300px !important;
+	min-height: 400px !important;
 	@include at-query ($max, $small) {
 		min-height: 100px !important;	
 	}
@@ -4559,8 +4559,28 @@ a.whiteLink {
 .wufoo-form-container {
 	min-height: 405px !important;
 }
+
+.strap-element {
+	cursor: pointer;
+	position: relative;
+}
  
- 
+.strap-element img{
+	width: 100%; 
+ }
+ .tooltop {
+	 position: absolute;
+	 width:100%;
+	 text-align: center;
+	 font-size: 10px;
+	 background-color: rgba(255,255,255,0.8);
+	 padding-top: 2px;
+	 padding-bottom: 2px;
+	 color: #7f7f7f;
+	 bottom:0px;
+	 left: 0px;
+	 line-height: 10px;
+ }
 
 /* 
    Swatches Styles
