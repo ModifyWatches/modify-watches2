@@ -310,7 +310,11 @@ $(document).ready(function() {
 $(window).load(function() {	
 	console.log('loaded');
 	if(!getUrlVars()["variant"]) {
-		$('.swatch :radio[value="No Strap"]').click()
+		if($('#ProductPhotoImg').attr('data-type') == 'stainless-steel-watch') {
+			$('.swatch :radio[value="Brown Leather"]').click()
+		}else {
+			$('.swatch :radio[value="No Strap"]').click()
+		}
 	}
 	function getUrlVars() {
 		var vars = {};

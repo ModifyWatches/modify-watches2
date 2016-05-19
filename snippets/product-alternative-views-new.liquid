@@ -33,6 +33,37 @@
         </li>
     </ul>
 {% endif %}
+{% if product.type == "Stainless Steel Watch"%}
+    <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
+        
+        <li class="one-whole small--one-fifth small--left">
+            <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail">
+                <img src="{{ product_preview | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="bordered">
+            </a>
+        </li>
+        <li class="one-whole small--one-fifth small--left">
+            <a href="{{ 'StainlessSteelAltAngle_Side.jpg' | file_url }}" class="product-single__thumbnail">
+                <img src="{{ 'StainlessSteelAltAngle_Side_thumb.jpg' | file_url }}" alt="{{ image.alt | escape }}" class="bordered">
+            </a>
+        </li>
+         <li class="one-whole small--one-fifth small--left">
+            <a href="{{ 'StainlessSteelAltAngle_Angle.jpg' | file_url }}" class="product-single__thumbnail">
+                <img src="{{ 'StainlessSteelAltAngle_Angle_thumb.jpg' | file_url }}" alt="{{ image.alt | escape }}" class="bordered">
+            </a>
+        </li>
+         <li class="one-whole small--one-fifth small--left">
+            <a href="{{ 'metal_Lifestyle.jpg' | asset_url }}" class="product-single__thumbnail">
+                <img src="{{ 'metal_LifestyleThumb.jpg' | asset_url }}" alt="{{ image.alt | escape }}">
+            </a>
+        </li>
+
+          <li class="one-whole small--one-fifth small--left">
+            <a href="{{ product_art | img_url: 'grande' }}" class="product-single__thumbnail">
+                <img src="{{ product_art | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="bordered">
+            </a>
+        </li>
+    </ul>
+{% endif %}
 
 <!-- Sport Watch Alt Images -->        
 {% if product.type == "Sport Watch" or product.type == "Watch" %}
