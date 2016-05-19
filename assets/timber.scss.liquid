@@ -4589,6 +4589,11 @@ a.whiteLink {
 		left: 30%;
 		top:40%;
 		display: block;
+		@include at-query ($max, $small) {
+			width: 50%;
+			left: 25%;
+			font-size: 20px;	
+		}
 		
 	}
 	
