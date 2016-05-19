@@ -29,10 +29,10 @@
 						
 						<div  id="{{ variant.id }}" class="strap-element large--one-twelfth   medium--one-eighth small--one-sixth color available " data-price="{{thePrice}}">
 					{% endif %}	
-						<a href="#" class="addOneStrap" data-id="{{ variant.id }}">	
-							<div class="tooltop"><span class="orange-text">{{variant.price | money}}</span><br><span class="plusAdd">+</span></div>
+						
+							<div class="tooltop"><a href="#" class="addOneStrap" data-id="{{ variant.id }}"><span class="orange-text">{{variant.price | money}}</span><br><span class="plusAdd">+</span></a></div>
 							<img src="{{ product.images[0] | img_url: 'medium' }}" />
-						</a>
+						
 					</div>
 			{% endif %}
 		{% endfor %}
