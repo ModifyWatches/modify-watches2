@@ -1,0 +1,63 @@
+
+-------------------------
+{% assign straps = '' %}
+{% if product.type == 'Watch' or product.type == 'Sport Watch'%}
+	{% assign strapCol = 'Straps' %}
+{% else %}
+	{% assign strapCol = 'Nylon' %}
+{% endif %}		
+
+{% comment %}
+	 define strap array - colors and sizes 
+{% endcomment %}	  
+
+<div class="one-whole">
+	<hr class="orangeHR"/>
+	<h4 class="noPadding">Add additional straps</h4>
+	<p>(They're all interchangeable!)</p>
+	{% for product in collections[strapCol].products %}
+	
+		{% for variant in product.variants %}
+						
+			{% if variant.available %}
+					{% assign thePrice = variant.price | money %}
+					{% if variant.option2 %}
+						{% if variant.option1 == theSize %}
+							<div  id="{{ variant.id }}" class="strap-element sport one-sixth color available left" data-size="{{variant.option1}}" data-price="{{thePrice}}">
+						{% else %}
+							<div  id="{{ variant.id }}" class="strap-element sport one-sixth color available left" data-size="{{variant.option1}}" data-price="{{thePrice}}" style="display:none">
+						{% endif %}
+					{% else %}
+						
+						<div  id="{{ variant.id }}" class="strap-element one-sixth color available left" data-price="{{thePrice}}">
+					{% endif %}	
+							<div class="tooltop"><span class="orange-text">{{variant.price | money}}</span><br>add</div>
+						<img src="{{ product.images[0] | img_url: 'medium' }}" />
+						
+					</div>
+			{% endif %}
+		{% endfor %}
+	{% endfor %}					
+	
+	<div style="clear:both"></div>
+</div>
+<hr class="orangeHR"/>
+<script>
+	$(document).ready(function() {
+	$('.strap-element').click(function(event){
+	  Shopify.queue = [];
+	   Shopify.queue.push({
+			 variant_id: $(this).attr('id'),
+			 quantity: 1
+    	});
+
+	  event.preventDefault();
+	  Shopify.moveAlong();
+	  
+	});
+
+		
+		
+	})	
+	
+</script>
