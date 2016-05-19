@@ -369,6 +369,7 @@ $(window).load(function() {
 	if(!getUrlVars()["variant"]) {
 		$('.swatch :radio[value="No Strap"]').click()
 	}
+	$('#ProductPrice').css("opacity","1");
 	function getUrlVars() {
 		var vars = {};
 		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {

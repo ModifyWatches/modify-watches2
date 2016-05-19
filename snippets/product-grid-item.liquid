@@ -60,17 +60,22 @@
 	  <p class="h6 text-center">
 	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:4 | truncate:35}}</a>
 	  </p>
-	   	  <p class="super-small text-center">
+	   	  <p class="super-small text-center hide">
 		 By, <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a>
 		
 	  </p>
 	  {% if product.available %}
-	  <p class="text-center">
+	  <p class="text-center super-small small-margin">
 	
 		   {% if product.compare_at_price_min > product.price %} 
 		 <del>{{ product.compare_at_price_min | money }}</del>
 	{% endif %}
-	From <span class="orange-text">{{ product.price | money }}</span>
+	 {% if product.price_max > product.price %}
+        {{ product.price_min | money }} - {{ product.price_max | money }}
+        {% else %}
+        {{ product.price }}
+        {% endif %}
+	
 		   
 	  </p>
 		  <p class="super-small text-center hide">
