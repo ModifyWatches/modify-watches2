@@ -1,0 +1,79 @@
+<!-- /snippets/product-grid-item.liquid -->
+{% assign collab = product.vendor | handleize %}
+
+ 
+
+{% comment %}
+  Set the default grid_item_width if no variable is set
+{% endcomment %}
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
+{% endunless %}
+ 
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<div class="productsGrid">
+
+  {% comment %}
+    Link to your product with the 'within: collection' filter for the link to be aware of the collection.
+    This allows you to create collection-based navigation on the product page.
+
+    Results of using 'within: collection':
+    - Instead of a URL with /products/product-handle
+      you would get /collections/collection-handle/products/product-handle
+
+    For more info on navigation within a collection
+      - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
+
+  {% endcomment %}
+  <a href="{{ product.url | within: collection }}" class="grid__image">
+    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+  </a>
+ 
+  <div class="productsInfo hider">
+	  <p class="h6 text-center">
+	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:4 | truncate:35}}</a>
+	  </p>
+	   	  <p class="super-small text-center hide">
+		 By, <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a>
+		
+	  </p>
+	  {% if product.available %}
+	  <p class="text-center super-small small-margin">
+	
+		   {% if product.compare_at_price_min > product.price %} 
+		 <del>{{ product.compare_at_price_min | money }}</del><br>
+	{% endif %}
+	 {% if product.price_max > product.price %}
+        {{ product.price_min | money }} - {{ product.price_max | money }}
+        {% else %}
+        {{ product.price | money }}
+        {% endif %}
+	
+		   
+	  </p>
+		  <p class="super-small text-center hide">
+			 {% if product.type == 'Watch' or product.type == 'Sport Watch' or product.type =='Alloy watch' %}(face only){% else %} &nbsp; {% endif %}  
+		  </p>
+
+		 {% else %}
+		 	<p class="text-center red-text small-margin">Sold Out</p>
+		 {% endif %}	
+
+	   	</div>
+	<div style="clear:both"></div>
+</div>
