@@ -43,6 +43,7 @@
 <script>
 	$(document).ready(function() {
 	$('.addOneStrap').click(function(event){
+	analytics.track('added upsell strap');
 	  Shopify.queue = [];
 	   Shopify.queue.push({
 			 variant_id: $(this).attr('data-id'),
