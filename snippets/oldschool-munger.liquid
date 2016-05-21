@@ -323,7 +323,7 @@ $(document).ready(function() {
 
 	  event.preventDefault();
 	  Shopify.moveAlong();
-	  
+	   analytics.track('Added Product to Cart');
 	});
 	Shopify.moveAlong = function() {
 	  // If we still have requests in the queue, let's process the next one.
