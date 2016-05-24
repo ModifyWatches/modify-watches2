@@ -33,8 +33,12 @@
 
 	<div class="grid__item large--one-whole medium--one-whole small--one-whole" id="pageTop">
   {% for collection in collections %}
+   {% if collection.template_suffix contains 'simple' %}
+  	
+  	{% else %}
     {% if collection.tags contains 'influencer' %}
-      {% if collection.template_suffix == 'small.new' or collection.template_suffix == 'small' %}
+      {% if collection.template_suffix contains 'small' %}
+
             <div class="grid__item large--one-quarter medium--one-third small--one-half collabTiles">
                 <a class="collections" href="{{ collection.url }}" title="Browse {{ collection_title }}">
                 {% if collection.image %}
@@ -48,6 +52,7 @@
                 </div>
                 </a>
             </div>
+      {% endif %}
       {% endif %}
     {% endif %}
   {% endfor %}
