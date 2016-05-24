@@ -178,3 +178,16 @@
     {% include 'blog-sidebar' %}
   </aside>
 </div>
+<script>
+
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+
+  analytics.page('Blog Post', {
+    title: "{{ article.title }}",
+    url: window.location.href,
+    referrer: document.referrer
+  });
+
+</script>
