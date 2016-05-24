@@ -33,6 +33,9 @@
 
 	<div class="grid__item large--one-whole medium--one-whole small--one-whole" id="pageTop">
   {% for collection in collections %}
+  	{% if collection.template_suffix contains 'simple' %}
+  	
+  	{% else %}
     {% if collection.tags contains 'brand' %}
       {% if collection.template_suffix contains 'small' %}
             <div class="grid__item large--one-quarter medium--one-third small--one-half collabTiles">
@@ -50,7 +53,9 @@
             </div>
       {% endif %}
     {% endif %}
+     {% endif %}
   {% endfor %}
+ 
 </div>
 <div style="clear:both"></div>
 <!-- Bottom Partner CTA -->
