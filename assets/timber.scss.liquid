@@ -4674,6 +4674,12 @@ a.whiteLink {
 	display: none;
 	text-transform: capitalize !important;
 }
+.customSmall {
+	font-size: 14px;
+	@include at-query ($max, $small) {
+		font-size: 10px;	
+	}
+}
 /* 
    Swatches Styles
 */
