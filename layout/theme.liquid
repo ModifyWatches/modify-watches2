@@ -262,7 +262,7 @@
 		    <div class="hide small--show right one-tenth hamburger">
               
 	              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
-					 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22"/>
+					 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22" alt="shopping cart"/>
 					 {% if cart.item_count > 0 %}
 					 <span id="CartCount">{{ cart.item_count }}</span>
 	                {% endif %}
@@ -333,7 +333,7 @@
             
 		           
 			<a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
-				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22"/>
+				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22" alt="cart icon"/>
 				 {% if cart.item_count > 0 %}
 				 <span id="CartCount">{{ cart.item_count }}</span>
                 {% endif %}
@@ -392,7 +392,7 @@
 	            {% endfor %}
 	             <li class="site-nav partnerLink"><a href="/pages/collaboration-form" class="site-nav__link">Become a Partner</a>
              <div class="partnerLinkInfo">
-	             <a href="/pages/collaboration-form"><img src="{{ 'navImage.jpg' | asset_url }}" /></a>
+	             <a href="/pages/collaboration-form"><img src="{{ 'navImage.jpg' | asset_url }}" alt="Become a partner"/></a>
 				 <p>
 					Want to create great watches for your fans? Get started for free!<br>
 					<a href="/pages/collaboration-form">Learn more ></a> 
@@ -426,7 +426,7 @@
             <div class="grid__item one-third text-right">
               <div class="site-nav--mobile">
                 <a href="/cart" class="text-right medium--one-quarter site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
-				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="20"/>
+				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="20" alt="Cart Icon"/>
 				 {% if cart.item_count > 0 %}
 				 <span id="CartCount">{{ cart.item_count }}</span>
                 {% endif %}
