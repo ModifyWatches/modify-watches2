@@ -33,6 +33,34 @@
 			 {% assign isMunged = true %}
 		{% endif %}
 	{% endfor %}
+	
+	{% assign hands= 'BlackHands' %}
+    {% for tag in item.product.tags %}
+    
+    	{% if tag == 'BlackHands' %}
+    		{% assign hands= 'BlackHands' %}
+    	{% endif %}
+    	{% if tag == 'WhiteHands' %}
+    		{% assign hands= 'WhiteHands' %}
+    	{% endif %}
+    	{% if tag == 'RedHands' %}
+    		{% assign hands= 'RedHands' %}
+    	{% endif %}
+    	{% if tag == 'BlueHands' %}
+    		{% assign hands= 'BlueHands' %}
+		{% endif %}
+    {% endfor %}
+    
+     {% if item.product.type == 'Sport Watch' or item.product.type == 'Watch' %}
+    	{% assign handType = 'sport_' %}
+    {% else %}
+    	{% assign handType = '' %}
+    {% endif %}	 
+    {% assign handImage = handType |  append: hands | append: '.png' %}
+
+	
+	
+	
 <div class="grid_uniform text-left small-margin borderBottom small-padding">
 	<div class="grid__item large--one-eighth medium--one-eighth small--one-whole noPads" data-label="{{ 'customer.order.product' | t }}" style="position: relative;">
 		<a href="{{ item.url | within: collections.all }}" class="cart__image">
@@ -48,8 +76,11 @@
 	         <div class="watchArt">
 		       <img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id=""> 
 	        </div>
+	        
 	        <img src="{{ template_art | asset_url }}" data-type="Watch" class="watchOverlay" id="ProductPhotoImg">
-
+			
+				<img src="{{ handImage | asset_url }}" data-type="Watch" data-color="{{theCollor}}" data-src="{{ handImage | asset_url }}" class="watchOverlay" id="wHands">
+			
 	        {% else %}
 	        {% assign template_art = suffix | append: '_' | append: theCollor | append: '.jpg' | asset_url %}
 			
