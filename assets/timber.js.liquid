@@ -93,9 +93,11 @@ $('.readMore a').click(function(e) {
 var pInfScrLoading = false;
 var pInfScrDelay = 250;
 function pInfScrExecute() {
+
 	pInfScrNode = $('.more').last();	
 	pInfScrURL = $('.more a').last().attr("href");
 	if(pInfScrNode.length > 0 && pInfScrNode.css('display') != 'none') {
+	
 		$.ajax({
 			type: 'GET',
 			url: pInfScrURL,
@@ -105,12 +107,14 @@ function pInfScrExecute() {
 			  pInfScrNode.hide();
 			},
 			success: function(data) {
+				
 				// remove loading feedback
 				pInfScrNode.next().remove();
 				pInfScrNode.remove();
 				var filteredData = $(data).find(".collection-matrix");
 				filteredData.insertBefore( $("#product-list-foot") );					
 				pInfScrLoading = false;
+				console.log(filteredData);
 			//	$('li.singleproduct').setAllToMaxHeight();
 				attachClickEvent();
 			},
