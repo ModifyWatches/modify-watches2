@@ -27,8 +27,7 @@
 
 
 
-{% assign pagination_limit = 48 %}
-{% paginate collection.products by pagination_limit %}
+
 {% assign tag_count = collection.all_tags | size %}
 {% assign tag_threshold = 8 %}
  {% assign grid_item_width_half = 'one-half small--one-eighth' %}
@@ -93,59 +92,30 @@
 	 
   
         <div id="product-tab">
-	      <div class="one-fifth small--one-whole left mobilePad hide">
-		     
-		      <ul class="collection-matrix">
-			       <div class="grid__item small-top">
-			      <h5>Sort by Artwork</h5>
-				  </div>
-				 {% for product in collection.products %}
-				 	 {% if product.type =='Art' %}
-					 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item  previewLI {{ grid_item_width_half }}">
-					  {% include 'art-preview-grid' %}
-					 </li> 
-				 	{% endif %}
-				 {% endfor %}
-				  <div style="clear: both"></div>
-				      
-								 <div style="clear: both"></div>
-				</ul>
-				<div class="btn--secondary" id="viewAll">View all products</div>
-				<div id="product-list-foot"></div>
-
-	      </div>  
-	       <div class="collection_product one-whole small--one-whole left">
+	     	       <div class="collection_product one-whole small--one-whole left">
 		  
 						 	 
     	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
-			
+		{% paginate collection.products by 48 %}	
 				<ul class="collection-matrix">
 					 <div class="grid__item small-topper">
 			      
 				  </div>
-				 {% for product in collection.products  %}
-				 	
-				 	 
-				 	 				 	 
+				 {% for product in collection.products  %}				 	 
 				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
-				  {% include 'product-grid-item' %}
-				  
-				  
+				  {% include 'product-grid-item' %}  
 				 </li> 
-				 	
-				 	
-				 	
 				 {% endfor %}
-				</ul>
+				
 				<div style="clear: both"></div>  
-				<ul id="paginations">
-				{% assign count = paginate.pages %}
-				{% for part in (1..count) %}
-					{% if count > 1 %}
-				      <li {% if paginate.current_page == part %}class="active"{% endif %}><a href="{{ collection.url }}?page={{ forloop.index }}">{{ forloop.index }}</a></li>
-				    {% endif %}  
-				{% endfor %}
+				 {% if paginate.next %}
+				  <li class="more"><button class="btn--secondary"><a href="{{ paginate.next.url }}">See More</a></button></li>       
+				 {% endif %}
+				 <div style="clear: both"></div>
 				</ul>
+				
+				<div id="product-list-foot"></div>
+			{% endpaginate %}
 	       </div>
         </div>
   </div>
@@ -182,9 +152,6 @@
 
 {% include 'collab-signup-link' %}
 
-
-
-{% endpaginate %}
 
 {% include 'vertical-tracking' %}
 
