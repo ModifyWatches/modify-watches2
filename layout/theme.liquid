@@ -251,7 +251,7 @@
 
         <div class="grid--full grid ">
 	     
-          <div class="grid__item large--eight-twelfths medium--eight-twelfths small--one-whole">
+          <div class="grid__item one-half small--one-whole">
             {% comment %}
               Use the uploaded logo from theme settings if enabled.
               Site name gets precedence with H1 tag on homepage, div on other pages.
@@ -275,7 +275,7 @@
                </div>
 		   
 		   
-              <h1 class="site-header__logo large--left medium--left large--one-quarter medium--one-quarter small--one-whole small--text-center" itemscope itemtype="http://schema.org/Organization">
+              <h1 class="site-header__logo large--left medium--left large--one-third medium--one-third small--one-whole small--text-center" itemscope itemtype="http://schema.org/Organization">
            
               {% if settings.logo_use_image %}
                 <a href="/" itemprop="url" class="site-header__logo-link">
@@ -292,23 +292,23 @@
               
               
               	<div class="mobileBreak"></div>
-                       <div id="browseBox"class="left  large--one-eighth medium--one-eighth small--one-third small--text-center large--text-right medium--text-center sellStore">
+                       <div id="browseBox"class="left  large--one-sixth medium--one-sixth small--one-half small--text-center large--text-right medium--text-right sellStore">
 		        <a href="#">
                     <h4>Shop</h4>
       
                 </a>
 		    </div>
-		    <div class="left  large--one-quarter medium--one-quarter large--text-center medium--text-center small--one-third small--text-center sellStore">
+		    <div class="left hide large--one-quarter medium--one-quarter large--text-center medium--text-center small--one-third small--text-center sellStore">
 			     <a href="/pages/more-collections"><h4>collaborations</h4></a>
 		    </div>
-		     <div class="left  large--three-eighths medium--one-quarter large--text-left medium--text-center small--one-third small--text-center sellStore">
-			     <a href="/pages/custom"><h4>custom <span class="small--hide">watches</h4></a>
+		     <div class="left  large--one-half medium--one-half large--text-center medium--text-center small--one-half small--text-center sellStore">
+			     <a href="/pages/custom"><h4>custom watches</a>
 		    </div>
            
 
           </div>
-          <div class="grid__item large--four-twelfths text-right medium--four-twelfths small--hide">
-                 <div class="site-header__search large--one-half  medium--one-half small--one-half">
+          <div class="grid__item large--one-half text-right medium--one-half small--hide">
+                 <div class="site-header__search large--two-thirds  medium--two-thirds small--one-half">
 	              {% include 'search-bar' %}
 	            </div>
 	               
