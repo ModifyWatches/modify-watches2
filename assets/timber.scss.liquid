@@ -1476,6 +1476,7 @@ select {
 
 textarea {
   min-height: 100px;
+  
 }
 
 /*================ Input element overrides ================*/
@@ -3395,6 +3396,14 @@ button#AddToCart {
 	}
 	
 }
+.cartBTN {
+	@include at-query ($max, $small) {
+		width: 44%;
+		margin-left: 2%;
+		margin-right: 2%;
+		text-align: center;	
+	}
+}
 .hider {
 	position: absolute !important;
 	bottom:0px;
@@ -4402,6 +4411,10 @@ a.whiteLink {
 	position: relative;
 	padding-top: 3%;
 }
+.cartBox .h5 {
+	line-height: 1 !important;
+	margin: 0px !important;
+}
 .noPads {
 	padding-left: 0px !important;
 }
@@ -4659,6 +4672,11 @@ a.whiteLink {
 }
 .tooltop a {
 	display: block;
+}
+#CartSpecialInstructions {
+	@include at-query ($max, $small) {
+		min-height: 40px;	
+	}
 }
 #cartAlert {
 	position: absolute;
