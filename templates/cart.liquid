@@ -10,6 +10,7 @@
 {% if cart.item_count > 0 %}
 
   <h1>{{ 'cart.general.title' | t }}</h1>
+  <div class="h5">Free shipping for orders over $50</div>
   <form action="/cart" method="post" novalidate class="cart table-wrap">
 	  
 <div class="grid_uniform text-left borderBottom medium-margin small--hide">
@@ -165,7 +166,9 @@
           <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
           <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
         </p>
-        <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
+        <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em><br>
+	        
+			 </p>
         <input type="submit" name="update" class="btn--secondary update-cart cartBTN" value="{{ 'cart.general.update' | t }}">
         <input id="checkout" type="submit" name="checkout" class="btn cartBTN" value="{{ 'cart.general.checkout' | t }}">
       </div>
@@ -194,15 +197,15 @@
   <p>{{ 'cart.general.empty' | t }}</p>
   <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
 {% endif %}
-
-<!-- IS+ Product Recommendation Widget START -->
-<div title="Recommended Products" sources="related_purchase,related_cart,related_views,similar_products" layout="horizontal" max_suggest="4" id="isp-related-widget-1"></div>
-<div title="People Who Viewed This Also Viewed" sources="related_views" layout="horizontal" max_suggest="5" id="isp-related-widget-2"></div>
-<div title="People Who Purchased This Also Purchased" sources="related_purchase,related_cart" layout="horizontal" max_suggest="5" id="isp-related-widget-3"></div>
-<div title="Recently Viewed Products" sources="related_recently_viewed,related_top_products" layout="horizontal" max_suggest="5" id="isp-related-widget-4"></div>
-<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.7&UUID=e281201f-5bfe-420c-9ede-d9be0c42da18&store=3589733"></script>
-<!-- IS+ Product Recommendation Widget END -->
-
+<div class="hide">
+	<!-- IS+ Product Recommendation Widget START -->
+	<div title="Recommended Products" sources="related_purchase,related_cart,related_views,similar_products" layout="horizontal" max_suggest="4" id="isp-related-widget-1"></div>
+	<div title="People Who Viewed This Also Viewed" sources="related_views" layout="horizontal" max_suggest="5" id="isp-related-widget-2"></div>
+	<div title="People Who Purchased This Also Purchased" sources="related_purchase,related_cart" layout="horizontal" max_suggest="5" id="isp-related-widget-3"></div>
+	<div title="Recently Viewed Products" sources="related_recently_viewed,related_top_products" layout="horizontal" max_suggest="5" id="isp-related-widget-4"></div>
+	<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.7&UUID=e281201f-5bfe-420c-9ede-d9be0c42da18&store=3589733"></script>
+	<!-- IS+ Product Recommendation Widget END -->
+</div>
 <!-- Segment Cart Code -->
 <script type="text/javascript">
   $(window).load(function() {
