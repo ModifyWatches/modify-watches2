@@ -62,7 +62,7 @@
 	
 	
 <div class="grid_uniform text-left small-margin borderBottom small-padding">
-	<div class="grid__item large--one-eighth medium--one-eighth small--one-whole noPads" data-label="{{ 'customer.order.product' | t }}" style="position: relative;">
+	<div class="grid__item large--one-eighth medium--one-eighth small--one-quarter noPads" data-label="{{ 'customer.order.product' | t }}" style="position: relative;">
 		<a href="{{ item.url | within: collections.all }}" class="cart__image">
 		{% if isMunged %}
 			{% assign suffix = item.product.type | handleize %} 
@@ -101,21 +101,23 @@
 			<img src="{{ item | img_url: 'large' }}" alt="{{ item.title | escape }}">
 		{% endif %}	
 	</div>
-	<div class="grid__item large--three-eighths medium--three-eighths small--one-whole cartBox" data-label="{{ 'customer.order.product' | t }}">
-		 <a href="{{ item.url }}" class="h4">
+	<div class="large--three-eighths medium--three-eighths small--one-half cartBox left" data-label="{{ 'customer.order.product' | t }}">
+		 <a href="{{ item.url }}" class="h5">
         {{ item.product.title }}
       </a>
       {% unless item.variant.title contains 'Default' %}
-        <small>{{ item.variant.title }}</small>
+        <small class="">{{ item.variant.title }}</small>
       {% endunless %}
 
       {% if settings.cart_vendor_enable %}
         <p>{{ item.vendor }}</p>
       {% endif %}
-     
+     <span class="h6 hide">
+        {{ item.line_price | money }}
+      </span>
 
 	</div>
-	<div class="grid__item large--one-sixth medium--one-sixth cartBox small--one-half" data-label="{{ 'cart.label.price' | t }}">
+	<div class="grid__item large--one-sixth medium--one-sixth cartBox small--hide" data-label="{{ 'cart.label.price' | t }}">
 		 <span id="ProductPrice" class="h6">
             {{ item.price | money }}
           </span>
@@ -130,8 +132,11 @@
         {% endfor %}
 
 	</div>	
-	<div class="grid__item large--one-sixth medium--one-sixth cartBox small--one-half small--text-right" data-label="{{ 'cart.label.quantity' | t }}">
-	<input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0">
+	<div class="grid__item large--one-sixth medium--one-sixth cartBox small--one-quarter small--text-right small--right" data-label="{{ 'cart.label.quantity' | t }}">
+	<input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" class="small--hide">
+	<span class="h6 hide small--show">
+        {{ item.line_price | money }}
+      </span>
 	 <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove hide small--show">
         <small>{{ 'cart.general.remove' | t }}</small>
       </a>
@@ -161,8 +166,8 @@
           <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
         </p>
         <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
-        <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
-        <input id="checkout" type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
+        <input type="submit" name="update" class="btn--secondary update-cart cartBTN" value="{{ 'cart.general.update' | t }}">
+        <input id="checkout" type="submit" name="checkout" class="btn cartBTN" value="{{ 'cart.general.checkout' | t }}">
       </div>
     </div>
 
