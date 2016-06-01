@@ -11,7 +11,7 @@
 
 <div class="one-whole text-center">
 	<hr class="longOrange"/>
-	<h4 class="noPadding">Add additional straps</h4>
+	<h4 class="noPadding">Click to add additional straps</h4>
 	<p>(They're all interchangeable!)</p>
 	{% for product in collections[strapCol].products %}
 	
@@ -20,19 +20,24 @@
 			{% if variant.available %}
 					{% assign thePrice = variant.price | money %}
 					{% if variant.option2 %}
+						{% assign colorType = variant.option2 %}
 						{% if variant.option1 == theSize %}
 							<div  id="{{ variant.id }}" class="strap-element sport large--one-twelfth  medium--one-eighth small--one-sixth color available " data-size="{{variant.option1}}" data-price="{{thePrice}}">
 						{% else %}
 							<div  id="{{ variant.id }}" class="strap-element sport large--one-twelfth   medium--one-eighth small--one-sixth color available " data-size="{{variant.option1}}" data-price="{{thePrice}}" style="display:none">
 						{% endif %}
 					{% else %}
-						
+						{% if variant.title contains 'Leather' %}
+							{% assign colorType = variant.title %}
+						{% else %}
+							{% assign colorType = variant.title | append: ' Nylon' %}
+						{% endif %}	
 						<div  id="{{ variant.id }}" class="strap-element large--one-twelfth   medium--one-eighth small--one-sixth color available " data-price="{{thePrice}}">
 					{% endif %}	
-						
-							<div class="tooltop"><a href="#" class="addOneStrap" data-id="{{ variant.id }}"><span class="orange-text">{{variant.price | money}}</span><br><span class="plusAdd">+</span></a></div>
+					<a href="#" class="addOneStrap" data-id="{{ variant.id }}">	
+							<div class="tooltop"><span class="orange-text">{{variant.price | money}}</span><br><span class="plusAdd">+</span></div>			<div class="strapTip">{{ colorType }}</div>
 							<img src="{{ product.images[0] | img_url: 'medium' }}" />
-						
+					</a>
 					</div>
 			{% endif %}
 		{% endfor %}
@@ -55,7 +60,11 @@
 	  Shopify.moveAlong();
 	  
 	});
-
+	$('.strap-element').hover(function() {
+		$('.strapTip', this).fadeIn(100);
+		}, function() {
+		$('.strapTip', this).fadeOut(100);
+	})
 		
 		
 	})	

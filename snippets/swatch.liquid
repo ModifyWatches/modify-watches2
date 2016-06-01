@@ -16,7 +16,11 @@
 {% assign is_color = false %}
 {% assign is_leather = false %}
 {% assign option_index = 0 %}
-
+{% if product.type == 'Watch' or product.type == 'Sport Watch' %}
+	{% assign swatchType = 'Color' %}
+{% else %}
+	{% assign swatchType = 'Nylon' %}
+{% endif %}
 {% for option in product.options %}
   {% if option == swatch %}
     {% assign found_option = true %}
@@ -43,7 +47,8 @@
 </div>
 {% else %}
 <div class="swatch clearfix large--one-whole" data-option-index="{{ option_index }}">
-  <div class="header">{{ swatch }}:</div>
+	
+  <div class="header">{{ swatchType }}:</div>
   {% assign values = '' %}
   {% for variant in product.variants %}
     {% assign value = variant.options[option_index] %}
