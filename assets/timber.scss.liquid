@@ -4584,6 +4584,15 @@ a.whiteLink {
 	padding-left: 40px;
 	padding-top: 3px;
 	margin-bottom: 10px;
+	
+	@include at-query ($max, $small) {
+		height: auto;
+		padding-left: 40px;
+		padding-top: 3px;
+		margin-bottom: 10px;
+		line-height: 15px;
+		min-height: 30px;
+	}
 }
 .blogHR {
 	border-top: solid #d5d5d5;
