@@ -36,6 +36,7 @@ var lastScrollTop = 0, delta = 15;
 		      $('.hamburger').addClass('scrollHide');
 		      $('.nav-bar').addClass('shortNav');
 		      $('.site-header__logo img').addClass('smallLogo');
+		      $('#freeShipping').hide();
 		    } 
 		 } else {
 		 	if ($(document).scrollTop() < 70) {
@@ -44,6 +45,7 @@ var lastScrollTop = 0, delta = 15;
 		      $('.hamburger').removeClass('scrollHide');
 		      $('.site-header__logo img').removeClass('smallLogo');
 		      $('.nav-bar').removeClass('shortNav');
+		       $('#freeShipping').show();
 		      
 		    }
 			 if($(window).width()<=768) {
