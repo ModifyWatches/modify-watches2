@@ -1,68 +1,16 @@
-<style>
-  * {
-    transition: all 0.25s ease;
-    -webkit-transition: all 0.25s ease;
-  }
-  h7 {
-    font-size: 20px;
-    display: block;
-  }
-  .press img, .press h6, .press hr {
-    opacity: 0.5;
-  }
-    .press img:hover {
-      opacity: 1;
-    }
-    .feature-tiles img:hover {
-      opacity: 0.8;
-    }
-    .feature-tiles a:hover button {
-      opacity: 1;
-    }
-  .feature-tiles button {
-    position: relative;
-    margin-top: -100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 3px solid #fff;
-    padding: 10px 40px;
-    font-size: 20px;   
-    opacity: 0;
-  }
-  .feature-tiles h7 {
-    margin-top: -24px;
-  }
-  .feature-tiles p {
-    margin-bottom: 15px;
-  }
-    .feature-tiles button:hover {
-      background-color: #fff;
-      color: #000;
-    }
-  @media (max-width: 767px) {
-    .feature-tiles button {
-      font-size: 12px;
-      padding: 6px 20px;
-      border: 2px solid #fff;
-      margin-top: -120%;
-    }
-  }
-</style>
-<!-- Liquid Variables to change assets and copy -->
-
-
 <!-- Main Featured Header -->
 </main>
   <section class="section-container feature-header">
       <div class="flexslider">
         <ul class="slides">  
-            <li>
-            <a href="/collections/moving-sale"><img src="https://cdn.shopify.com/s/files/1/0358/9733/files/banner.jpg?9352398710094354705" alt="Moving Sale"/></a>
+             <li>
+            <a href="/collections/moving-sale" title="Moving Sale"><img src="https://cdn.shopify.com/s/files/1/0358/9733/files/banner.jpg?9352398710094354705" alt="Moving Sale"/></a>
           </li>  
            <li>		
-            <a href="/collections/fathers-day-collection"><img src="https://cdn.shopify.com/s/files/1/0358/9733/files/home_page_1.jpg?14739746995436511059" alt="Fathers day collection"/></a>		
+            <a href="/collections/fathers-day-collection" title="Fathers Day"><img src="https://cdn.shopify.com/s/files/1/0358/9733/files/home_page_1.jpg?14739746995436511059" alt="Fathers day collection"/></a>		
           </li> 
            <li>
-            <a href="/collections/best-sellers"><img src="https://cdn.shopify.com/s/files/1/0358/9733/files/modifymoment-fanfavorite.jpg?12162949418146181813" alt="view best sellers"/></a>
+            <a href="/collections/best-sellers" title="Best Sellers"><img src="https://cdn.shopify.com/s/files/1/0358/9733/files/modifymoment-fanfavorite.jpg?12162949418146181813" alt="Best Sellers"/></a>
           </li>       
               
                               
@@ -70,84 +18,145 @@
       </div>
   </section>
 
-<main class="wrapper main-content medium-margin" role="main">
-  <hr class="orangeDash-center" />
-  <!-- Featured Tiles -->
-  <section class="feature-tiles genSection">
-    <div class="grid-uniform section-body-content featured-collections text-center">
-      <!--<h6>FEATURED</h6>-->
-      
-      <div class="grid__item one-third small--one-half">
-        <a href="/collections/best-sellers">
-          <img class="leading" src="https://cdn.shopify.com/s/files/1/0358/9733/files/BestSellersNew_Tile2.jpg?10073011329216292935" alt="modify best sellers"/>
-          <div class="buttonFrame"><button class="btn--secondary">SHOP</button></div>
-          <h7>Best Sellers</h7>
-        </a>
-        <hr class="orangeDash-center" />
-        <p>No need to think!</p>
-      </div>
-      <div class="grid__item one-third small--one-half">
-        <a href="/collections/the-straps">
-          <img class="trailing" src="https://cdn.shopify.com/s/files/1/0358/9733/files/allstraps.jpg?15694533436246528253" alt="view modify straps"/>
-          <div class="buttonFrame"><button class="btn--secondary">SHOP</button></div>
-          <h7>All Straps</h7>
-        </a>
-        <hr class="orangeDash-center" />
-        <p>Pick up a few, they're interchangeable!</p>
-      </div>
+<main class="wrapper main-content medium-margin homeContainer" role="main">
+	<section id="catchCallouts" class="one-whole">
+		<h1 class="hide small--show text-center">
+			Two ways to Modify
+			<hr class="orangeDash-center" />
+		</h1>
+		<div class="grid__item one-sixth small--hide push--small--hide text-left">
+			<h3>Shop</h3>
+			<hr class="orangeDash small--hide" />
+			<ul id="shopNav">
+				{% for link in linklists.our-designs.links %}
+					<li><a href="{{ link.url }}" title="{{link.title}}">{{link.title}}</a></li>
+				{% endfor %}	
+			</ul>
+		</div>
+		<div class="grid__item five-twelfths text-center small--one-whole feature-tiles ">
+			 <a href="collections/watch" title="Sport Collection" class="calloutLinks">
+			<img src="{{'silicone.jpg' | file_url}}" />
+			 <div class="buttonFrame"><button class="btn--secondary">SHOP SPORT</button></div>
+			 </a>
+			<hr class="orangeDash-center hide" />
+			 <a href="collections/watch" title="Sport Collection" class="calloutLinks"><h4>Sport (Silicone Watches)</h4></a>
+			<p>Starting at $40</p>
+			
+	
+		</div>
+		<div class="grid__item five-twelfths small--one-whole text-center feature-tiles">
+			  <a href="collections/bluxome" title="Bluxome Collection" class="calloutLinks">
+			 <img src="{{'stainless.jpg' | file_url}}" />
+			 <div class="buttonFrame"><button class="btn--secondary">SHOP BLUXOME</button></div>
+			 </a>
+			<hr class="orangeDash-center hide" />
+			 <a href="collections/bluxome" title="Bluxome Collection" class="calloutLinks"><h4>Bluxome (Metal Watches)</h4></a>
+			<p>Starting at $75</p>
+			
+		</div>
+<div style="clear:both"></div>
+	</section>
 
-     
-      
-      <div class="grid__item one-third small--one-half">
-        <a href="/pages/custom">
-          <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/custom2-1.jpg?17980001375266300657" alt="customize your watch"/>
-          <div class="buttonFrame"><button class="btn--secondary">CUSTOMIZE</button></div>
-          <h7>Custom Watches</h7>
+	<section class="one-whole text-center big-margin" id="modifyCallout">
+			<h1>Modify: the best watch for any occasion</h1>
+			<hr class="orangeDash-center" />
+		<div class="grid__item eight-twelfths small--one-whole" style="line-height: 0px;">
+			<img src="{{'occasion.jpg' | file_url}}" class="lightBorder"/>
+		</div>
+		<div class="grid__item four-twelfths text-left  grey-text smallishText small--one-whole">
+		
+			<p class="">Modify Watches help you "show your colors". Use Modify to</p>
+				<ul>
+					<li>class-it-up at a wedding</li>
+					<li>bring your loved ones with you always, thanks to photo watches of your kids (or dog!).</li>
+					<li>prove your loyalty to Cleveland sports even though you know you'll be disappointed</li>
+					<li>match your funky polka dot pants</li>
+				</ul>
+				<p>Hand-assembled in San Francisco, Modify can create the watch that suits <b>you</b>.</p>
+	</div>
+	<div style="clear:both"></div>
+</section>
+{% comment %}
+	<main class="wrapper main-content medium-margin" role="main">
+{% endcomment %}	
+
+	<section class="one-whole text-center  big-margin" id="productCallouts">
+			<h3>Browse Some of Our Finest</h3>
+			<hr class="orangeDash-center" />
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/pages/artists" title="Artists Collabs" class="calloutLinks">
+			<img src="{{'waffleGuy.jpg' | file_url}}" />
+			 <div class="buttonFrame"><button class="btn--secondary">SHOP ARTISTS</button></div>
+			 </a>
+			<hr class="orangeDash-center hide" />
+			 <a href="/pages/artists" title="Artists Collabs" class="calloutLinks"><h4>Artists</h4></a>
+			
+
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			  <a href="/collections/essentials" title="Essentials Collection" class="calloutLinks">
+			<img src="{{'black.jpg' | file_url}}" />
+			 <div class="buttonFrame"><button class="btn--secondary">SHOP ESSENTIALS</button></div>
+			 </a>
+			<hr class="orangeDash-center hide" />
+			<a href="/collections/essentials" title="Essentials Collection" class="calloutLinks"><h4>Essentials</h4></a>
+			
+
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			<a href="/collections" title="Sports Teams" class="calloutLinks">
+			<img src="{{'sporty.jpg' | file_url}}" />
+			 <div class="buttonFrame"><button class="btn--secondary">SHOP SPORTS</button></div>
+			 </a>
+			<hr class="orangeDash-center hide" />
+			<a href="/collections" title="Sports Teams" class="calloutLinks"><h4>Sports</h4></a>
+			
+
+		</div>
+
+	
+		<div style="clear: both"></div>
+	</section>
+	 <section class="section-container feature-header big-margin text-center">
+      <div>
+	      
+			 <a href="/pages/custom" title="Custom" class="calloutLinks"><h3>Design Your Own Custom Watch</h3>
+			 <hr class="orangeDash-center small--hide" />
+       <img src="{{ 'lineup.jpg' | file_url }}" alt="collaborate with us"/>
+	       
         </a>
-        <hr class="orangeDash-center" />
-        <p>For loved ones, groups or your team at work</p>
       </div>
-      
-      <div class="grid__item one-third small--one-half">
-        <a href="/pages/artists">
-          <img class="leading" src="https://cdn.shopify.com/s/files/1/0787/5183/files/Artists_Tile.jpg?2334580579540407743" alt="view artist watches"/>
-          <div class="buttonFrame"><button class="btn--secondary">SHOP</button></div>
-          <h7>Artists</h7>
-        </a>
-        <hr class="orangeDash-center" />
-        <p>Illustrators, cartoonists, fine artists and more</p>
+	 </section>
+	 <section class="section-container feature-header big-margin text-center">
+      <div>
+	      	<a href="/pages/collaboration-form" title="Partner with us" class="calloutLinks"><h3>Partner with Modify</h3>
+			 <hr class="orangeDash-center small--hide" />
+        <img src="{{ 'non-profit.jpg' | file_url }}" alt="collaborate with us"/></a>
       </div>
-       <div class="grid__item one-third small--one-half">
-        <a href="/collections">
-          <img src="https://cdn.shopify.com/s/files/1/0787/5183/files/Sports2_Tile.jpg?2334580579540407743" alt="view sprot watches"/>
-          <div class="buttonFrame"><button class="btn--secondary">SHOP</button></div>
-          <h7>Sports Teams</h7>
-        </a>
-        <hr class="orangeDash-center" />
-        <p>Official licensee of the NBA, MLB, NHL, MLS</p>
-      </div>
-      <div class="grid__item one-third small--one-half">
-        <a href="/pages/nonprofits">
-          <img class="trailing" src="https://cdn.shopify.com/s/files/1/0787/5183/files/Nonprofit2_Tile.jpg?17308640354313327030" alt="view non-profit watches"/>
-          <div class="buttonFrame"><button class="btn--secondary">SHOP</button></div>
-          <h7>Nonprofits</h7>
-        </a>
-        <hr class="orangeDash-center" />
-        <p>Support over 25 amazing organizations</p>
-      </div>                 
-      
-            
-    </div>
   </section>
-
-</main>
-<!-- Press Bubbles Section -->
-<section class="grid--full one-whole genSection grey-bg press">
-    <!-- Wrapper Grid -->
-    <main class="wrapper" role="main">
-    <div class="grid--full large--one-whole text-center text-white">
-        <h6>AS SEEN IN</h6>
+   <section class="section-container feature-header big-margin text-center">
+	  	<h3>Hand-Assembled in San Francisco</h3>
+		<hr class="orangeDash-center small-margin small--hide" />
+		<div class="grid__item large--three-quarters push--large--one-eighth small--one-whole small-margin">
+			
+			<div class="vid">
+				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/lnVRZoMiuWQ?autoplay=0&rel=0&autohide=1&showinfo=0&controls=0?&loop=1" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+		
+		
+		
+  </section>
+  <div style="clear: both"></div>
+  <section class="one-whole text-center big-margin" style="margin-bottom: 0px !important;">
+  		<h4>AS SEEN IN</h4>
         <hr class="orangeDash-center" />
+  </section>
+<section class="grid--full one-whole medium-padding  grey-bg press">
+    <!-- Wrapper Grid -->
+  
+    <div class="grid--full large--one-whole text-center text-white">
+        
         <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="https://www.youtube.com/watch?v=4ugFPIfG5b0#t=2m21s"><img class="five-sixths" src="{{ 'Press_Ellen.png' | asset_url }}" alt="Ellen" /></a>
         <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="http://news.yahoo.com/deals-and-steals-beach-party-edition-173339934.html"><img class="five-sixths" src="{{ 'Press_GoodMorningAmerica.png' | asset_url }}" alt="CBS Good Morning America" /></a>
         <a class="grid__item large--one-sixth medium--one-quarter small--one-third" href="http://www.menshealth.com/style/watches-brights"><img class="five-sixths" src="{{ 'Press_MensHealth.png' | asset_url }}" alt="Men's Health" /></a>
@@ -160,18 +169,16 @@
         <a class="grid__item large--one-sixth push--large--one-twelfth medium--one-quarter push--medium--one-eighth small--one-third push--small--one-twelfth" href="http://www.vogue.com/13295927/best-back-to-school-denim-kids-kidswear/"><img class="five-sixths" src="{{ 'Press_Vogue.png' | asset_url }}" alt="Vogue" /></a>
         <a class="grid__item large--one-sixth push--large--one-twelfth medium--one-quarter push--medium--one-eighth small--one-third push--small--one-twelfth" href="http://www.inc.com/young-entrepreneur-council/3-customer-service-rules-to-work-by.html"><img class="five-sixths" src="{{ 'Press_Inc.png' | asset_url }}" alt="Inc" /></a>
     </div>
-    </main>
+    
 </section>
-
+<section class="one-whole medium-margin">
   <!-- Secondary Feature Header -->
-  <section class="section-container feature-header">
-      <div>
-        <a href="/pages/collaboration-form"><img src="https://cdn.shopify.com/s/files/1/0358/9733/files/apply-for-storefront-homepage.jpg?14739746995436511059" alt="collaborate with us"/></a>
-      </div>
-  </section>
-<main class="wrapper main-content" role="main">
+
 <!-- Social -->
 {% include 'instagram-feed' %}
+</section>
+	
+	
 
 <!-- Scripts -->
 <script defer src="https://cdn.shopify.com/s/files/1/0358/9733/t/3/assets/jquery.flexslider.js"></script>
@@ -184,5 +191,19 @@
 	});
 </script>
 <script type="text/javascript">
+	$(document).ready(function() {
+		$(".slides li a").click(function(){
+	    	analytics.track('Clicked '+$(this).attr('title')+' Home Banner');
+		});
+		$("#shopNav li a").click(function(){
+	    	analytics.track('Clicked '+$(this).attr('title')+' in Home Nav');
+		});
+		$("a.calloutLinks").click(function(){
+	    	analytics.track('Clicked '+$(this).attr('title')+' Home Callout');
+		});
+	
+	
+	})
+	
   analytics.page('Homepage');
-</script>
+</script> 
