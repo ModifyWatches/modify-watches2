@@ -13,7 +13,7 @@
     - Uncomment hidden input with value="product" below
 
 {% endcomment %}
-<div class="grid__item nine-tenths small--one-whole left">
+<div class="grid__item nine-tenths small--one-whole left searchBorder">
 <form action="/search" method="get" class="input-group search-bar" role="search">
   {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
    <span class="input-group-btn">
@@ -23,7 +23,7 @@
     </button>
   </span>
 
-  <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search by color, partner name, product name, etc.!" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
+  <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search by color, artist, team & more" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
  </form>
 </div>
 <div style="clear: both"></div>
