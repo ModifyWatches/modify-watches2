@@ -242,7 +242,7 @@
   </div>
   -->
     <div id="promoBar" class="grid__item one-whole text-center">
-        Up to 50% off our Moving Sale collection. <a href="/collections/moving-sale"><b>SHOP NOW!</b></a> 		      	
+        Up to 50% off our Moving Sale collection. <a href="/collections/moving-sale" id="movingsalePromo"><b>SHOP NOW!</b></a> 		      	
     </div>
       
       <header class="site-header fullSize" role="banner">
@@ -573,6 +573,10 @@
  <script>
 	 $(document).ready(function () {
 		attachClickEvent();
+		
+		$("#movingsalePromo").click(function(){
+	    	analytics.track('Clicked Moving Sale Promo');
+		});
 	});
 </script> 
 
