@@ -291,10 +291,12 @@ function checkVisible() {
   
 function hideHidden() {
 	//console.log(strapArray);
+	$('.strap-element').hide();
 	$('.swatch-element').hide();
 	$('.sport').hide();
 	var theSize = $('#productSelect-option-0').val();
 	$('.swatch-element[data-size="'+theSize+'"]').show();
+	$('.strap-element[data-size="'+theSize+'"]').show();
 	$('.swatch-element[data-value="No Strap"]').show();
 	$('.sport[data-size="'+theSize+'"]').show();
 	checkVisible();
@@ -369,6 +371,7 @@ $(document).ready(function() {
 })
 
 $(window).load(function() {	
+	hideHidden();
 	$('.swatch-element:visible').eq(0).find(':radio').trigger('click');
 	//console.log(Shopify.getCart());
 	if(!getUrlVars()["variant"]) {
