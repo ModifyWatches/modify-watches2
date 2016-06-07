@@ -8,7 +8,7 @@
 </script> 
 {% if product.available and product.variants.size > 1 %}
 	{% for option in product.options %}
-		 {% if option == 'Size' %}
+		 {% if option == 'Size' %} 
 	  		{% assign hasSizes = true %}
 	  	{% endif %}	
 	{% endfor %}	
