@@ -39,7 +39,7 @@
   {% endif %}	
   {% assign product_art = product.images[1] | default: product.images[1] %}
   {% assign product_preview = product.images[0] | default: product.images[0] %}	
-  
+  {% assign art_image = product.images[1] | default: product.images[1] %}  
   
   {% if munged %}	
   	{% assign theOption = product.variants.first.options.first | handleize %} 
@@ -139,7 +139,7 @@
          {% if munged %}	
          	{% include 'variant-munger' %}		  				
 		 {% else %}	
-			{% include 'oldschool-munger' %}	
+			{% include 'newschool-munger' %}	
 		{% endif %}			
 		  <div style="clear:both"></div>
           <button type="submit" name="add" id="AddToCart" class="btn">
