@@ -22,9 +22,9 @@
 					{% if variant.option2 %}
 						{% assign colorType = variant.option2 %}
 						{% if variant.option1 == theSize %}
-							<div  id="{{ variant.id }}" class="strap-element sport large--one-twelfth  medium--one-eighth small--one-sixth color available " data-size="{{variant.option1}}" data-price="{{thePrice}}">
+							<div  id="{{ variant.id }}" class="strap-element  large--one-twelfth  medium--one-eighth small--one-sixth color available " data-size="{{variant.option1}}" data-price="{{thePrice}}">
 						{% else %}
-							<div  id="{{ variant.id }}" class="strap-element sport large--one-twelfth   medium--one-eighth small--one-sixth color available " data-size="{{variant.option1}}" data-price="{{thePrice}}" style="display:none">
+							<div  id="{{ variant.id }}" class="strap-element  large--one-twelfth   medium--one-eighth small--one-sixth color available " data-size="{{variant.option1}}" data-price="{{thePrice}}" style="display:none">
 						{% endif %}
 					{% else %}
 						{% if variant.title contains 'Leather' %}
