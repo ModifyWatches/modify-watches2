@@ -166,6 +166,7 @@ function mcEmbeddedSubscribe() {
           invalidEmail();
         // so done with first phase, let's open an optional survey
         else if (data.success) {
+	        console.log('something');
           form.children('input').hide();
           form.children('.thanks').text('Thanks for signing up! Your discount code is:').show();
           form.children('.subcode').text('modify5-h948gy').show();
