@@ -5,7 +5,7 @@
     z-index: 8000;
     bottom: 0;
     left: 0;
-    background: rgba( 56, 49, 65, 0.90 );
+    background: rgba(26, 99, 198,0.9);
     width: 100%; 
     color: #fff;
     display: none;
@@ -148,12 +148,14 @@ $(function() {
 });
 
 function mcEmbeddedSubscribe() {
+	
   $('.mc-embedded-subscribe').submit(function(e) {
     var form = $(this);
     var source = form.children('.source').val();
     var email = form.children('.nInput').val();
     
     if (validateEmail(email)) {
+	    console.log('clicked');
       // try and signup through our tools
       $.get('//old.modifywatches.com/admin/tools/', {
         action: 'utility_subscribe',
