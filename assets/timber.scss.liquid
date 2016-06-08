@@ -1115,7 +1115,7 @@ html input[disabled] {
   min-width: 100px;
   
    @include at-query ($max, $small) {
-		padding:0px;   
+		padding:8px 10px;   
 	}
 
   /*================ Set primary button colors - can override later ================*/
@@ -3900,6 +3900,9 @@ button#AddToCart {
 	margin-bottom: 10px !important;
 	top:0px !important;
 }
+.huge-padding {
+	padding-top: 60px;
+}
 .big-padding {
 	padding-top: 30px !important;
 	padding-bottom: 0px !important;
@@ -4866,6 +4869,20 @@ opacity: 0.5;
 	font-size: 14px;
 	@include at-query ($max, $small) {
 		font-size: 10px;	
+	}
+}
+.dropshipul li{
+	margin-bottom: 8px;
+	font-size: 16px;
+}
+.mobileMargin {
+	@include at-query ($max, $small) {
+		margin-bottom: 15px;	
+	}
+}
+.mobile-padding {
+	@include at-query ($max, $small) {
+		padding-left: 0px !important;		
 	}
 }
 /* 
