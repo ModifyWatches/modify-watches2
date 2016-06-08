@@ -251,32 +251,28 @@
 
         <div class="grid--full grid ">
 	     
-          <div class="grid__item one-half small--one-whole">
-            {% comment %}
-              Use the uploaded logo from theme settings if enabled.
-              Site name gets precedence with H1 tag on homepage, div on other pages.
-            {% endcomment %}
-             <div class="hide small--show left one-half hamburger">
-           	 <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left " aria-controls="NavDrawer" aria-expanded="false">
-                  <span class="icon icon-hamburger" aria-hidden="true"></span>
-                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
-                  <span class="icon icon-search" aria-hidden="true"></span>
-                </button>
-           </div>
+          	<div class="grid__item seven-twelfths small--one-whole">
+	            {% comment %}
+	              Use the uploaded logo from theme settings if enabled.
+	              Site name gets precedence with H1 tag on homepage, div on other pages.
+	            {% endcomment %}
+	             <div class="hide small--show left one-half hamburger">
+	           	 <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left " aria-controls="NavDrawer" aria-expanded="false">
+	                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+	                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+	                  <span class="icon icon-search" aria-hidden="true"></span>
+	                </button>
+	        </div>
 		    <div class="hide small--show right one-half hamburger">
-              
-	              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
-					 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22" alt="shopping cart"/>
-					 {% if cart.item_count > 0 %}
-					 <span id="CartCount">{{ cart.item_count }}</span>
-	                {% endif %}
-	               
-	              </a>
-               </div>
-		   
-		   
-              <h1 class="site-header__logo large--left medium--left large--one-third medium--one-third small--one-third small--text-left small--left" itemscope itemtype="http://schema.org/Organization">
-           
+	            <a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+					<img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22" alt="shopping cart"/>
+					{% if cart.item_count > 0 %}
+					<span id="CartCount">{{ cart.item_count }}</span>
+			        {% endif %}
+	            </a>
+           	</div>
+		   	<h1 class="site-header__logo large--left medium--left large--one-quarter medium--one-quarter small--one-third small--text-left small--left" itemscope itemtype="http://schema.org/Organization">
+           		
               {% if settings.logo_use_image %}
                 <a href="/" itemprop="url" class="site-header__logo-link">
                   <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
@@ -285,32 +281,27 @@
                 <a href="/" itemprop="url">{{ shop.name }}</a>
               {% endif %}
 			    
-              </h1>
-              
-              
-
-              
-              
-              	
-                       <div id="browseBox"class="left  large--one-sixth medium--one-sixth small--one-third small--text-center large--text-right medium--text-right sellStore">
-		        <a href="#">
-                    <h4>Shop</h4>
-      
+        	</h1>
+			<div id="browseBox"class="left  large--one-eighth medium--one-eighth small--one-third small--text-center large--text-right medium--text-right sellStore">
+				<a href="#">
+					<h4>Shop</h4>
                 </a>
 		    </div>
-		    <div class="left hide large--one-quarter medium--one-quarter large--text-center medium--text-center small--one-third small--text-center sellStore">
-			     <a href="/pages/more-collections"><h4>collaborations</h4></a>
+		    <div class="left  large--two-fifths medium--two-fifths large--text-center medium--text-center small--one-third small--text-center sellStore">
+				<a href="/pages/custom">
+					<h4>custom watches</h4>
+				</a>
 		    </div>
-		     <div class="left  large--one-half medium--one-half large--text-center medium--text-center small--one-third small--text-center sellStore">
-			     <a href="/pages/custom"><h4>custom watches</a>
+		    <div class="left  large--sixth medium--sixth large--text-center medium--text-center small--hide small--text-center sellStore">
+				<a href="/pages/wholesale">
+					<h4>wholesale</h4>
+				</a>
 		    </div>
-           
-
-          </div>
-          <div class="grid__item large--one-half text-right medium--one-half small--hide">
-                 <div class="site-header__search large--two-thirds  medium--two-thirds small--one-half ">
-	              {% include 'search-bar' %}
-	            </div>
+        </div>
+        <div class="grid__item large--five-twelfths text-right medium--five-twelfths small--hide">
+			<div class="site-header__search large--two-thirds  medium--two-thirds small--one-half ">
+				{% include 'search-bar' %}
+    		</div>
 	               
             <div class="storeCart right">
 	           
