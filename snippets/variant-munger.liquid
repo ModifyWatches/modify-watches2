@@ -201,9 +201,10 @@ function checkVisible(Scolor, Ssize) {
 	  		$('.backplate').removeClass('fauxHidden');  		
 	  	}
   })
-   $('.product-single__thumbnail').click(function () {
+   $('.product-single__thumbnail').click(function (e) {
 	    currentImage =  $('#ProductPhotoImg').attr('src');
 	    mainType = 'alternate';
+	    e.preventDefault();
    })
   jQuery(function($) {
     new Shopify.OptionSelectors('productSelect', {

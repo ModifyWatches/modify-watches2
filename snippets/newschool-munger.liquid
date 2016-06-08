@@ -266,10 +266,11 @@ function checkVisible() {
 
   		}
   })
-   $('.product-single__thumbnail').click(function () {
+   $('.product-single__thumbnail').click(function (e) {
 	    currentImage =  $('#ProductPhotoImg').attr('src');
 	     $('#ProductPhotoImg').removeClass('hide');
 	    mainType = 'alternate';
+	     e.preventDefault();
    })
   jQuery(function($) {
     new Shopify.OptionSelectors('productSelect', {
