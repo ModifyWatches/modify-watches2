@@ -73,8 +73,12 @@
        
         
   <div class="grid product-single">
-    <div class="grid__item large--seven-twelfths  medium--seven-twelfths large--one-whole text-center">
-
+	   <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
+	   <div class="grid__item large--seven-twelfths  medium--seven-twelfths large--one-whole text-center">
+			<div class="grid__item hide one-whole small--show">
+				{% include 'product-alternative-views-new' %}
+	 		</div>
+	 		<div style="clear:both"></div>
            <div class="product-single__photos ProductPhoto  ten-twelfths push--large--one-twelfth large--right medium--right small--one-whole" id="ProductPhoto">
 	        {% assign template_art = suffix | append: '_' | append: theOption | append: '.png' %}
 	        <img src="{{ 'Backplate.png' | asset_url }}" class="backplate" />
@@ -108,10 +112,9 @@
       {% endif %}
 	  {% endcomment %}
 
-       <div class="grid__item one-eighth left small--one-whole">
+       <div class="grid__item one-eighth left small--hide">
 		 {% include 'product-alternative-views-new' %}
 	 </div>
-
       
         
       
@@ -119,8 +122,10 @@
 
     <div class="grid__item large--four-twelfths  medium--five-twelfths push--large--one-twelfth small--one-whole">
 
-      <h2 itemprop="name" class="prodName">{{ product.title }}</h2>
-	  <h5 itemprop="vendor">by <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a></h5>
+      <div class="show small--hide">	
+			<h2 itemprop="name" class="prodName">{{ product.title }}</h2>
+			<h5 itemprop="vendor">- <a href="{{ collections[collab].url}}"> {{ product.vendor }} </a></h5>
+		</div>	
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="small--text-left">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
@@ -129,25 +134,29 @@
         {% comment %}
           ID addToCartForm is a selector for the ajax cart plugin
         {% endcomment %}
-        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
+       
         
         <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
           <span id="ProductPrice" class="h3" itemprop="price">
             {{ current_variant.price | money }}
           </span>
-          
+          <span id="strapPrice" style="display: none;">+ <span id="actualPrice"></span> with Strap</span>
          {% if munged %}	
          	{% include 'variant-munger' %}		  				
 		 {% else %}	
 			{% include 'newschool-munger' %}	
 		{% endif %}			
-		  <div style="clear:both"></div>
-          <button type="submit" name="add" id="AddToCart" class="btn">
+		 <div style="clear:both"></div>
+		  <div class="hide small--show">	
+			<h2 itemprop="name" class="prodName">{{ product.title }}</h2>
+			<h5 itemprop="vendor">- <a href="{{ collections[collab].url}}"> {{ product.vendor }} </a></h5>
+		</div>	         
+		<button type="submit" name="add" id="AddToCart" class="btn">
             <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
           </button>
           
           <div style="clear: both"></div>
-        </form>
+       
 
       </div>
       {% comment &}
@@ -182,6 +191,7 @@
       {% endif %}
 	   {% endcomment %}
     </div>
+     </form>
   </div>
     {% include 'strap-upsell' %}
   <div class="grid-uniform text-left big-margin">
