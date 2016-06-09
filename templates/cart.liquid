@@ -8,7 +8,7 @@
 {% endcomment %}
 {% assign isMunged = false %}
 {% if cart.item_count > 0 %}
-
+{% assign cartmunged = false %}
   <h1>{{ 'cart.general.title' | t }}</h1>
   <div class="h5 yellow-highlight">Free shipping for orders over $50</div>
   <form action="/cart" method="post" novalidate class="cart table-wrap">
@@ -32,6 +32,9 @@
 	{% for tag in item.product.tags %}
 		{% if tag == 'munged' %}
 			 {% assign isMunged = true %}
+		{% endif %}
+		{% if tag == 'cartmunged' %}
+			 {% assign cartmunged = true %}
 		{% endif %}
 	{% endfor %}
 	
@@ -99,7 +102,11 @@
 	        
 	        {% endif %}
 	    {% else %}
-			<img src="{{ item | img_url: 'large' }}" alt="{{ item.title | escape }}">
+	    	{% if cartmunged %}
+	    		<img src="{{ item.product.images[2] | img_url: 'large' }}" alt="{{ item.title | escape }}">
+	    	{% else %}
+				<img src="{{ item | img_url: 'large' }}" alt="{{ item.title | escape }}">
+			{% endif %}
 		{% endif %}	
 	</div>
 	<div class="large--three-eighths medium--three-eighths small--one-half cartBox left" data-label="{{ 'customer.order.product' | t }}">
