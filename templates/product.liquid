@@ -88,6 +88,10 @@
 		
 	 </div>
 	  <div style="clear:both"></div>
+	   <div class="hide small--show one-whole">	
+			<h2 itemprop="name" class="prodName">{{ product.title }}</h2>
+			<h5 itemprop="vendor">- <a href="{{ collections[collab].url}}"> {{ product.vendor }} </a></h5>
+		</div>	
            <div class="product-single__photos ProductPhoto  ten-twelfths push--large--one-twelfth large--right medium--right small--one-whole" id="ProductPhoto">
 	        {% assign template_art = suffix | append: '_' | append: theOption | append: '.png' %}
 	        <img src="{{ 'Backplate.png' | asset_url }}" class="backplate" />
@@ -151,7 +155,7 @@
           ID addToCartForm is a selector for the ajax cart plugin
         {% endcomment %}
         
-        <div class="show small--hide">
+        <div class="show">
 	        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
 	        	
 	          <span id="ProductPrice" class="h3" itemprop="price" style="opacity: 0;">
@@ -172,11 +176,8 @@
 		{% endif %}	
           </div>		
 		  <div style="clear:both"></div>
-		  <div class="hide small--show">	
-			<h2 itemprop="name" class="prodName">{{ product.title }}</h2>
-			<h5 itemprop="vendor">- <a href="{{ collections[collab].url}}"> {{ product.vendor }} </a></h5>
-		</div>	
-            <div class="hide small--show">
+		 
+            <div class="hide">
 	        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
 	        	
 	          <span id="ProductPrice" class="h3" itemprop="price" style="opacity: 1;">
