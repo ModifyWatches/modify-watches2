@@ -105,7 +105,7 @@
 	    	{% if cartmunged %}
 	    		<img src="{{ item.product.images[2] | img_url: 'large' }}" alt="{{ item.title | escape }}">
 	    	{% else %}
-				<img src="{{ item.product.images[1] | img_url: 'large' }}" alt="{{ item.title | escape }}">
+				<img src="{{ item | img_url: 'large' }}" alt="{{ item.title | escape }}">
 			{% endif %}
 		{% endif %}	
 	</div>
@@ -160,6 +160,7 @@
 	<div style="clear:both"></div>
 </div>
  {% assign isMunged = false %}
+ {% assign cartmunged = false %}
 {% endfor %}	  
        <div class="grid cart__row">
       {% if settings.cart_notes_enable %}
