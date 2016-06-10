@@ -73,7 +73,7 @@
 			{% assign theCollor = item.variant.option1 | handleize %} 
 
 			{% assign product_art = item.product.images[1] | default: item.product.images[1] %}
-			{% if item.product.type == 'Watch' or item.product.type == 'Alloy watch' or item.product.type == 'Sport Watch'  or item.product.type == 'Stainless Steel Watch' %}
+			
 			{% assign template_art = suffix | append: '_' | append: theCollor | append: '.png' %}
 			
 			<img src="{{ 'Backplate.png' | asset_url }}" />
@@ -85,22 +85,7 @@
 			
 				<img src="{{ handImage | asset_url }}" data-type="Watch" data-color="{{theCollor}}" data-src="{{ handImage | asset_url }}" class="watchOverlay" id="wHands">
 			
-	        {% else %}
-	        {% assign template_art = suffix | append: '_' | append: theCollor | append: '.jpg' | asset_url %}
-			
-			<img src="{{ template_art }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg" class="munged-cart">
-		  	<div class="cartImageOverlay">
-			  	{% if suffix == 'womens-long-sleeve-t-shirt' %}
-			  		<img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" class="ladyCart"> 
-			  		
-			  	{% elsif  suffix =='womens-t-shirt' %}
-			  		<img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" class="shortLadyCart">
-			  	{% else %}
-			  		<img src="{{ product_art | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id=""> 
-			  	{% endif %}	
-	        </div>
 	        
-	        {% endif %}
 	    {% else %}
 	    	{% if cartmunged %}
 	    		<img src="{{ item.product.images[2] | img_url: 'large' }}" alt="{{ item.title | escape }}">
