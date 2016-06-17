@@ -65,7 +65,7 @@
 	
     fbq('init', '626325590828751');
     fbq('track', "PageView");
-    fbq('track', 'Purchase', {value: '0.00', currency:'USD'});
+    fbq('track', 'Purchase', {value: '{{ total_price | money_without_currency }}','currency':'USD', currency:'USD'});
     
     </script>
     <noscript><img height="1" width="1" style="display:none"
