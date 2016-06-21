@@ -67,6 +67,18 @@
     fbq('track', "PageView");
     fbq('track', 'Purchase', {value: '{{ total_price | money_without_currency }}', currency:'USD'});
     
+    // AddToCart
+	// Track when items are added to a shopping cart (ex. click/landing page on Add to Cart button)
+	fbq('track', 'AddToCart');
+	
+	// InitiateCheckout
+	// Track when people enter the checkout flow (ex. click/landing page on checkout button)
+	fbq('track', 'InitiateCheckout');
+	
+	// AddPaymentInfo
+	// Track when payment information is added in the checkout flow (ex. click/landing page on billing info)
+	fbq('track', 'AddPaymentInfo');
+    
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=676758742439239&ev=PageView&noscript=1"
