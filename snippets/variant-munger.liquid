@@ -7,7 +7,6 @@
 	
 </script> 
 
-
 {% if product.available and product.variants.size > 1 %}
 	{% for option in product.options %}
 	  	{% if option == 'Color' %}
@@ -234,13 +233,14 @@ function hideHidden() {
 	}else {
 		if(theType=='Sport Watch') {
 			var theSize = "Sport";
+			$('.strap-element[data-size="'+theSize+'"]').show();
 		}else {
 			var theSize = "Default Title";
 		}
 	}
 
 	$.each(strapArray, function(index) {
-      	console.log(strapArray[index].color);
+      //	console.log(strapArray[index].color);
 	
 			//if(strapArray[index].size == theSize) {
 				$('.swatch-element[data-value="'+strapArray[index].color+'"]').show();
@@ -318,6 +318,7 @@ $(window).load(function() {
 		}else {
 			//$('.swatch :radio[value="No Strap"]').click()
 		}
+		$('.swatch :radio[value="Black"]').click();
 		
 	}
 	$('#ProductPrice').css("opacity","1");
