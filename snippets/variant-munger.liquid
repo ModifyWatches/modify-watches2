@@ -27,7 +27,7 @@
 	
 {% assign straps = '' %}
 {% if product.type == 'Watch' or product.type == 'Sport Watch'%}
-	{% assign strapCol = 'Straps' %}
+	{% assign strapCol = 'straps' %}
 {% else %}
 	{% assign strapCol = 'Nylon' %}
 {% endif %}		
@@ -44,6 +44,12 @@
 			{% assign theColor = theColor | replace: ' Nylon' , '' %}
 			{% assign theColor = theColor | replace: ' Watch' , '' %}
 			{% assign theColor = theColor | replace: 'SF ' , '' %}
+			{% if theColor == 'Seafoam' %}
+				{% assign theColor = 'Seafoam Green' %}
+			{% endif %}	
+			{% if theColor == 'Slate' %}
+				{% assign theColor = 'Slate Grey' %}
+			{% endif %}	
 			{% assign theSize = variant.option1 %}
 			<script>
 				strapArray["{{i}}"] = {"color":"{{theColor}}","size":"{{theSize}}"};
