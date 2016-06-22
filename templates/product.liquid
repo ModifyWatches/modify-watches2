@@ -209,6 +209,10 @@
       {% include 'product-info' %}
 	  {% endcomment %}
       <div class="product-description rte" itemprop="description">
+	      {% if product.vendor == 'Willie Cauley-Stein' %}
+	      <hr>
+	      	<p>{{product.description}}</p>
+	      {% endif %}
          <h5>Share with your friends</h5>
       
      <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
