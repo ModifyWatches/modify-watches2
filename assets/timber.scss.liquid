@@ -4616,6 +4616,11 @@ a.whiteLink {
 	height: auto;
 	background-color: #e75625;
 	margin-top: -10px;
+	@include at-query ($max, $small) {
+		font-size: 18px;
+		line-height: 22px;
+		
+	}
 }
 .goldenState {
 	background-color: #f8c536 !important;
