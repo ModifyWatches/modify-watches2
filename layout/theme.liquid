@@ -65,7 +65,9 @@
 	
     fbq('init', '626325590828751');
     fbq('track', "PageView");
-    fbq('track', 'Purchase', {value: '{{ total_price | money_without_currency }}', currency:'USD'});
+   fbq('track', 'Purchase', {value: '35.00', currency: 'USD'});
+   fbq('track', 'Purchase', {value: '15.00', currency: 'USD'});
+   fbq('track', 'Purchase', {value: '60.00', currency: 'USD'});
     
     // AddToCart
 	// Track when items are added to a shopping cart (ex. click/landing page on Add to Cart button)
