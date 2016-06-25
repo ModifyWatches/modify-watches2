@@ -51,12 +51,8 @@
 
 </main> 
 <div class="expandedWidth newCollectionBanner modifysimple" style="background-image: url('{{ collection_banner }}'); background-position: right top !important;">
-	<div class="collectionInfoSimple">
-
-			 	<h1 class="small--text-center">{{ collection.title }}</h1>
-			 	<p class="super-small text-center"> {{ collection.description }}</p>	 	
-			
-			 <div style="clear:both"></div>
+	<div class="madeHere">
+			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/madeHere.png?3366168793706751607" />
 		</div>
 		
 		{% comment %}
@@ -72,7 +68,13 @@
 	</div>
 	<div style="clear:both"></div>
 </div>
+<div class="collectionInfoSimple" style="position: relative !important;">
 
+			 	<h1 class="small--text-center">{{ collection.title }}</h1>
+			 	<p class="super-small text-center"> {{ collection.description }}</p>	 	
+			
+			 <div style="clear:both"></div>
+		</div>
 	
 			 	 <div id="shareHolder" class="text-center">
 				 	 
