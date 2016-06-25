@@ -4586,6 +4586,28 @@ a.whiteLink {
 	text-align: center;
 	font-size: 12px;
 }
+.madeHere {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	text-align: right;
+	padding: 0px;
+	margin: 0px;
+	height: auto;
+	line-height: 0px;
+}
+.madeHere img {
+	width: 40%;
+	height: auto;
+	line-height: 0px;
+	@include at-query ($max, $medium) {
+		width: 70%;	
+	}
+	@include at-query ($max, $small) {
+		width: 100%;	
+	}
+}
 #promoBar {
 	background-color: #1a63c6;
 	color:#ffffff;
