@@ -57,39 +57,19 @@
 			{% endfor %}	
 
 </main> 
-<div class="expandedWidth newCollectionBanner" style="background-image: url('{{ collection_banner }}')">
-	<div class="collectionInfo">
-		<div class="collectNames">
-			<div class="iconHolder">
-			 	<img src="{{ collection_profile }}" alt="{{ collection.title }} tile image" class="partnerIcon roundedBorder" id="colProfile">
-			</div>
-			<div class="namesHolder">
-			 	<h1 class="small--text-center">{{ collection.title }}</h1>
-			 	<h3 class="small--text-center hide">{{ collabType }}</h3>
-			 	 {% if followed > 0 %}
-                <b id="followText">{{ followed }} Fans</b><br>
-            {% endif %}
-           		<div style="clear:both"></div>
-			 	{% include 'new-follow' %}
-			</div>
-			<div style="clear:both"></div>
-		</div>
-		{% comment %}
-		<div class="collectionBio">
-			 
-			 <div class="minimalText maxHeight">
-				 {{ collection.description }}
-			 	<div class="readMore"><a href="#">Read More</a></div>
-			 </div>
-			 <div id="shareHolder">
-				 Help share {{ collection.title }}'s story<br>
-			 <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div>
-			 </div>
-		</div>
-		{% endcomment %}
+<div class="expandedWidth newCollectionBanner" style="line-height: 0px !important">
+	<img src="{{ collection_banner }}" />
+	<div class="madeHere">
+		<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/madeHere.png?3366168793706751607" />
 	</div>
-	<div style="clear:both"></div>
 </div>
+	<div class="collectionInfoSimple" style="position: relative !important;">
+
+			 	<h1 class="small--text-center">{{ collection.title }}</h1>
+			 		 	
+			
+			 <div style="clear:both"></div>
+		</div>
  <main class="wrapper main-content small-margin" role="main">
 
 <div class="grid--rev">
@@ -105,7 +85,7 @@
 		  
 						 	 
     	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
-		{% paginate collection.products by 12 %}		
+		{% paginate collection.products by 20 %}		
 				<ul class="collection-matrix">
 				 {% for product in collection.products  %}
  				 	 
