@@ -251,6 +251,18 @@
     <div id="CartContainer"></div>
   </div>
 
+  <div id="bigPopup">
+	  <div class="popupPromo">
+	  	 <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo" style="width:35%; margin-bottom: 20px;"><br>
+		  <span class="mediumText">	TODAY ONLY!</span><br>
+		  	GET 30% OFF EVERYTHING<br>
+		  	Use code <b class="orange-text">SummerSurprise</b> at Checkout.<br>
+		  	
+
+		  <div id="closePopup" class="icon icon-x"></div>
+	  </div>
+  </div>
+ 
     <div id="promoBar" class="grid__item one-whole text-center">
       	TODAY ONLY! 30% off everything with code <b>SummerSurprise</b>		      	
     </div>
@@ -499,8 +511,8 @@
       })
 
       ///////// pop up promo //////////
-      if ( (!$.cookie('case_upsell')) ) {
-        $('#bigPopup').delay(200).fadeIn(300);
+      if ( (!$.cookie('summersale')) ) {
+        $('#bigPopup').delay(300).fadeIn(200);
       } else {
         $('#promoBar').slideDown(0,function(){
           $('.site-header').addClass('hasPromo');
@@ -508,9 +520,9 @@
       };
 
       // only show if hasn't been shown previously and don't show on mobile
-      if ( (!$.cookie('case_upsell')) ) {
+      if ( (!$.cookie('summersale')) ) {
         setTimeout(function() {
-          $.cookie('case_upsell', 'true');
+          $.cookie('summersale', 'true');
           $('.email-container').show('fade');
         }, 3000);
       };
@@ -582,9 +594,9 @@
 </script> 
 <!-- INCLUDE EMAIL FOOTER POPUP -->
 {% comment %}
-
-{% endcomment %}
 {% include 'email-footer-popup' %}
+{% endcomment %}
+
 {% include 'sca-quick-view-template' %} 
 
 
