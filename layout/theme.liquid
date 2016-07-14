@@ -262,11 +262,11 @@
 		  <div id="closePopup" class="icon icon-x"></div>
 	  </div>
   </div>
- 
+  <!--
     <div id="promoBar" class="grid__item one-whole text-center">
       	TODAY ONLY! 30% off everything with code <b>SummerSurprise</b>		      	
     </div>
-   
+   -->
       <header class="site-header fullSize" role="banner">
 	     
       <div class="wrapper whiteBG" style="position: relative;">
@@ -358,7 +358,7 @@
               </a>
 			  
             </div>
-            <div id="freeShipping"> <div class="yellow-highlight">Free shipping for orders over $60</div>
+            <div id="freeShipping"> <div class="yellow-highlight">Free shipping for domestic orders over $60</div>
 	        </div>
         </div>
 		 <div id="cartAlert">
@@ -512,7 +512,7 @@
 
       ///////// pop up promo //////////
       if ( (!$.cookie('summersale')) ) {
-        $('#bigPopup').delay(300).fadeIn(200);
+     //   $('#bigPopup').delay(300).fadeIn(200);
       } else {
         $('#promoBar').slideDown(0,function(){
           $('.site-header').addClass('hasPromo');
