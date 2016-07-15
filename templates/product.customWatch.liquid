@@ -32,17 +32,20 @@
   	{% assign suffix = product.type | handleize %} 
   {% endif %}	
   {% assign product_preview = product.images[0] | default: product.images[0] %}	       
-        
+ {% assign product_art = product.images[1] | default: product.images[1] %} 
   <div class="grid product-single">
     <div class="grid__item large--six-twelfths  medium--six-twelfths large--one-whole text-center">
-
-           <div class="product-single__photos ProductPhoto  ten-twelfths large--left medium--left small--one-whole" id="ProductPhoto">
+		
+           <div class="product-single__photos ProductPhoto ten-twelfths push--large--one-twelfth large--right medium--right small--one-whole" id="ProductPhoto">
 
 	        <img src="{{ product.featured_image.src | img_url: 'large' }}"  class="" id="ProductPhotoImg">
 		</div>     
       
-    </div>
-
+    
+	  <div class="grid__item one-eighth left small--one-whole">
+		 {% include 'custom-alternate-views' %}
+	 </div>
+</div>
     <div class="grid__item large--four-twelfths  medium--five-twelfths push--large--one-twelfth small--one-whole">
 
       <h2 itemprop="name" class="prodName">{{ product.title }}</h2>
