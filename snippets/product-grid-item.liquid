@@ -65,16 +65,20 @@
 		
 	  </p>
 	  {% if product.available %}
-	  <p class="text-center super-small small-margin">
+	  	<p class="text-center super-small small-margin">
 	
-		   {% if product.compare_at_price_min > product.price %} 
-		 <del>{{ product.compare_at_price_min | money }}</del><br>
-	{% endif %}
-	 {% if product.price_max > product.price %}
-        {{ product.price_min | money }} - {{ product.price_max | money }}
-        {% else %}
-        {{ product.price | money }}
-        {% endif %}
+	  	{% if product.compare_at_price_min > product.price %} 
+			 <del>{{ product.compare_at_price_min | money }}</del><br>
+		{% endif %}
+		{% if product.price_max > product.price %}
+	        {{ product.price_min | money }} - {{ product.price_max | money }}
+	    {% else %}
+	    	{% if product.type == 'Watch' %}
+	    		 {{ product.price | money }} - $50.00
+	    	{% else %}
+	        	{{ product.price | money }}
+	        {% endif %}
+	    {% endif %}
 	
 		   
 	  </p>
