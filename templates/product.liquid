@@ -24,6 +24,19 @@
 	 		console.log('nailed it');
 	 	</script>
  	{%  endif %}
+ 	{% if tag == 'gotocustombluxome' %}
+ 		<script>
+	 		window.location.href = "/apps/thecustom?style=bluxome";
+	 		console.log('nailed it');
+	 	</script>
+ 	{%  endif %}
+ 	{% if tag == 'gotocustomss' %}
+ 		<script>
+	 		window.location.href = "/apps/thecustom?style=stainless";
+	 		console.log('nailed it');
+	 	</script>
+ 	{%  endif %}
+
 {% endfor %}
 
 <div itemscope itemtype="http://schema.org/Product">
