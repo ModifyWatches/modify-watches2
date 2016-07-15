@@ -18,6 +18,12 @@
  	{% if tag contains 'munged' %}
  		{% assign munged = true %}
  	{% endif %}
+ 	
+ 	{% if tag contains 'gotocustomsport' %}
+ 		<script>
+	 		window.location.href = "/apps/thecustom?style=sport";
+	 	</script>
+ 	{%  endif %}
 {% endfor %}
 
 <div itemscope itemtype="http://schema.org/Product">
