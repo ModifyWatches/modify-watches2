@@ -18,10 +18,10 @@
  	{% if tag contains 'munged' %}
  		{% assign munged = true %}
  	{% endif %}
- 	
- 	{% if tag contains 'gotocustomsport' %}
+ 	{% if tag == 'gotocustomsport' %}
  		<script>
 	 		window.location.href = "/apps/thecustom?style=sport";
+	 		console.log('nailed it');
 	 	</script>
  	{%  endif %}
 {% endfor %}
