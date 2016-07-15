@@ -175,6 +175,12 @@
 
 
 <script>
+	// ensures the optimizely object is defined globally using
+	window['optimizely'] = window['optimizely'] || [];
+	
+	// sends a tracking call to Optimizely for the given event name. 
+	window.optimizely.push(["trackEvent", "built custom watch"]);
+	
 	$(document).ready(function() {
 		Shopify.moveAlong = function() {
 	  // If we still have requests in the queue, let's process the next one.
