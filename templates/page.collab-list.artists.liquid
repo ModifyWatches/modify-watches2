@@ -33,7 +33,7 @@
 
 	<div class="grid__item large--one-whole medium--one-whole small--one-whole" id="pageTop">
   {% for collection in collections %}
-{% if collection.template_suffix contains 'simple' %}
+  	{% if collection.template_suffix contains 'simple' %}
   	
   	{% else %}
     {% if collection.tags contains 'artist' %}
