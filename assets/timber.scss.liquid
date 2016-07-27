@@ -4560,6 +4560,14 @@ a.whiteLink {
 	}
 
 }
+.brandList .grid__item {
+	
+	@include at-query ($max, $small) {
+		margin-top: 0px; 	
+		padding-left: 0px !important;
+	}
+
+}
 #shopNav {
 	font-size: 14px;
 	list-style: none;
@@ -4862,6 +4870,28 @@ opacity: 0.5;
 		min-height: 30px;
 	}
 }
+ ul.storefrontUL.nonprofit li {
+    background: none;
+    @include at-query ($max, $small) {
+		padding-left:2px;
+		font-size: 12px;
+		margin-bottom: 0px;	
+		clear: both;
+	}	
+  }
+ ul.nonprofit li i.fa-check-circle {
+    font-size: 2rem;
+    color: #1EB31E;
+    margin-right: 6px;
+    bottom: -5px;
+    position: relative;
+     @include at-query ($max, $small) {
+	     font-size: 1.5rem;
+	     float: left;
+	     margin-bottom: 10px;
+	}
+  }
+
 .blogHR {
 	border-top: solid #d5d5d5;
 }
