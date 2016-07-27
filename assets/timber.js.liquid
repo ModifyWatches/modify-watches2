@@ -62,8 +62,14 @@ var lastScrollTop = 0, delta = 15;
     
     
   });
-
-
+if($(window).width()<=768) {
+	$('#browseBox').click(function(e) {
+		e.preventDefault();
+		$('.navWrapper').toggle();
+		$(this).toggleClass('activeMenu');
+		
+	})
+}
 $('#closePopup').click(function() {
 	$('#bigPopup').fadeOut(100, function() {
 		$('#promoBar').delay(200).slideDown(300,function(){
