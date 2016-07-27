@@ -6,7 +6,7 @@
 
 {% endcomment %}
 
-{% paginate collection.products by 12 %}
+{% paginate collection.products by 52 %}
 
 {% include 'breadcrumb' %}
 
@@ -29,17 +29,11 @@
         </div>
       </header>
       <hr>
-      <div class="section-header">
-        <div class="section-header__right">
-          {% include 'collection-sorting' %}
-        </div>
-      </div>
+      
     {% else %}
       <header class="section-header">
         <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
-        <div class="section-header__right">
-          {% include 'collection-sorting' %}
-        </div>
+        
       </header>
     {% endif %}
 
