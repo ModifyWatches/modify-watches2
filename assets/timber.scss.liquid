@@ -3908,11 +3908,21 @@ button#AddToCart {
 	margin-top: 60px !important;
 	margin-bottom: 60px !important;
 	top:0px !important;
+	@include at-query ($max, $small) {
+		margin-top: 30px !important;
+		margin-bottom: 30px !important;
+	}
 }
 .medium-margin {
 	margin-top: 30px !important;
 	margin-bottom: 30px !important;
 	top:0px !important;
+	@include at-query ($max, $small) {
+		margin-top: 15px !important;
+		margin-bottom: 15px !important;
+	}
+	
+	
 }
 .small-margin {
 	margin-top: 10px !important;
@@ -3925,10 +3935,19 @@ button#AddToCart {
 .big-padding {
 	padding-top: 30px !important;
 	padding-bottom: 0px !important;
+	@include at-query ($max, $small) {
+			padding-top: 15px !important;
+			padding-bottom: 0px !important;
+	}
 }
 .bigger-padding {
 	padding-top: 30px !important;
 	padding-bottom: 30px !important;
+	@include at-query ($max, $small) {
+			padding-top: 7px !important;
+			padding-bottom: 0px !important;
+	}
+
 }
 .medium-padding {
 	padding-bottom: 15px !important;
