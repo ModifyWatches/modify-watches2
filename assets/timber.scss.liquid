@@ -4641,21 +4641,21 @@ a.redlink {
 	line-height: 0px;
 }
 .madeHere img {
-	width: 150px;
+	width: 100%;
 	height: auto;
 	line-height: 0px;
 	@include at-query ($max, $medium) {
-		
+		width:70%;
 	}
 	@include at-query ($max, $small) {
-		width: 20%;	
+		width: 40%;	
 	}
 }
 #promoBar {
 	background-color: #1a63c6;
 	color:#ffffff;
 	font-size: 16px;
-	
+	padding-left: 0px !important;
 	line-height: 40px;
 	position: relative;
 	z-index: 1000;
@@ -4663,8 +4663,8 @@ a.redlink {
 
 	@include at-query ($max, $small) {
 		
-	font-size: 12px;
-	line-height: 25px;	
+	font-size: 10px;
+	line-height: 16px;	
 	}
 	
 }
