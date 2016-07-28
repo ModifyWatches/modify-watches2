@@ -50,20 +50,10 @@
 			{% endfor %}	
 
 </main> 
-<div class="expandedWidth newCollectionBanner modifysimple" style="background-image: url('{{ collection_banner }}')">
-			
-		{% comment %}
-		<div class="collectionBio">
-			 
-			 <div class="minimalText maxHeight">
-				 {{ collection.description }}
-			 	<div class="readMore"><a href="#">Read More</a></div>
-			 </div>
-			 
-		</div>
-		{% endcomment %}
+<div class="expandedWidth newCollectionBanner" style="line-height: 0px !important">
+	<img src="{{ collection_banner }}" />
 		<div class="madeHere">
-			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/madeHere.png?3366168793706751607" />
+			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/madeHere.png?15855404385047320549" />
 		</div>
 	</div>
 	<div style="clear:both"></div>
@@ -76,14 +66,14 @@
 			 <div style="clear:both"></div>
 		</div>
 
-	
-			 	 <div id="shareHolder" class="text-center">
+	{% comment %}
+		<div id="shareHolder" class="text-center">
 				 	 
 		 Share<br>
 	 <div class="share-buttons share-buttons-panel" data-style="big" data-counter="false" data-oauth="true" data-hover="true" data-promo-callout="none" data-buttons="twitter,facebook,pinterest"></div><br>
 	 <hr class="orangeHR"/>
 	 </div>
-
+	 {% endcomment %}
  <main class="wrapper main-content small-margin" role="main">
 
 <div class="grid--rev">
@@ -94,16 +84,14 @@
   <div id="tabs">
 	 
   
-        <div id="product-tab">
+        <div id="product-tab" >
 	     	       <div class="collection_product one-whole small--one-whole left">
 		  
 						 	 
     	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
 		{% paginate collection.products by 84 %}	
 				<ul class="collection-matrix">
-					 <div class="grid__item small-topper">
-			      
-				  </div>
+						
 				 {% for product in collection.products  %}				 	 
 				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
 				  {% include 'product-grid-item' %}  
