@@ -1,0 +1,81 @@
+<div class="grid__item one-whole">
+	<div id="which-Grid" class="hide small--show"><b>View:</b>
+	<i class="fa fa-th-large selected" data-arrange="grid"><span class="smaller"> Grid</i>
+	<i class="fa fa-square" data-arrange="single"><span class="smaller"> Single</span></i>
+	<div style="clear:both"></div>
+	</div>
+	
+	
+	<div class="clearfix filter" id="browseBy">
+	<b>Sort:</b>	
+	  <a href="/collections/{{collection.handle}}" data-tag="" class="selected">All</a> | <a href="/collections/{{collection.handle}}/SportWatch" data-tag="SportWatch">Sport (Silicone)</a> | <a href="/collections/{{collection.handle}}/MetalWatch" data-tag="MetalWatch">Bluxome (Metal)</a>
+	  <select class="coll-filter hide">
+	    <option value="">All Watches</option>
+	
+	    <option value="SportWatch">Sport</option>
+	    
+	    <option value="MetalWatch">Bluxome</option>
+	
+	  </select>
+	</div>
+</div>
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  var sortable ='';
+  var collFilters = jQuery('.coll-filter');
+  
+  $('#browseBy a').click(function(e){
+	  e.preventDefault();
+	  query = $(this).attr('data-tag');
+	  if(sortable =='') {
+	      	window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query);
+	      }else {
+		     window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query)+'?arrange='+sortable; 
+	      }
+  })
+    
+	$('document').ready(function() {
+		
+		var currentTag = '{{current_tags.first}}';
+		var myParam = location.search.split('arrange=')[1];
+		if(myParam) {
+			 $('#which-Grid i').removeClass('selected');
+			 $('#which-Grid i[data-arrange="'+myParam+'"]').addClass('selected');
+			
+			 if(myParam=='single') {
+				 rearrange(myParam);
+				
+			 }
+			 
+			 
+		 }	
+		 $('#browseBy a').each(function() {
+			 if($(this).attr('data-tag')==currentTag) {
+				 $('#browseBy a').removeClass('selected');
+				 $(this).addClass('selected');
+			 }
+		 })
+		 
+		 //var myParam = location.search.split('arrange=')[1] ? location.search.split('arrange=')[1] : 'small--one-half';
+		 $('#which-Grid i').click(function() {
+			 rearrange($(this).attr('data-arrange'));
+			 $('#which-Grid i').removeClass('selected');
+			 $(this).addClass('selected');
+		 })
+		 
+		 
+		 function rearrange(val) {
+			 sortable= val;
+			 if(val=='single') {
+				 $('.collection-matrix li').attr('class','grid__item large--one-quarter medium--one-third small--one-whole theProducts');
+				
+			 }else {
+				 $('.collection-matrix li').attr('class','grid__item large--one-quarter medium--one-third small--one-half theProducts');
+				 
+			 }
+		 } 	 
+		 
+ 	})
+
+</script>
