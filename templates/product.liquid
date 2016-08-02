@@ -101,7 +101,7 @@
         
   <div class="grid product-single">
 	  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical small-margin">
-    <div class="grid__item large--seven-twelfths  medium--seven-twelfths large--one-whole text-center">
+    <div class="grid__item large--seven-twelfths  medium--seven-twelfths large--one-whole text-center" id="zoomFrame">
 			 <div class="grid__item hide one-whole small--show">
 		 {% include 'product-alternative-views-new' %}
 		
@@ -111,7 +111,7 @@
 			<h2 itemprop="name" class="prodName">{{ product.title }}</h2>
 			<h5 itemprop="vendor">- <a href="{{ collections[collab].url}}"> {{ product.vendor }} </a></h5>
 		</div>	
-           <div class="product-single__photos ProductPhoto  ten-twelfths push--large--one-twelfth large--right medium--right small--one-whole" id="ProductPhoto">
+           <div class=" product-single__photos ProductPhoto  ten-twelfths push--large--one-twelfth large--right medium--right small--one-whole" id="ProductPhoto"  >
 	        {% assign template_art = suffix | append: '_' | append: theOption | append: '.png' %}
 	        <img src="{{ 'Backplate.png' | asset_url }}" class="backplate" />
 	         <div class="watchArt">
@@ -179,7 +179,9 @@
 	        	
 	          <span id="ProductPrice" class="h3" itemprop="price" style="opacity: 0;">
 				{{ product.price | money }}
+				
 	          </span>
+	          
 	          <span id="strapPrice" style="display: none;">+ <span id="actualPrice"></span> with Strap</span>
 	          {% if product.compare_at_price_min > product.price %} 
 				 <br><span class="super-small orange-text hide">
@@ -201,7 +203,7 @@
 	        	
 	          <span id="ProductPrice" class="h3" itemprop="price" style="opacity: 1;">
 				{{ product.price | money }}
-	          </span>
+			</span>
 	          <span id="strapPrice" style="display: none;">+ <span id="actualPrice"></span> with Strap</span>
 	          {% if product.compare_at_price_min > product.price %} 
 				 <br><span class="super-small orange-text hide">
@@ -210,12 +212,21 @@
 				{% endif %}
         </div>
 
-		  
-		  
+		
+		{% if product.type == 'Alloy watch' %}
+			<button type="submit" name="add" id="AddToCart" class="btn">
+            <span id="AddToCartTexts"> Pre-order: ships Aug 18 </span>
+          </button>			
+		{% else %}		
+		
           <button type="submit" name="add" id="AddToCart" class="btn">
+
             <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
           </button>
-          
+          {% endif %}
+          {% if product.type == 'Alloy watch' %}
+			  {% include 'presale' %}
+		{% endif %} 
           <div style="clear: both"></div>
        
 
@@ -337,6 +348,49 @@
 <!-- IS+ Product Recommendation Widget END -->
 						
     </div>
-
-
+<script>
+	$(document).ready(function() {
+		settings = {
+	    // zoomed size relative to the container element
+	    // 0.0-1.0
+	    targetsize: 2.0,
+	    // scale content to screen based on their size
+	    // "width"|"height"|"both"
+	    scalemode: "both",
+	    // animation duration
+	    duration: 450,
+	    // easing of animation, similar to css transition params
+	    // "linear"|"ease"|"ease-in"|"ease-out"|"ease-in-out"|[p1,p2,p3,p4]
+	    // [p1,p2,p3,p4] refer to cubic-bezier curve params
+	    easing: "ease",
+	    // use browser native animation in webkit, provides faster and nicer
+	    // animations but on some older machines, the content that is zoomed
+	    // may show up as pixelated.
+	    nativeanimation: true,
+	    // root element to zoom relative to
+	    // (this element needs to be positioned)
+	    root: $(document.body),
+	    // show debug points in element corners. helps
+	    // at debugging when zoomooz positioning fails
+	    debug: false,
+	    // this function is called with the element that is zoomed to in this
+	    // when animation ends
+	    animationendcallback: null,
+	    // this specifies, that clicking an element that is zoomed to zooms
+	    // back out
+	    closeclick: true,
+	    // don't reset scroll before zooming. less jaggy zoom starts and ends on
+	    // mobile browsers, but causes issues when zooming to elements when scrolled
+	    // to a specific distance in document, typically around 2000px on webkit.
+	    preservescroll: false
+	}
+	// settings can be set for both the zoomTo and zoomTarget calls:
+	/*
+	$("#ProductPhoto").click(function(evt) {
+		$(this).zoomTo(settings);
+		evt.stopPropagation();
+	})
+	*/
+})	
+</script>
 {% include 'product-events' %}
