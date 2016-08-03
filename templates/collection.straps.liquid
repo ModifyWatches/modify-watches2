@@ -6,7 +6,7 @@
 
 {% endcomment %}
 
-{% paginate collection.products by 52 %}
+{% paginate collection.products by 82 %}
 
 {% include 'breadcrumb' %}
 
@@ -47,7 +47,7 @@
         See the snippet 'product-grid-item' for the layout.
       {% endcomment %}
       {% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
-			{% paginate collection.products by 24 %}
+			{% paginate collection.products by 54 %}
 				<ul class="collection-matrix">
 				 {% for product in collection.products %}
 				 	 {% if product.type !='Art' %}
