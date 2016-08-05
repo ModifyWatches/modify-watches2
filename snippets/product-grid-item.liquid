@@ -58,7 +58,7 @@
  
   <div class="productsInfo">
 	  <p class="h6 text-center">
-	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:5 | truncate:35}}</a>
+	    <a href="{{ product.url | within: collection }}">{{ product.title  | truncatewords:6 | truncate:35}}</a>
 	  </p>
 	   	  <p class="super-small text-center hide">
 		 By, <a href="{{ collections[collab].url}}" > {{ product.vendor }} </a>
@@ -67,19 +67,21 @@
 	  {% if product.available %}
 	  	<p class="text-center super-small small-margin">
 	
-	  	{% if product.compare_at_price_min > product.price %} 
-			 <del>{{ product.compare_at_price_min | money }}</del><br>
-		{% endif %}
-		{% if product.price_max > product.price %}
-	        {{ product.price_min | money }} - {{ product.price_max | money }}
-	    {% else %}
-	    	{% if product.type == 'Watch' %}
-	    		 {{ product.price | money }} - $50.00
-	    	{% else %}
-	        	{{ product.price | money }}
-	        {% endif %}
-	    {% endif %}
-	
+	  		{% if product.type == 'Sport Watch' %}
+	    		 $50.00
+	    	{% elsif  product.type == 'Alloy watch' %}
+	        	$75.00
+	        {% elsif  product.type == 'Watch' %}
+	        	$50.00
+	        {% elsif  product.type == 'Strap' %}
+	        	$15.00
+	        {% elsif  product.type == 'Nylon' %}
+	        	$15.00
+	        {% elsif  product.type == 'LeatherStrap' %}
+	        	$35.00
+	        {% else %}
+	        	$115.00	
+	        {% endif %}	
 		   
 	  </p>
 		  <p class="super-small text-center hide">
