@@ -1,0 +1,120 @@
+
+ 
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900">
+</main>
+
+{% include 'filtering' %}
+<main class="wrapper main-content medium-margin" role="main" id="theBody">
+<div class="grid--rev">
+  
+  
+  
+  
+  <div id="tabs"  class="grid__item one-whole">
+	 
+  		
+        <div id="product-tab" >
+	     	       <div class="collection_product one-whole small--one-whole left">
+		  
+						 	 
+    	{% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
+		{% paginate collection.products by 84 %}	
+				<ul class="collection-matrix">
+						
+				 {% for product in collection.products  %}				 	 
+				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
+				  {% include 'product-grid-item' %}  
+				 </li> 
+				 {% endfor %}
+				
+				<div style="clear: both"></div>  
+				 {% if paginate.next %}
+				  <li class="more"><button class="btn--secondary"><a href="{{ paginate.next.url }}">See More</a></button></li>       
+				 {% endif %}
+				 <div style="clear: both"></div>
+				</ul>
+				
+				<div id="product-list-foot"></div>
+			{% endpaginate %}
+	       </div>
+        </div>
+  </div>
+<div style="clear: both"></div>      
+<div style="clear: both"></div>
+
+
+
+
+
+ </div>
+ <div style="clear:both"></div>
+	
+    
+	
+  </div>
+  </div>
+</div>
+<div style="clear:both"></div>
+
+{% include 'vertical-tracking' %}
+
+<!-- Scripts -->
+<script>
+
+ 
+
+  analytics.page('Partner Storefront', {
+    title: "{{ collection.title }}",
+    url: window.location.href,
+    path: '{{ collection.url }}',
+	vertical: '{{ vertical }}', 
+    referrer: document.referrer
+  });
+$(document).ready(function() {
+	var currentArt = '';
+	$('.artPreview').click(function(e) {
+		e.preventDefault();
+		
+		if($(this).hasClass('selectedPreview')) {
+			currentArt = '';
+				$('.artPreview').removeClass('selectedPreview');
+				$('.artPreview').removeClass('noPreview');
+				$('.theProducts').show();
+				$('.lifestyle').show();
+		}else {	
+			$('.artPreview').removeClass('selectedPreview');
+			$('.artPreview').removeClass('noPreview');
+			$('.artPreview').addClass('noPreview');
+			
+			currentArt = $(this).attr('data-title');
+			$('.lifestyle').hide();
+			
+			$('.theProducts').each(function() {
+				theTags = $(this).attr('data-tags');
+				console.log(theTags+' '+currentArt);
+				if (theTags.indexOf(currentArt) >= 0) {
+					$(this).show();
+				}else {
+					$(this).hide();
+				}
+				
+				
+			})
+			$(this).addClass('selectedPreview');
+			$(this).removeClass('noPreview');
+		}
+	})
+	
+	$('#viewAll').click(function() {
+		currentArt = '';
+		$('.artPreview').removeClass('selectedPreview');
+		$('.artPreview').removeClass('noPreview');
+		$('.theProducts').show();
+		$('.lifestyle').show();
+		
+	})
+})
+</script>

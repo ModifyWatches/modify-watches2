@@ -1,92 +1,223 @@
 <!-- /templates/list-collections.liquid -->
-<script>
-	 		window.location.href = "/";
-	 	//	console.log('nailed it');
-	 	</script>
+</main>
+  <section class="section-container filterFrame filterClick">
+  	<div class="one-whole filterClick" id="filterHolder">
+  		<div class="one-third small--one-whole text-left mainFilter filterClick">
+	  		<b class="filterClick">Themes</b>
+	  		
+	  		<i class="fa fa-chevron-down filterClick"></i>
+	  		<div class="filterBox filterClick">
+		  		<label for="Bright/Brave"><input id="Bright/Brave" name="Bright/Brave" value="Bright-Brave" type="checkbox" />Bright/Brave</label>
+				<label for="Dark/Spooky"><input id="Dark/Spooky" name="Dark/Spooky" value="Dark-Spooky" type="checkbox" />Dark/Spooky</label>
+				<label for="Minimal"><input id="Minimal" name="Minimal" value="Minimal" type="checkbox" />Minimal</label>
+				<label for="Patterns"><input id="Patterns" name="Patterns" value="Patterns" type="checkbox" />Patterns</label>
+				<label for="Illustration"><input name="Illustration" id="Illustration" value="Illustration" type="checkbox" />Illustration</label>
+				<label for="Animals"><input name="Animals" id="Animals" value="Animals" type="checkbox" />Animals</label>
+				<label for="Olympics"><input name="Olympics" id="Olympics" value="Olympics" type="checkbox" />Olympics</label>
+				<label for="Horoscope"><input name="Horoscope" id="Horoscope" value="Horoscope" type="checkbox" />Horoscope</label>
+				<label for="Musical"><input name="Musical" id="Musical" value="Musical" type="checkbox" />Musical</label>
+				<div class="hide">
+					<label for="Anime"><input name="Anime" id="Anime" value="Anime" type="checkbox" />Anime</label>
+				<label for="Nature"><input name="Nature" id="Nature" value="Nature" type="checkbox" />Nature</label>
+					<label for="Solid"><input id="Solid" name="Solid" value="Solid" type="checkbox" />Solid</label>
+					<label for="Pastel"><input id="Pastel" name="Pastel" value="Pastel" type="checkbox" />Pastel</label>
+					<label for="Anime"><input name="Anime" id="Anime" value="Anime" type="checkbox" />Anime</label>
+					<label for="Nature"><input name="Nature" id="Nature" value="Nature" type="checkbox" />Nature</label>
+					<label for="Photo"><input name="Photo" id="Photo" value="Photo" type="checkbox" />Photo</label>
+					<label for="Cartoon"><input name="Cartoon" id="Cartoon" value="Cartoon" type="checkbox" />Cartoon</label>
+					<label for="Gaming"><input name="Gaming" id="Gaming" value="Gaming" type="checkbox" />Gaming</label> 
+					<label for="Causes"><input name="Causes" id="Causes" value="Causes" type="checkbox" />Causes</label>
+					<label for="Sports"><input name="Sports" id="Sports" value="Sports" type="checkbox" />Sports</label>
+					<label for="Text"><input name="Text"  id="Text" value="Text" type="checkbox" />Text</label>
+					<label for="For Kids"><input name="For Kids" id="For Kids" value="For Kids" type="checkbox" />For Kids</label>
+					<label for="Food"><input name="Food" value="Food" id="Food" type="checkbox" />Food</label>
+					<label for="Seasonal"><input name="Seasonal" id="Seasonal" value="Seasonal" type="checkbox" />Seasonal</label>
+				</div>	
+		  		
+	  		</div>
+	  		
+	  		
+  		</div>
+  		<div class="one-third small--one-whole text-left mainFilter filterClick" >
+	  		<b class="filterClick">Colors</b>
+	  		<i class="fa fa-chevron-down filterClick"></i>
+	  		<div class="filterBox filterClick">
+		  		<label for="Black"><input name="Black" id="Black" value="Black" type="checkbox" />Black</label>
+				<label for="Blue"><input name="Blue" id="Blue" value="Blue" type="checkbox" />Blue</label>
+				<label for="Green"><input name="Green" id="Green" value="Green" type="checkbox" />Green</label>
+				<label for="Red"><input name="Red" id="Red" value="Red" type="checkbox" />Red</label>
+				<label for="Orange"><input name="Orange" id="Orange" value="Orange" type="checkbox" />Orange</label>
+				<label for="Yellow"><input name="Yellow" id="Yellow" value="Yellow" type="checkbox" />Yellow</label>
+				<label for="Purple"><input name="Purple" id="Purple" value="Purple" type="checkbox" />Purple</label>
+				<label for="Multicolor"><input name="Multicolor" id="Multicolor" value="Multicolor" type="checkbox" />Multicolor</label>
+				<label for="Grey"><input name="Grey" id="Grey" value="Grey" type="checkbox" />Grey</label>
+				<label for="White"><input name="White" id="White" value="White" type="checkbox" />White</label>
+	
+		  	</div>
+  		</div>
+  		<div class="one-third small--one-whole text-left mainFilter filterClick" style="border:0px;">
+	  		<b class="filterClick">Partners</b><br>
+	  		
+	  		<i class="fa fa-chevron-down filterClick"></i>
+	  		<div class="filterBox">
+		  		<label for="NBA"><input name="NBA" id="NBA" value="NBA" type="checkbox" />NBA</label>
+				<label for="MLB"><input name="MLB" id="MLB" value="MLB" type="checkbox" />MLB</label> 
+		  		<label for="Brand"><input name="Brand" id="Brand" value="brand" type="checkbox" />Brand</label>
+				<label for="Nonprofits"><input name="Nonprofits" id="Nonprofits" value="Nonprofits" type="checkbox" />Nonprofits</label> 
+				<label for="Artist"><input name="Artist" id="Artist" value="artist" type="checkbox" />Artist</label>
+				<label for="Musician"><input name="Musician" id="Musician" value="musician" type="checkbox" />Musician</label>
+				<label for="NHL"><input name="NHL" id="NHL" value="NHL" type="checkbox" />NHL</label>
+				<label for="MLS"><input name="MLS" id="MLS" value="MLS" type="checkbox" />MLS</label>
+				<div class="one-whole text-right"><a href="/pages/more-collections" >See All Partners</a></div>
 
-{% comment %}
+	  		</div>
+  		</div>
 
-  This page represents the /collections and /products pages.
-  It is an optional, but highly recommended, template for your theme.
+  		<div style="clear: both"></div>
+  	</div>
+  </section>
 
-  More info:
-    - http://docs.shopify.com/manual/configuration/store-customization/taking-control-of-collections-listing
-{% include 'breadcrumb' %}
-{% endcomment %}
-
+<main class="wrapper main-content medium-margin" role="main" id="theBody">
+	 <section class="one-whole text-center" id="productCallouts">
 
 
-<div class=" section-body-content featured-collections text-center">
-      <!--<h6>FEATURED</h6>-->
-      
-     	  
-	   <div class="grid__item one-third small--one-half colPage">
-	      <a href="/collections/nba">
-	      <img src="{{ 'NBA_Tile.jpg' | asset_url}}"/>
-	      <div class="imageLink">NBA</div> 
-	  </div>
-	   <div class="grid__item one-third small--one-half colPage">
-	      <a href="/collections/major-league-baseball">
-	      <img src="{{ 'MLB_Tile_grande.jpg' | asset_url}}"/>
-	      <div class="imageLink">Major League Baseball</div> 
-	  </div>
-	   <div class="grid__item one-third small--one-half colPage">
-	      <a href="/collections/major-league-soccer">
-	      <img src="{{ 'MLS_Tile2_grande.jpg' | asset_url}}"/>
-	      <div class="imageLink">Major League Soccer</div> 
-	  </div>
-
-	   <div class="grid__item one-third small--one-half colPage">
-	      <a href="/collections/nhl">
-	      <img src="{{ 'NHL_tile_grande.png' | asset_url}}"/>
-	      <div class="imageLink">NHL&reg;</div> 
-	  </div>
-	   <div class="grid__item one-third small--one-half colPage">
-	      <a href="/collections/american-ultimate-disc-league">
-	      <img src="{{ 'AUDL_tile_large.png' | asset_url}}"/>
-	      <div class="imageLink">American Ultimate Disc League</div> 
-	  </div>
-	   <div class="grid__item one-third small--one-half colPage">
-	      <a href="/collections/greeks">
-	      <img src="{{ 'greek-tile_large.jpg' | asset_url}}"/>
-	      <div class="imageLink">Greeks</div> 
-	  </div>
-	   <div class="grid__item one-half small--one-whole colPage">
-	      <a href="/collections/all-products">
-	      <img src="{{ 'AllProducts_Tile.jpg' | asset_url}}"/>
-	      <div class="imageLink">All Products</div> 
-	  </div>
-	   <div class="grid__item one-half small--one-whole colPage">
-	      <a href="/collections/basics">
-	      <img src="{{ 'basics-tile2_large.jpg' | asset_url}}"/>
-	      <div class="imageLink">Basics</div> 
-	  </div>
-
-	   <div class="grid__item one-half small--one-whole colPage">
-	      <a href="/collections/watch-faces">
-	      <img src="{{ 'ALLFaces_Tile_large.jpg' | asset_url}}"/>
-	      <div class="imageLink">All Watch Faces</div> 
-	  </div>
-	   <div class="grid__item one-half small--one-whole colPage">
-	      <a href="/collections/straps">
-	      <img src="{{ 'ALLStraps_Tile_large.jpg' | asset_url}}"/>
-	      <div class="imageLink">All Straps</div> 
-	  </div>
-	  
-	   <div class="grid__item one-half small--one-whole colPage">
-	      <a href="/pages/custom">
-	      <img src="{{ 'Custom_Tile.jpg' | asset_url}}"/>
-	      <div class="imageLink">Custom print your own</div> 
-	  </div>
-	   <div class="grid__item one-half small--one-whole colPage">
-	      <a href="/pages/more-collections">
-	      <img src="{{ 'MoreCollections_Tile.jpg' | asset_url}}"/>
-	      <div class="imageLink">Collaborations</div> 
-	  </div>
-
-      
-</div>
-<script type="text/javascript">
+	 	<div class="grid__item one-third small--one-whole feature-tiles ">
+			 <a href="/collections/filters/" title="Artists Collabs" class="calloutLinks">
+				 
+			 	<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/best_grid.jpg?9598046078001827047" />
+			 	<div class="buttonFrame"><button class="btn--secondary">BROWSE BEST SELLERS</button></div>
+			 	<div class="overLink">Best Sellers</div>
+			 </a>			
+			 
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/artist" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/artists_grid.jpg?32661278887718888" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE ARTISTS</button></div>
+			 <div class="overLink">Artists</div>
+			 </a>
+			
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/bright-brave" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/bright_grid.jpg?32661278887718888" />
+			 <div class="buttonFrame" ><button class="btn--secondary">BROWSE BRIGHT</button></div>
+			 <div class="overLink">bright & Brave</div>
+			 </a>
+			
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/music" title="music Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/musician_grid.jpg?32661278887718888" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE MUSIC</button></div>
+			 <div class="overLink">musicians</div>
+			 </a>
+			
+			
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/minimal" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/minimal_grid.jpg?32661278887718888" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE MINIMAL</button></div>
+			 <div class="overLink">Minimal</div>
+			 </a>
+			 
+		</div>
+			<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/pattern" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/pattern_grid.jpg?32661278887718888" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE PATTERNS</button></div>
+			<div class="overLink">Patterns</div>
+			 </a>			
+			
+		</div>
 		
-  analytics.page('Sports Collab List');
-</script> 
+		
+		
+		
+			<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/dark-spooky" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/dark_grid.jpg?32661278887718888" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE DARK</button></div>
+			 <div class="overLink">Dark & spooky</div>
+			 </a>			
+			
+		</div>
+		
+		
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/nba" title="music Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/nba_grid.jpg?9598046078001827047" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE NBA</button></div>
+			 <div class="overLink">NBA</div>
+			 </a>
+			
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/illustration" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/illustration_grid.jpg?9598046078001827047" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE ILLUSTRATION</button></div>
+			 <div class="overLink">Illustration</div>
+			 </a>
+			
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/straps" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/allTheStraps.jpg?8431918430039704100" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE STRAPS</button></div>
+			 <div class="overLink">All Straps</div>
+			 </a>			
+			
+		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/MLB" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/mlb_grid.jpg?9598046078001827047" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE MLB</button></div>
+			 <div class="overLink">MLB</div>
+			 </a>			
+			
+		</div>
+		
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/filters/NHL" title="Artists Collabs" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0787/5183/files/nhl_grid.jpg?9598046078001827047" />
+			 <div class="buttonFrame"><button class="btn--secondary">BROWSE NHL</button></div>
+			 <div class="overLink">NHL</div>
+			 </a>			
+			 
+		</div>
+		
+
+		 
+	 </section>
+
+
+
+
+
+
+
+<script type="text/javascript">		
+  analytics.page('All Collections');
+  $('document').ready(function() {
+		$('.mainFilter').click(function() {
+			  var which = $('.filterBox',this);
+			$(".filterBox").not(which).fadeOut(300);
+			$('.filterBox',this).fadeToggle(300);	
+		})
+		$('.filterFrame label').click(function(){
+			;
+			
+		     window.location.href ='/collections/filters/'+$('input',this).val();
+		 })
+		  $('body').click(function(event) {
+			//console.log(event.target.id );
+			if(!$(event.target).hasClass('filterClick')) {
+			//	console.log('clicked');
+				$(".filterBox").fadeOut(300);
+			}
+		 })
+	  
+	  
+	})
+	</script> 

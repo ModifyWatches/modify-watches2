@@ -24,7 +24,8 @@
   <!-- Helpers ================================================== -->
   {% include 'social-meta-tags' %}
   <link rel="canonical" href="{{ canonical_url }}">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="{{ settings.color_primary }}">
   <link href='https://fonts.googleapis.com/css?family=Bitter:400,400italic,700|Open+Sans:400,700,300,400italic,700italic,300italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -267,66 +268,62 @@
   </div>
   
    <div id="promoBar" class="grid__item one-whole text-center">
-      	Get 20% off of all <a href="/custom"><b>Custom Watches</b></a>. Use the code "<b class="banner-orange">PhotoWatch</b>" at checkout! 		      	
+      	Get 20% off of all <a href="/custom"><b>Custom Watches</b></a>. Use the code "<b>PhotoWatch</b>" at checkout! 		      	
     </div>
    
       <header class="site-header fullSize" role="banner">
 	     
-      <div class="wrapper whiteBG" style="position: relative;">
+      <div class="small-wrapper whiteBG" style="position: relative;">
 
         <div class="grid--full grid ">
 	     
-          	<div class="grid__item seven-twelfths small--one-whole">
+          	<div class="grid__item large--one-quarter medium--one-quarter">
 	            {% comment %}
 	              Use the uploaded logo from theme settings if enabled.
 	              Site name gets precedence with H1 tag on homepage, div on other pages.
 	            {% endcomment %}
-	             <div class="hide small--show left one-half hamburger">
-	           	 <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left " aria-controls="NavDrawer" aria-expanded="false">
-	                  <span class="icon icon-hamburger" aria-hidden="true"></span>
-	                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
-	                  <span class="icon icon-search" aria-hidden="true"></span>
-	                </button>
-	        </div>
-		    <div class="hide small--show right one-half hamburger">
-	            <a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
-					<img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22" alt="shopping cart"/>
-					{% if cart.item_count > 0 %}
-					<span id="CartCount">{{ cart.item_count }}</span>
-			        {% endif %}
-	            </a>
-           	</div>
-		   	<h1 class="site-header__logo large--left medium--left large--one-quarter medium--one-quarter small--one-third small--text-left small--left" itemscope itemtype="http://schema.org/Organization">
+	             <div class="hide small--show left one-quarter hamburger">
+		           	 <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left " aria-controls="NavDrawer" aria-expanded="false">
+		                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+		                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+		                  <span class="icon icon-search" aria-hidden="true"></span>
+		                </button>
+		        </div>
+			    <div class="hide small--show right one-quarter hamburger">
+		            <a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+						<img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22" alt="shopping cart"/>
+						{% if cart.item_count > 0 %}
+						<span id="CartCount">{{ cart.item_count }}</span>
+				        {% endif %}
+		            </a>
+	           	</div>
+			   	<h1 class="site-header__logo large--left medium--left one-half hamburger" itemscope itemtype="http://schema.org/Organization">
            		
-              {% if settings.logo_use_image %}
-                <a href="/" itemprop="url" class="site-header__logo-link">
-                  <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
-                </a>
-              {% else %}
-                <a href="/" itemprop="url">{{ shop.name }}</a>
-              {% endif %}
-			    
-        	</h1>
-			<div id="browseBox"class="left  large--one-eighth medium--one-eighth small--one-third small--text-center large--text-right medium--text-right sellStore">
-				<a href="#" >
-					<h4>Shop</h4>
-                </a>
-		    </div>
-		    <div class="left  large--two-fifths medium--two-fifths large--text-center medium--text-center small--one-third small--text-center sellStore">
-				<a href="/pages/custom">
-					<h4>custom watches</h4>
-				</a>
-		    </div>
-		    <div class="left  large--sixth medium--sixth large--text-center medium--text-center small--hide small--text-center sellStore">
-				<a href="/pages/wholesale">
-					<h4>wholesale</h4>
-				</a>
-		    </div>
+	              {% if settings.logo_use_image %}
+	                <a href="/" itemprop="url" class="site-header__logo-link">
+	                  <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+	                </a>
+	              {% else %}
+	                <a href="/" itemprop="url">{{ shop.name }}</a>
+	              {% endif %}
+				    
+	        	</h1>
+          	</div>
+	        <div class="grid__item large--one-half medium--one-half small--one-whole text-center">	
+				<div id=""class="left one-half text-right sellStore">
+					<a href="/collections" class="right ssR">
+						<h4>BROWSE OUR WATCHES</h4>
+	                </a>
+			    </div>
+			    <div class="left  one-half text-left  sellStore">
+					<a href="/custom" class="left ssL">
+						<h4>DESIGN YOUR OWN</h4>
+					</a>
+			    </div>
+			
         </div>
-        <div class="grid__item large--five-twelfths text-right medium--five-twelfths small--hide">
-			<div class="site-header__search large--two-thirds  medium--two-thirds small--one-half ">
-				{% include 'search-bar' %}
-    		</div>
+        <div class="grid__item large--one-quarter medium--one-quarter small--hide">
+			
 	               
             <div class="storeCart right">
 	           
@@ -361,8 +358,11 @@
               </a>
 			  
             </div>
-            <div id="freeShipping"> <div class="yellow-highlight">Free shipping for domestic orders over $60</div>
+            <div id="freeShipping" class=""> <div class="">Free shipping on US orders over $60</div>
 	        </div>
+	        <div class="site-header__search large--one-half medium--two-fifths right ">
+				{% include 'search-bar-new' %}
+    		</div>
         </div>
 		 <div id="cartAlert">
 	     Item Added!
