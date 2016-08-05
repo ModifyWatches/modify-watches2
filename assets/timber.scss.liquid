@@ -733,15 +733,26 @@ body {
     max-width: 100%;
   }
 }
-
+.small-wrapper {
+  @include clearfix();
+  max-width: 94%;
+  margin: 0 auto;
+  padding: 0 ($gutter / 2);
+  
+  
+  @include at-query ($max, $medium) {
+    padding: 0 $gutter;
+    max-width: 100%;
+  }
+}
 .main-content {
   display: block;
  
   padding-bottom:0;
   position: relative;
-  margin-top:90px;
+  margin-top:70px;
    @include at-query ($min, $small) {
-	    margin-top:90px;
+	    margin-top:70px;
 
 	}
 }
@@ -1876,25 +1887,48 @@ box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.2);
 	 border: 1px solid #dbdbdb;
     border-radius: 25px !important;
     padding-right: 10px;
+	
 }
 .icon-fallback-text {
 	font-size: 20px;
+	@include at-query ($max, $medium) {
+		font-size: 14px;	
+	}
 }
 .search-bar {
   max-width: 100%;
   width: 100%;
+  font-size: 20px;
 
   @include at-query ($max, $medium) {
     margin-left: auto;
     margin-right: auto;
+    
   }
 }
-
+.ssL {
+	margin-left: 20px;
+	 @include at-query ($max, $medium) {
+		margin-left: 8px;	 
+	}
+}
+.ssR {
+	margin-right: 20px;
+	 @include at-query ($max, $medium) {
+		margin-right: 8px;	 
+	}
+}
 
 .sellStore h4{
-	line-height: 40px;
-	margin-top: 5px;
-	font-size: 16px;
+	line-height: 32px;
+	margin-top: 8px;
+	margin-bottom: 5px;
+	font-size: 15px !important;
+	border-bottom: 1px solid #ff8100;
+	width: 100%;
+	@include at-query ($max, $medium) {
+	 	font-size: 12px !important;
+  }
 
 	
 }
@@ -1925,8 +1959,8 @@ box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.2);
 	}
 }
 .site-header.fullSize {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	 -webkit-box-shadow: none !important;
 	 -moz-box-shadow: none !important;
 	box-shadow: none !important;
@@ -1940,6 +1974,253 @@ box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.2);
 		display: none !important;	
 	}
 }
+.bigCallout {
+	position: relative;
+	padding-left: 1%;
+	padding-right: 1%;
+	line-height: 0px;
+	@include at-query ($max, $small) {
+		margin-bottom: 15px;	
+		
+	}
+}
+.bigCallout img {
+	border: 1px solid #ececec;
+}
+.hoverOver {
+	position: absolute;
+	width: 96%;
+	height: 100%;
+	left: 2%;
+	top:0px;
+	background-color: rgba(0,0,0,0.2);
+	opacity: 0.9;
+	text-align: center;
+	color: #ffffff;
+	padding-top: 25%;
+	font-size: 35px;
+	line-height: 35px;
+	  -webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+      -ms-transition: all .25s ease-out;
+       -o-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+
+	@include at-query ($max, $small) {
+		width: 98%;
+		height: 100%;
+		left: 1%;
+		top:0px;
+		font-size: 25px;
+		line-height: 25px;
+	}
+}
+.hoverOver:hover {
+	background-color: rgba(0,0,0,0.6);
+	opacity: 1;
+}
+.hoverOver img {
+	width: 55% !important;
+	display: inline-block;
+	border: 0px;
+	@include at-query ($max, $small) {
+		width: 75% !important;
+	}
+}
+@font-face {
+	font-family: santelia;
+	font-weight: bold;
+	src: url("SantEliaScriptBoldDEMO.otf") format("opentype");
+}
+.hoverText {
+	font-family: santelia;
+	font-size: 50px;
+}
+.collectionsGrid {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+	width: 100%;
+	display: block;
+}
+.collectionsGrid li {
+	position: relative;
+	line-height: 0px;
+	padding: 1%;
+}
+.hoverOverSmall {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left:0px;
+	top:0px;
+	background-color: rgba(0,0,0,0.0);
+	opacity: 0.9;
+	text-align: center;
+	color: #ffffff;
+	padding-top: 35%;
+	font-size: 35px;
+	line-height: 35px;
+	  -webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+      -ms-transition: all .25s ease-out;
+       -o-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+          font-family: santelia;
+	font-size: 50px;
+}
+.hoverOverSmall:hover {
+	background-color: rgba(0,0,0,0.5);
+	opacity: 1;
+}
+.hoverOverSmall img {
+	width: 55% !important;
+	display: inline-block;
+	border: 0px;
+}
+.filterFrame {
+	border-bottom: 1px solid #d3d3d3;
+	z-index: 3000;
+	position: relative;
+	width: 100%;
+	background-color: #ffffff;
+}
+.filterScroll {
+	position: fixed !important;
+	top:48px;
+	left:0px;
+	-webkit-box-shadow: 0px 2px 5px -1px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 2px 5px -1px rgba(0,0,0,0.1);
+	box-shadow: 0px 2px 5px -1px rgba(0,0,0,0.1);
+	@include at-query ($max, $small) {
+		top:49px;
+	}
+}
+.filterScrollBig {
+	 @include at-query ($max, $small) {
+	 	top:88px;
+	}
+}
+#filterHolder {
+	width: 60%;
+	margin: 0 auto;
+	 @include at-query ($max, $medium) {
+		 width: 80%;
+	}
+	 @include at-query ($max, $small) {
+		width: 100%; 
+	}
+	
+}
+#filterHolder label {
+	
+}
+.mainFilter {
+	padding-left: 25px;
+	border-right:1px solid #d3d3d3;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	position: relative;
+	font-size: 14px;
+	line-height: 16px;
+	cursor: pointer;
+	display: inline-block;
+	box-sizing: border-box;
+	float: left;
+	color: #5f5f5f;
+	background-color: #ffffff;
+	-webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+      -ms-transition: all .25s ease-out;
+       -o-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+           @include at-query ($max, $small) {
+	           padding-left: 15px;
+	           border-bottom:1px solid #d3d3d3;
+	           padding-top: 8px;
+			   padding-bottom: 8px;
+	           
+	        }
+}
+.mainFilter:hover {
+	background-color: #ffffff;
+}
+.mainFilter i {
+	position: absolute;
+	right: 15px;
+	font-size: 16px;
+	top:14px;
+	color:#8a8a8a;
+	 @include at-query ($max, $small) {
+		top:5px; 	 
+	}
+}
+.filterBox {
+	position: absolute;
+	height: auto;
+	top:100%;
+	left:-1px;
+	width: 75.5%;
+	
+	background-color: #ffffff;
+	border:1px solid #d3d3d3;
+	border-top:0px;
+	padding: 5px;
+	display: none;
+	 @include at-query ($max, $medium) {
+		 width: 85%;
+	}
+	 @include at-query ($max, $small) {
+		width: 100%; 
+		position: relative;
+		border: 0px;
+		padding-top: 10px;
+	}
+}
+.filterBox label {
+	display: block;
+	width:auto;
+	padding-left: 25px;
+	margin-bottom: 5px;
+	
+}
+.collectionShop {
+	display: block;
+	width: 60%;
+	font-size: 20px;
+	color: #ffffff;
+	margin: 0 auto;
+	margin-top: 15px;
+	line-height: 30px;
+	text-transform: uppercase;
+	border-radius: 15px 15px 15px 15px;
+	-moz-border-radius: 15px 15px 15px 15px;
+	-webkit-border-radius: 15px 15px 15px 15px;
+	border: 3px solid #eeeeee;
+	text-align: center;
+	background-color: rgba(0,0,0,0.3);
+}
+.viewBy {
+	display: inline-block;
+	cursor: pointer;
+	margin-left: 5px;
+	margin-right: 0px;
+	font-size: 14px;
+	border-right:1px solid #c7c7c7;
+	padding-left: 2px;
+	padding-right: 10px;
+	line-height: 18px;
+	font-weight: normal;
+	@include at-query ($max, $small) {
+	font-size: 12px;	
+	padding-left: 0px;
+	padding-right: 8px;
+	}
+}
+.viewBy.selected {
+	font-weight: bold;
+	color:#313131;
+}
 /*============================================================================
   #Site Nav and Dropdowns
 ==============================================================================*/
@@ -1948,7 +2229,7 @@ box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.2);
   width:100%;
   margin: 0 auto;
   position: fixed;
-  top:68px;
+  top:48px;
   left:0px;
   z-index: 15000;
   	-moz-transition: none !important;
@@ -3261,7 +3542,10 @@ ul.homeList {
     list-style-type: none;
     margin: 0 0 5px 0;
 }
-
+ul.homeList li {
+	display: inline-block;
+	width: 100%;
+}
 /* Full Section BGs */
 .genSection {
     padding: 40px 0;
@@ -3345,7 +3629,7 @@ button#AddToCart {
   margin-bottom: 1.5rem;
 }
 .banner-orange {
-	color: #f67e1b;
+	color: #F05A22;
 }
 .red-text {
 	color: #ee0000;
@@ -3368,7 +3652,7 @@ button#AddToCart {
 #instafeed img {
 	width: 49%;
 	float: left;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
 }
 
 .hideAll {
@@ -4362,6 +4646,8 @@ a.whiteLink {
 	font-size: 14px;
 	color: #a7a7a7;
 	line-height: 20px;
+	margin-top: 5px;
+	margin-bottom: 3px;
 	
 }
 #which-Grid b {
@@ -4372,12 +4658,95 @@ a.whiteLink {
 #which-Grid i {
 	margin-right: 10px;
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 25px;
 	text-align: left;
 	
 }
 #which-Grid i.selected {
 	color: #313131;
+}
+#viewType {
+	font-size: 12px;
+	color: #575757;
+	font-weight: bold;
+	line-height: 27px;
+}
+.filterSection {
+	font-size: 12px;
+	width: 100%;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 8px;
+}
+.filterSection h4 {
+	margin-top: 10px;
+	padding-bottom: 2px;
+}
+.filterSection label {
+	width: 49%;
+	display: inline-block;
+	margin-bottom: 2px;
+	display: none;
+}
+.filterSection input {
+	margin-right: 4px;
+}
+#seeFilters {
+	display: none;
+	width: 50%;
+	margin-left: 50%;
+	text-align: left;
+	cursor: pointer;
+	color: #333333;
+	text-align: right;
+}
+#selectedTags {
+	display: block;
+	font-size: 12px;
+	color: #575757;
+	font-weight: bold;
+	line-height: 20px;
+	@include at-query ($max, $small) {
+		margin-top: 5px;
+		padding-top: 5px;
+		border-top:1px solid #b5b5b5;	
+	}
+	
+	
+}
+.activeTag {
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	display: inline-block;
+	background-color: #313131;
+	
+	color: #ffffff;
+	text-align: center;
+	margin-left: 4px;
+	margin-right: 4px;
+	cursor: pointer;
+	font-size: 11px;
+	line-height: 22px;
+	font-weight: bold;
+	padding-left: 6px;
+	padding-right: 13px;
+	position: relative;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+.activeTag:hover {
+	background-color: #818181;
+}
+.activeTag i {
+	position: absolute;
+	right: 1px;
+	top:1px;
+	color: #ffffff;
+	font-size: 12px;
+}
+#moreThemes {
+	display: block;
 }
 .smaller {
 	font-size: 10px !important;
@@ -4416,6 +4785,16 @@ a.whiteLink {
 	}
 	
 }
+#instaLogo {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	width:10%;
+	
+}
+#instaLogo img {
+
+} 
 .selector-wrapper input {
 	display: inline-block;
 	margin-left: 5px;
@@ -4674,10 +5053,11 @@ a.redlink {
 	position:absolute; 
 	width: 40%; 
 	height:20px; 
-	left:30%;
-	bottom: -18px; 
-	text-align: center;
-	font-size: 12px;
+	right:0px;
+	bottom: -17px; 
+	text-align: right;
+	font-size: 10px;
+	font-weight: bold;
 }
 .madeHere {
 	position: absolute;
@@ -4702,24 +5082,24 @@ a.redlink {
 	}
 }
 #promoBar {
-	background-color: #1a63c6;
+	background-color: #424242;
 	color:#ffffff;
-	font-size: 16px;
+	font-size: 14px;
 	padding-left: 0px !important;
-	line-height: 40px;
+	line-height: 28px;
 	position: relative;
 	z-index: 1000;
 	display: none;
 
 	@include at-query ($max, $small) {
-		
-	font-size: 10px;
-	line-height: 16px;	
+	margin-top: 28px;	
+	font-size: 12px;
+	line-height: 18px;	
 	}
 	
 }
 #promoBar  a {
-	color: #fd9823;
+	color: #F05A22;
 
 }
 .hasPromo {
@@ -4811,13 +5191,23 @@ opacity: 0.5;
   opacity: 1;
   z-index: 100;
 }
+.feature-tiles {
+	margin-bottom: 15px;
+	@include at-query ($max, $small) {
+		padding-left: 0px !important;	
+	}
+}
+
 .feature-tiles a {
 	display: block;
 	position: relative;
 }
 .feature-tiles a:hover {
   img {
-  	opacity: 0.75;
+  	opacity: 0.55;
+  }
+  .overLink {
+	  opacity: 0.5;
   }	
 }
 .feature-tiles a:hover button {
@@ -4859,6 +5249,19 @@ opacity: 0.5;
 .lightBorder {
 	border: 1px solid #dfdfdf;
 	
+}
+.overLink {
+	position: absolute;
+	left:0px;
+	bottom:30px;
+	width: 100%;
+	text-align: center;
+	font-family: santelia;
+	text-transform: capitalize;
+	color: #ffffff;
+	font-size: 30px;
+	line-height: 40px;
+	background-color: rgba(0,0,0,0.4);
 } 
 .calloutLinks {
 	position: relative;
@@ -4873,7 +5276,7 @@ opacity: 0.5;
 		
 
 		.btn--secondary {
-			background-color: rgba(0,0,0,0.8);
+			background-color: rgba(0,0,0,0.9);
 			font-size: 18px;
 			min-width: 250px;
 			border: 3px solid #ffffff;
