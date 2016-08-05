@@ -6,8 +6,8 @@
 	  		
 	  		<i class="fa fa-chevron-down filterClick"></i>
 	  		<div class="filterBox filterClick">
-		  		<label for="Bright/Brave"><input id="Bright/Brave" name="Bright/Brave" value="Bright-Brave" type="checkbox" />Bright/Brave</label>
-				<label for="Dark/Spooky"><input id="Dark/Spooky" name="Dark/Spooky" value="Dark-Spooky" type="checkbox" />Dark/Spooky</label>
+		  		<label for="Bright/Brave"><input id="Bright/Brave" name="Bright/Brave" value="Bright-Brave" type="checkbox" />Bright & Brave</label>
+				<label for="Dark/Spooky"><input id="Dark/Spooky" name="Dark/Spooky" value="Dark-Spooky" type="checkbox" />Dark & Spooky</label>
 				<label for="Minimal"><input id="Minimal" name="Minimal" value="Minimal" type="checkbox" />Minimal</label>
 				<label for="Patterns"><input id="Patterns" name="Patterns" value="Patterns" type="checkbox" />Patterns</label>
 				<label for="Illustration"><input name="Illustration" id="Illustration" value="Illustration" type="checkbox" />Illustration</label>
@@ -57,15 +57,11 @@
 	  		<div class="filterBox filterClick">
 		  		<label for="NBA"><input name="NBA" id="NBA" value="NBA" type="checkbox" />NBA</label>
 				<label for="MLB"><input name="MLB" id="MLB" value="MLB" type="checkbox" />MLB</label>
-		  		<label for="Brand"><input name="Brand" id="Brand" value="brand" type="checkbox" />Brand</label>
-				<label for="Nonprofits"><input name="Nonprofits" id="Nonprofits" value="Nonprofits" type="checkbox" />Nonprofits</label> 
-				<label for="Artist"><input name="Artist" id="Artist" value="artist" type="checkbox" />Artist</label>
-				<label for="Musician"><input name="Musician" id="Musician" value="musician" type="checkbox" />Musician</label>
 				<label for="NHL"><input name="NHL" id="NHL" value="NHL" type="checkbox" />NHL</label>
-				<label for="MLS"><input name="MLS" id="MLS" value="MLS" type="checkbox" />MLS</label>
-				<label for="Garfield"><input name="Garfield" id="Garfield" value="Garfield" type="checkbox" />Garfield</label>
-				<label for="Popeye"><input name="Popeye" id="Popeye" value="Popeye" type="checkbox" />Popeye</label>
-				<label for="Betty Boop"><input name="Betty Boop" id="Betty Boop" value="Betty Boop" type="checkbox" />Betty Boop</label>
+		  		<label for="Brand"><input name="Brand" id="Brand" value="brand" type="checkbox" />Brands</label>
+				<label for="Nonprofits"><input name="Nonprofits" id="Nonprofits" value="Nonprofits" type="checkbox" />Nonprofits</label> 
+				<label for="Artist"><input name="Artist" id="Artist" value="artist" type="checkbox" />Artists</label>
+				<label for="Musician"><input name="Musician" id="Musician" value="musician" type="checkbox" />Musician</label>
 				<div class="one-whole text-right"><a href="/pages/more-collections" >See All Partners</a></div>
 	  		</div>
   		</div>
@@ -83,7 +79,7 @@
 	</div>
 	
 	<div id="viewType" class="one-whole">
-		Style:
+		Watch Style:
 	 	<div class="viewBy selected" data-tag="">All</div> 
 	 	<div class="viewBy" data-tag="SportWatch">Sport</div>
 	 	<div class="viewBy"data-tag="MetalWatch">Gunmetal</div>
@@ -166,7 +162,7 @@
 			  		$(this).prop('checked', true);
 			  		$(this).parent('label').css('display', 'block');
 			  		$('span#sFilters').show();
-			  		$('#selectedTags').append('<div class="activeTag">'+$(this).attr('name')+'<i class="fa fa-times-circle"></i></div>');
+			  		$('#selectedTags').append('<div class="activeTag">'+$(this).value()+'<i class="fa fa-times-circle"></i></div>');
 			  }
 		 }) 
 		 
@@ -209,7 +205,7 @@
 		 })	 
 		 
 		 $('#filterHolder label').click(function(){
-			 
+			 $(".filterBox").css('opacity', '0');
 			 loadTags();
 		})
 		 $('.viewBy').click(function(){
