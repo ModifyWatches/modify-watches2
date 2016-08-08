@@ -130,7 +130,7 @@
 		colTags = colTags.replace('WhiteHands', '');
 		colTags = colTags.replace('RedHands', '');
 		colTags = colTags.replace('BlueHands', '');
-		console.log(colTags);
+	//	console.log(colTags);
 		var myParam = location.search.split('arrange=')[1];
 		if(myParam) {
 			 $('#which-Grid i').removeClass('selected');
@@ -146,6 +146,7 @@
 		 
 		 $('#filterHolder input').each(function() {
 			 $(this).parent('label').css('display', 'none');
+			
 			 if (colTags.toLowerCase().indexOf($(this).val().toLowerCase()) >= 0 ) {
 			  		$(this).parent('label').css('display', 'block');
 			  }
@@ -167,6 +168,7 @@
 		 }) 
 		 
 		  $('.viewBy').each(function() {
+			 
 			  if (urlTags.toLowerCase().indexOf($(this).attr('data-tag').toLowerCase()) >= 0 ) {
 			  		$('.viewBy').removeClass('selected');
 			  		$(this).addClass('selected');
@@ -183,6 +185,7 @@
 		 
 		 //var myParam = location.search.split('arrange=')[1] ? location.search.split('arrange=')[1] : 'small--one-half';
 		 $('#which-Grid i').click(function() {
+			 analytics.track('Clicked '+$(this).attr('data-arrange')+' View');
 			 rearrange($(this).attr('data-arrange'));
 			 $('#which-Grid i').removeClass('selected');
 			 $(this).addClass('selected');
@@ -205,10 +208,12 @@
 		 })	 
 		 
 		 $('#filterHolder label').click(function(){
+			  analytics.track('Clicked '+$(this).attr('name')+' Filter');
 			 $(".filterBox").css('opacity', '0');
 			 loadTags();
 		})
 		 $('.viewBy').click(function(){
+			  analytics.track('Clicked '+$(this).attr('data-tag')+' View');
 			 $('.viewBy').removeClass('selected');
 			 $(this).addClass('selected');
 			 loadTags();
@@ -228,7 +233,7 @@
 		     allVals = allVals.substring(0,allVals.length - 1);
 		     
 		    // allVals = allVals.slice(0,-1)
-		     console.log(allVals);
+		   //  console.log(allVals);
 		     window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', allVals);
 		 }
 		 
