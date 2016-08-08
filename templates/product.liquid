@@ -174,7 +174,7 @@
           ID addToCartForm is a selector for the ajax cart plugin
         {% endcomment %}
         
-        <div class="show">
+        <div class="show small--text-center">
 	        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
 	        	
 	          <span id="ProductPrice" class="h3" itemprop="price" style="opacity: 0;">
@@ -189,7 +189,21 @@
 				 </span>
 				{% endif %}
         </div>
-          <div class="small-margin">Choose Your Strap:<br>
+        <div class="hide small--show">
+	        {% if product.type == 'Alloy watch' %}
+			<button type="submit" name="add" id="AddToCart" class="btn">
+            <span id="AddToCartTexts"> Pre-order: ships Aug 24 </span>
+          </button>			
+		{% else %}		
+		
+          <button type="submit" name="add" id="AddToCart" class="btn">
+
+            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+          </button>
+          {% endif %}
+        </div>
+        
+          <div class="small-margin"><b>Switch Your Strap:</b><br>
          {% if munged %}	
          	{% include 'variant-munger' %}		  				
 		 {% else %}	
@@ -212,7 +226,7 @@
 				{% endif %}
         </div>
 
-		
+		<div class="show small--hide">
 		{% if product.type == 'Alloy watch' %}
 			<button type="submit" name="add" id="AddToCart" class="btn">
             <span id="AddToCartTexts"> Pre-order: ships Aug 24 </span>
@@ -227,6 +241,7 @@
           {% if product.type == 'Alloy watch' %}
 			  {% include 'presale' %}
 		{% endif %} 
+		</div>
           <div style="clear: both"></div>
        
 
