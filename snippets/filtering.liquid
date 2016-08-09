@@ -208,7 +208,7 @@
 		 })	 
 		 
 		 $('#filterHolder label').click(function(){
-			  analytics.track('Clicked '+$(this).attr('name')+' Filter');
+			  analytics.track('Clicked '+$(this).attr('for')+' Filter');
 			 $(".filterBox").css('opacity', '0');
 			 loadTags();
 		})
