@@ -37,19 +37,7 @@
   {% include 'oldIE-js' %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' | script_tag }}
-  {{ 'modernizr.min.js' | asset_url | script_tag }}
-  {{ 'jquery-ui.min.js' | asset_url | script_tag }}
-  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
-  {{ 'jquery.zoomooz.min.js' | asset_url | script_tag }}
-  {% include 'sca-quick-view-init' %} 
-
-  {% comment %}
-    If you store has customer accounts disabled, you can remove the following JS file
-  {% endcomment %}
-  {% if template contains 'customers' %}
-    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-  {% endif %}
-
+  
   <!-- Header hook for Analytics ================================================== -->
     <meta name="google-site-verification" content="EwIwa-8YQrdrdsQ9UnBWyfQfadFcpoHEceGhQyVmS9k" />
     <meta name="google-site-verification" content="5MGhNKO8NRhrY0T5ZD5gJDSpCpqKXZJkFKGcsgEroHA" />
@@ -601,6 +589,17 @@
 {% endcomment %}
 
 {% include 'sca-quick-view-template' %} 
+{{ 'modernizr.min.js' | asset_url | script_tag }}
+  {{ 'jquery-ui.min.js' | asset_url | script_tag }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  {% include 'sca-quick-view-init' %} 
+
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
 
 
 <!-- AddShoppers Tracking Code Start -->
