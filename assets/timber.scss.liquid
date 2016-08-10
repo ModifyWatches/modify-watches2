@@ -3498,7 +3498,7 @@ i.check-icon {
 hr.orangeDash {
     clear: both;
     border-top: solid #e4572e;
-    border-width: 3px 0 0;
+    border-width: 2px 0 0;
     margin: 10px 0;
     height: 0;
     width: 60px;
@@ -4666,10 +4666,16 @@ a.whiteLink {
 	color: #313131;
 }
 #viewType {
-	font-size: 12px;
+	font-size: 14px;
 	color: #575757;
 	font-weight: bold;
 	line-height: 27px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #d6d6d6;
+	@include at-query ($max, $small) {
+		font-size: 12px;
+		border-bottom: 0px;
+	}
 }
 .filterSection {
 	font-size: 12px;
@@ -5083,6 +5089,34 @@ a.redlink {
 		width: 60%;	
 	}
 }
+.bannerImage {
+	position: relative;
+}
+#madeinsf {
+	position: absolute;
+	right: 0px;
+	bottom: 1px;
+	width: 15%;
+	text-align: right;
+	padding: 0px;
+	margin: 0px;
+	height: auto;
+	line-height: 0px;
+	@include at-query ($max, $medium) {
+		width:20%;
+	}
+	@include at-query ($max, $small) {
+		width: 30%;	
+	}
+}
+#madeinsf img {
+	width: 100%;
+	height: auto;
+	line-height: 0px;
+	
+}
+
+
 #promoBar {
 	background-color: #424242;
 	color:#ffffff;
