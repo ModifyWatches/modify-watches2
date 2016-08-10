@@ -1,0 +1,131 @@
+
+
+<div class="filterSection one-whole">
+	<div id="which-Grid" class="hide small--show"><b>View:</b>
+		<i class="fa fa-th-large selected" data-arrange="grid"><span class="smaller"> Grid</i>
+		<i class="fa fa-square" data-arrange="single"><span class="smaller"> Single</span></i>
+		<div style="clear:both"></div>
+	</div>
+	
+	<div id="viewType" class="one-whole">
+		Change Watch Style:
+	 	<div class="viewBy selected" data-tag="">All</div> 
+	 	<div class="viewBy" data-tag="SportWatch">Sport</div>
+	 	<div class="viewBy"data-tag="MetalWatch" >Gunmetal</div>
+	 	<div class="viewBy"data-tag="SSWatch" style="border:0px">Stainless Steel</div>
+	 	
+	</div>
+	<div id="selectedTags" class="one-whole"><span id="sFilters" style="display:none">Selected filters:</span></div>
+<div style="clear: both"></div>
+</div>
+
+</main>
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  var sortable ='';
+  var collFilters = jQuery('.coll-filter');
+  
+    
+	$('document').ready(function() {
+		var allVals;
+		var urlTags ='{{current_tags}}';
+		var viewBy;
+		var currentTag = '{{current_tags.first}}';
+		var colTags = "{{collection.tags}}";
+		colTags = colTags.replace('BlackHands', '');
+		colTags = colTags.replace('WhiteHands', '');
+		colTags = colTags.replace('RedHands', '');
+		colTags = colTags.replace('BlueHands', '');
+	//	console.log(colTags);
+		var myParam = location.search.split('arrange=')[1];
+		if(myParam) {
+			 $('#which-Grid i').removeClass('selected');
+			 $('#which-Grid i[data-arrange="'+myParam+'"]').addClass('selected');
+			
+			 if(myParam=='single') {
+				 rearrange(myParam);
+				
+			 }
+			 
+			 
+		 }
+		 		 
+		  $('.viewBy').each(function() {
+			 
+			  if (urlTags.toLowerCase().indexOf($(this).attr('data-tag').toLowerCase()) >= 0 ) {
+			  		$('.viewBy').removeClass('selected');
+			  		$(this).addClass('selected');
+			  }
+
+		  })
+		 $('.activeTag').click(function() {
+			 theTag = $(this).text();
+			 
+			 $('#filterHolder  :checkbox[value='+theTag+']').attr('checked', false);
+			 loadTags();
+		 })
+		 
+		 
+		 //var myParam = location.search.split('arrange=')[1] ? location.search.split('arrange=')[1] : 'small--one-half';
+		 $('#which-Grid i').click(function() {
+			 analytics.track('Clicked '+$(this).attr('data-arrange')+' View');
+			 rearrange($(this).attr('data-arrange'));
+			 $('#which-Grid i').removeClass('selected');
+			 $(this).addClass('selected');
+		 })
+		 
+		 
+		 function rearrange(val) {
+			 sortable= val;
+			 if(val=='single') {
+				 $('.collection-matrix li').attr('class','grid__item large--one-quarter medium--one-third small--one-whole theProducts');
+				
+			 }else {
+				 $('.collection-matrix li').attr('class','grid__item large--one-quarter medium--one-third small--one-half theProducts');
+				 
+			 }
+		 } 
+		 
+		 $('.viewBy').click(function(){
+			  analytics.track('Clicked '+$(this).attr('data-tag')+' View');
+			 $('.viewBy').removeClass('selected');
+			 $(this).addClass('selected');
+			 loadTags();
+		})
+		function loadTags() {	 
+			 if($('#viewType .selected').attr('data-tag') !=='') {
+			 	viewBy =$('#viewType .selected').attr('data-tag')+'+'
+			 }else {
+				viewBy =''; 
+			 }
+			 allVals = '';
+		    
+		     allVals = allVals+viewBy;
+		     allVals = allVals.substring(0,allVals.length - 1);
+		     
+		    // allVals = allVals.slice(0,-1)
+		   //  console.log(allVals);
+		     window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', allVals);
+		 }
+		 
+		 
+ 	})
+
+
+Shopify.queryParams = {};
+if (location.search.length) {
+  for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+    aKeyValue = aCouples[i].split('=');
+    if (aKeyValue.length > 1) {
+      Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+    }
+  }
+}
+jQuery('#sort-by')
+  .val('{{ collection.sort_by | default: collection.default_sort_by | escape }}')
+  .bind('change', function() {
+    Shopify.queryParams.sort_by = jQuery(this).val();
+    location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
+  });
+</script>
