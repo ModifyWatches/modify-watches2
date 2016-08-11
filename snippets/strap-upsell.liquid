@@ -38,7 +38,7 @@
 					{% endif %}	
 					<a href="#" class="addOneStrap" data-id="{{ variant.id }}">	
 							<div class="tooltop"><span class="orange-text">{{variant.price | money}}</span><br><span class="plusAdd">+</span></div>			<div class="strapTip">{{ colorType }}</div>
-							<img src="{{ product.images[0] | img_url: 'medium' }}" />
+							<img src="{{ product.images[0] | img_url: 'small' }}" />
 					</a>
 					</div>
 			{% endif %}
