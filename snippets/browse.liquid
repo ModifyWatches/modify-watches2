@@ -72,10 +72,13 @@
 		})
 		$('.filterFrame label').click(function(){
 			analytics.track('Clicked '+$('input',this).attr('name')+' Filter');
-			if($('input',this).attr('name') !="the best sellers") {
-		     	window.location.href ='/collections/filters/'+$('input',this).val();
+			if($('input',this).attr('name') =="the best sellers") {
+				 window.location.href ='/collections/the-best-sellers/';
+		     	
+		     }else if ($('input',this).attr('name') =="Bright/Brave") {
+		     	 window.location.href ='/collections/bright-and-brave/';
 		     }else {
-			    window.location.href ='/collections/the-best-sellers/'; 
+			    window.location.href ='/collections/filters/'+$('input',this).val();
 		     }	
 		     $(".filterBox").css('opacity', '0');
 		     
