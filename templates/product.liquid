@@ -310,7 +310,7 @@
 	   		<h3>More designs by {{ product.vendor }}</h3>
 	   
 	   			{% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
-			{% paginate collections[collab].products by 12 %}
+			{% paginate collections[collab].products by 4 %}
 				<ul class="collection-matrix big-padding">
 				 {% for product in collections[collab].products %}
 				 	 {% if product.type !='Art' %}
@@ -321,10 +321,7 @@
 				 {% endfor %}
 				  <div style="clear: both"></div>
 				     
-				 {% if paginate.next %}
-				  <li class="more"> <a class="btn--secondary" href="{{ paginate.next.url }}">See More</a></li>        
-				 {% endif %}
-				 <div style="clear: both"></div>
+								 <div style="clear: both"></div>
 				</ul>
 				
 				<div id="product-list-foot"></div>
