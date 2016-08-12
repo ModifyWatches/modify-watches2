@@ -315,11 +315,11 @@
 			{% paginate collections[collab].products by 4 %}
 				<ul class="collection-matrix big-padding">
 				 {% for product in collections[collab].products %}
-				 	 {% if product.type !='Art' %}
+				 	
 				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }}">
-				  {% include 'product-grid-item' %}
+				  {% include 'product-grid-item-small' %}
 				 </li> 
-				 	{% endif %}
+				 	
 				 {% endfor %}
 				  <div style="clear: both"></div>
 				     
@@ -356,9 +356,6 @@
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 
 <!-- IS+ Product Recommendation Widget START -->
-<div title="Recommended Products" sources="related_purchase,related_cart,related_views,similar_products" layout="horizontal" max_suggest="4" id="isp-related-widget-1"></div>
-<div title="People Who Purchased This Also Purchased" sources="related_purchase,related_cart" layout="horizontal" max_suggest="5" id="isp-related-widget-3"></div>
-<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.7&UUID=e281201f-5bfe-420c-9ede-d9be0c42da18&store=3589733"></script>
 <!-- IS+ Product Recommendation Widget END -->
 						
     </div>
