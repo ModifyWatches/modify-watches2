@@ -1,8 +1,26 @@
 <!-- /templates/list-collections.liquid -->
 {% include 'browse' %}
 	 <section class="one-whole text-center" id="productCallouts">
-
-
+	 <div class="one-whole">
+		     	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
+			 		
+				<ul class="collection-matrix">
+				 {% for product in collections[instantcart].products  %}
+ 				 	 
+				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
+				  {% include 'product-grid-item' %}				  
+				 </li>  	
+				 	
+				 {% endfor %}
+				  <div style="clear: both"></div>
+				      
+							
+				</ul>
+				
+				<div id="product-list-foot"></div>
+			{
+	 </div>
+	 
 	 	<div class="grid__item one-third small--one-whole feature-tiles ">
 			 <a href="/collections/the-best-sellers/" title="Best Sellers" class="calloutLinks">
 				 
@@ -12,6 +30,15 @@
 			 </a>			
 			 
 		</div>
+		<div class="grid__item one-third small--one-whole feature-tiles">
+			 <a href="/collections/end-of-season-sale" title="sale Watches" class="calloutLinks">
+			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/sale-box.jpg?10571429147914071771" alt="end of the season watches"/>
+			 <div class="buttonFrame"><button class="btn--secondary">End of the season sale</button></div>
+			
+			 </a>			
+			
+		</div>
+
 		<div class="grid__item one-third small--one-whole feature-tiles">
 			 <a href="/collections/filters/Bright-Brave" title="Bright Watches" class="calloutLinks">
 			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/brightGrid.jpg?12295946541253090737" alt="bright watches" />
@@ -36,15 +63,7 @@
 			 </a>
 			
 		</div>
-		<div class="grid__item one-third small--one-whole feature-tiles">
-			 <a href="/collections/end-of-season-sale" title="sale Watches" class="calloutLinks">
-			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/sale-box.jpg?10571429147914071771" alt="end of the season watches"/>
-			 <div class="buttonFrame"><button class="btn--secondary">End of the season sale</button></div>
-			
-			 </a>			
-			
-		</div>
-
+		
 		<div class="grid__item one-third small--one-whole feature-tiles">
 			 <a href="/collections/stainless-steel/" title="stainless watches" class="calloutLinks">
 			<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/stainlessGrid.jpg?5778314891586021437" alt="stainless watches"/>
