@@ -1,25 +1,7 @@
 <!-- /templates/list-collections.liquid -->
 {% include 'browse' %}
 	 <section class="one-whole text-center" id="productCallouts">
-	 <div class="one-whole">
-		     	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
-			 		
-				<ul class="collection-matrix">
-				 {% for product in collections[instantcart].products  %}
- 				 	 
-				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
-				  {% include 'product-grid-item' %}				  
-				 </li>  	
-				 	
-				 {% endfor %}
-				  <div style="clear: both"></div>
-				      
-							
-				</ul>
-				
-				<div id="product-list-foot"></div>
-			{
-	 </div>
+
 	 
 	 	<div class="grid__item one-third small--one-whole feature-tiles ">
 			 <a href="/collections/the-best-sellers/" title="Best Sellers" class="calloutLinks">
