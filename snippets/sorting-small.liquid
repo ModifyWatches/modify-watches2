@@ -103,7 +103,10 @@
 		    
 		     allVals = allVals+viewBy;
 		     allVals = allVals.substring(0,allVals.length - 1);
-		     
+		     Lname = $(this).attr('data-link');
+				analytics.track('Clicked style sorting', {
+			      Name: viewBy
+			    });
 		    // allVals = allVals.slice(0,-1)
 		   //  console.log(allVals);
 		     window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', allVals);
