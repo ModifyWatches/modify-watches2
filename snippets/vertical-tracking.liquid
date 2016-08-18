@@ -27,3 +27,19 @@
         {% assign vertical = 'influencer' %}
     {% endif %}
 {% endfor %}
+
+<script>
+	
+	
+	 $(document).ready(function () {
+		$('.productsGrid').click(function() {
+			Lname = $(this).attr('data-product');
+			analytics.track('Clicked product Grid', {
+		      Name: Lname
+		    });
+
+		})
+		
+	});
+	
+</script>
