@@ -358,4 +358,13 @@
 		
 <script type="text/javascript">
   analytics.page('custom');
+  
+  $('a.calloutLinks').click(function() {
+			Lname = $(this).attr('title');
+			analytics.track('Clicked custom watch', {
+		      Name: Lname
+		    });
+
+		})
+
 </script>		
