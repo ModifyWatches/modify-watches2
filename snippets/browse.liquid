@@ -71,7 +71,11 @@
 			$('.filterBox',this).fadeToggle(300);	
 		})
 		$('.filterFrame label').click(function(){
-			analytics.track('Clicked '+$('input',this).attr('name')+' Filter');
+			Lname = $('input',this).attr('name');
+			analytics.track('Clicked collection Filter', {
+		      Name: Lname
+		    });
+
 			if($('input',this).attr('name') =="the best sellers") {
 				 window.location.href ='/collections/the-best-sellers/';
 		     	
@@ -99,7 +103,10 @@
 		 
 		 	
 		$(".feature-tiles a").click(function(){
-	    	analytics.track('Clicked '+$(this).attr('title')+' Callout');
+			Lname = $(this).attr('title');
+	    	analytics.track('Clicked collections Callout', {
+		      Name: Lname
+		    });
 		});
 		
 	
