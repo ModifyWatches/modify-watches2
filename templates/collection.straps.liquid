@@ -13,6 +13,10 @@
 {% comment %}
   Use .grid--rev so that the collection tags appear below the products on mobile
 {% endcomment %}
+{% assign prefix = collection.handle | prepend: '' %}
+
+{% assign collection_banner = prefix | append: '_banner.jpg' | asset_url %}
+{% assign collection_banner_mobile = prefix | append: '_mobile_banner.jpg' | asset_url %}
 </main>
 <div class="expandedWidth newCollectionBanner" style="line-height: 0px !important">
 	<div class="bannerImage">
