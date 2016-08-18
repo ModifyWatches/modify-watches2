@@ -50,10 +50,7 @@
 <script>
 	$(document).ready(function() {
 	$('.addOneStrap').click(function(event){
-	analytics.track('added upsell strap', {
-		   Name: $(this).attr('data-color')
-	});
-	
+	analytics.track('added upsell strap');
 	analytics.track('Added Product to Cart');
 	  Shopify.queue = [];
 	   Shopify.queue.push({
