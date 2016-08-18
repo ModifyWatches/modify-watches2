@@ -2,7 +2,7 @@
 </main>
   <section class="section-container wrapper medium-margin feature-header">
      <div class="left one-half small--one-whole bigCallout">
-	     <a href="/collections">
+	     <a href="/collections" title="browse our watches">
 		      <div class="hoverOver">
 			     <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/browse.png?18032034721448327452" alt="browse watches"/>
 			     <br>OUR WATCHES
@@ -11,7 +11,7 @@
 	     </a>
      </div>
       <div class="left one-half small--one-whole bigCallout">
-	     <a href="/custom">
+	     <a href="/custom" title ="custom watches">
 		     <div class="hoverOver">
 			     <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/design.png?18032034721448327452" alt="design your own"/>
 			     <br>YOUR OWN
@@ -63,7 +63,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("a.calloutLinks").click(function(){
-	    	analytics.track('Clicked '+$(this).attr('title')+' Home Callout');
+			 Lname = $(this).attr('title');
+	    	analytics.track('Clicked Home Callout', {
+		      Name: Lname
+		    });
+
 		});
 	
 	

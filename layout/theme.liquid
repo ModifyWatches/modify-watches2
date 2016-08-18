@@ -256,7 +256,7 @@
   </div>
   
    <div id="promoBar" class="grid__item one-whole text-center">
-      	 <b>Today Only!</b> 30% off the entire website. Use the code "<b>weekend30</b>" at checkout 		      	
+      	 <b>Today Only!</b> 30% off the entire website. Use the code "<b>USA</b>" at checkout 		      	
     </div>
    
       <header class="site-header fullSize" role="banner">
@@ -288,7 +288,7 @@
 			   	<h1 class="site-header__logo large--left medium--left one-half hamburger" itemscope itemtype="http://schema.org/Organization">
            		
 	              {% if settings.logo_use_image %}
-	                <a href="/" itemprop="url" class="site-header__logo-link">
+	                <a href="/" itemprop="url" class="site-header__logo-link" data-link="home">
 	                  <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
 	                </a>
 	              {% else %}
@@ -299,12 +299,12 @@
           	</div>
 	        <div class="grid__item large--one-half medium--one-half small--one-whole text-center">	
 				<div id=""class="left one-half text-right sellStore">
-					<a href="/collections" class="right ssR">
+					<a href="/collections" class="right ssR" data-link="browse">
 						<h4>BROWSE OUR WATCHES</h4>
 	                </a>
 			    </div>
 			    <div class="left  one-half text-left  sellStore">
-					<a href="/custom" class="left ssL">
+					<a href="/custom" class="left ssL" data-link="custom">
 						<h4>DESIGN YOUR OWN</h4>
 					</a>
 			    </div>
@@ -337,7 +337,7 @@
             {% endif %}
             
 		           
-			<a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon">
+			<a href="/cart" class="site-header__cart-toggle js-drawer-open-right right" aria-controls="CartDrawer" aria-expanded="false" id="cartIcon" data-link="cart">
 				 <img src="{{ 'cart.png' | asset_url }}" aria-hidden="true" height="22" alt="cart icon"/>
 				 {% if cart.item_count > 0 %}
 				 <span id="CartCount">{{ cart.item_count }}</span>
@@ -577,10 +577,14 @@
  <script>
 	 $(document).ready(function () {
 		attachClickEvent();
+		$('.site-header a').click(function() {
+			Lname = $(this).attr('data-link');
+			analytics.track('Clicked Navigation', {
+		      Name: Lname
+		    });
+
+		})
 		
-		$("#movingsalePromo").click(function(){
-	    	analytics.track('Clicked Moving golden state Promo');
-		});
 	});
 </script> 
 <!-- INCLUDE EMAIL FOOTER POPUP -->
