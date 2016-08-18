@@ -138,7 +138,10 @@ function checkVisible(Scolor, Ssize) {
 			 
 			  $('.ImageOverlay').show();
 			  mainType = 'munged';
-			  analytics.track('changed strap color');
+			  analytics.track('changed strap color', {
+		      Name: theColor
+		    });
+
 		  }
 		  
 	}
@@ -202,6 +205,7 @@ function checkVisible(Scolor, Ssize) {
    $('.product-single__thumbnail').click(function (e) {
 	    currentImage =  $('#ProductPhotoImg').attr('src');
 	    mainType = 'alternate';
+	    analytics.track('viewed alternate images');
 	    e.preventDefault();
    })
   jQuery(function($) {
