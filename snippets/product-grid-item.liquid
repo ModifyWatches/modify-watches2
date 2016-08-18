@@ -38,7 +38,7 @@
   {% assign sold_out = false %}
 {% endif %}
 
-<div class="productsGrid">
+<div class="productsGrid" data-product="{{product.title}}">
 
   {% comment %}
     Link to your product with the 'within: collection' filter for the link to be aware of the collection.
@@ -95,3 +95,15 @@
 	   	</div>
 	<div style="clear:both"></div>
 </div>
+ <script>
+	 $(document).ready(function () {
+		$('.productsGrid').click(function() {
+			Lname = $(this).attr('data-product');
+			analytics.track('Clicked product Grid', {
+		      Name: Lname
+		    });
+
+		})
+		
+	});
+</script> 
