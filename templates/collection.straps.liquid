@@ -49,7 +49,7 @@
       Different markup if a collection description exists
     {% endcomment %}
     {% if collection.description != blank %}
-      <header class="section-header">
+      <header class="section-header hide">
         <h1 class="section-header__title">{{ collection.title }}</h1>
         <div class="rte rte--header">
           {{ collection.description }}
@@ -58,7 +58,7 @@
       <hr>
       
     {% else %}
-      <header class="section-header">
+      <header class="section-header hide">
         <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
         
       </header>
