@@ -8,11 +8,34 @@
 
 {% paginate collection.products by 82 %}
 
-{% include 'breadcrumb' %}
+
 
 {% comment %}
   Use .grid--rev so that the collection tags appear below the products on mobile
 {% endcomment %}
+</main>
+<div class="expandedWidth newCollectionBanner" style="line-height: 0px !important">
+	<div class="bannerImage">
+		<img src="{{ collection_banner }}" class="show small--hide"/>
+		<img src="{{ collection_banner_mobile }}" class="hide small--show"/>
+		<div id="madeinsf" class="hide">
+			<img src="{{ 'madeinsfwhite.png' | asset_url}}" />
+		</div>
+	</div>
+	
+ 	<div class="one-whole text-center medium-padding hide">
+	 	
+	 	<h1 class="small--text-center">{{ collection.title }}</h1>
+	 	<p class="super-small text-center"> {{ collection.description }}</p>	 	
+	 	 <hr class="orangeDash-center"/>
+	 	<div style="clear:both"></div>
+	</div>
+</div>
+
+	</div>
+	<div style="clear:both"></div>
+</div>
+
 <div class="grid--rev">
 
   
