@@ -190,9 +190,13 @@
 				{% endif %}
         </div>
         <div class="hide small--show">
+	        
 	        {% if product.type == 'Alloy watch' %}
 			<button type="submit" name="add" id="AddToCart" class="btn">
+			{% comment %}
             <span id="AddToCartTexts"> Pre-order: ships Aug 24 </span>
+            {% endcomment %}
+             <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
           </button>			
 		{% else %}		
 		
