@@ -10,6 +10,7 @@
 {% endcomment %}
 
 {% assign collab = product.vendor | handleize %}
+
 {% assign artwork = product.title %}
 {% assign hasSizes = false %}
 {% assign productType = product.type %}
@@ -102,7 +103,7 @@
   <div class="grid product-single">
 	  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical small-margin">
     <div class="grid__item large--seven-twelfths  medium--seven-twelfths large--one-whole text-center" id="zoomFrame">
-			 <div class="grid__item hide one-whole small--show">
+			 <div class="grid__item hide one-whole small--hide">
 		 {% include 'product-alternative-views-new' %}
 		
 	 </div>
@@ -151,7 +152,7 @@
       {% endif %}
 	  {% endcomment %}
 
-       <div class="grid__item one-eighth left small--hide">
+       <div class="grid__item one-eighth left small--one-whole">
 		 {% include 'product-alternative-views-new' %}
 	 </div>
 
@@ -177,8 +178,8 @@
         <div class="show small--text-center">
 	        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
 	        	
-	          <span id="ProductPrice" class="h3" itemprop="price" style="opacity: 0;">
-				{{ product.price | money }}
+	          <span id="ProductPrice" class="h3" itemprop="price" {% if collab == 'today-show' %} {% else %} style="opacity: 0;" {% endif %} >
+				{{ product.price | money }} 
 				
 	          </span>
 	          
@@ -189,28 +190,27 @@
 				 </span>
 				{% endif %}
         </div>
-        <div class="hide small--show">
+        <div class="hide small--show mobileAlways" >
 	        
-	        {% if product.type == 'Alloy watch' %}
-			<button type="submit" name="add" id="AddToCart" class="btn">             
-			<span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-          </button>			
-		{% else %}		
-		
+	     		
           <button type="submit" name="add" id="AddToCart" class="btn">
 
             <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
           </button>
-          {% endif %}
-        </div>
         
+        </div>
+        {% if collab == 'today-show' %}
+        	{% include 'ts-munger' %}
+        {% else %}
           <div class="small-margin"><b>Switch Your Strap:</b><br>
          {% if munged %}	
          	{% include 'variant-munger' %}		  				
 		 {% else %}	
 			{% include 'oldschool-munger' %}	
 		{% endif %}	
-          </div>		
+          </div>
+          
+        {% endif %}  		
 		  <div style="clear:both"></div>
 		 
             <div class="hide">
@@ -227,21 +227,14 @@
 				{% endif %}
         </div>
 
-		<div class="show small--hide">
-		{% if product.type == 'Alloy watch' %}
-			<button type="submit" name="add" id="AddToCart" class="btn">
-             <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>          
-             </button>			
-		{% else %}		
+		<div class="show small--hide">	
 		
           <button type="submit" name="add" id="AddToCart" class="btn">
 
             <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
           </button>
-          {% endif %}
-          {% if product.type == 'Alloy watch' %}
-			  {% include 'presale' %}
-		{% endif %} 
+        
+
 		</div>
           <div style="clear: both"></div>
        
@@ -304,7 +297,10 @@
 
 {% include 'product-info-general' %}
 <div style="clear:both"></div>
- {% include 'strap-upsell' %}
+ {% if collab == 'today-show' %}
+{% else %}
+	{% include 'strap-upsell' %}
+{% endif %}
  </div>
   
 </div>

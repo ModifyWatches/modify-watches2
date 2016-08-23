@@ -1,0 +1,85 @@
+<label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}
+		  	<input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector"></label>
+		  	 <select name="id" id="productSelect" class="product-single__variants hide">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                {% comment %}
+                  Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+                {% endcomment %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+<script>
+	$(document).ready(function() {
+	
+   $('.product-single__thumbnail').click(function (e) {
+	  $('#wHands').hide();
+	    currentImage =  $('#ProductPhotoImg').attr('src');
+	    mainType = 'alternate';
+	    analytics.track('Clicked alternate image');
+	    e.preventDefault();
+	     path = $(this).attr('href');
+	    $('#ProductPhotoImg').attr('src',path );
+   })
+
+	
+	$('#AddToCartForm').submit(function(event){
+	  Shopify.queue = [];
+	   Shopify.queue.push({
+			 variant_id: $('#productSelect').val(),
+			 quantity: $('#Quantity').val()
+    	});
+
+	  event.preventDefault();
+	  Shopify.moveAlong();
+	  
+	});
+	Shopify.moveAlong = function() {
+	  // If we still have requests in the queue, let's process the next one.
+	  if (Shopify.queue.length) {
+	    var request = Shopify.queue.shift();
+	    Shopify.addItem(request.variant_id, request.quantity, Shopify.moveAlong);
+	  }
+	  // If the queue is empty, we will redirect to the cart page.
+	  else {
+	    // update cart value
+	    shopifyUpdateCart();
+	    analytics.track('Added Product to Cart');
+	  //  blink('.header .cart');
+	 //   addedButtonFeedback();
+	  }
+	};
+
+	
+	
+	
+	function shopifyUpdateCart() {
+	  	Shopify.getCart(function(data){
+		    count = data.item_count;
+		    cart_el = '<span id="CartCount">' + count + '</span>';
+		    cart_count = $('span#CartCount');
+			//console.log(cart_count.text());
+		    // if cart count doesn't exist then add it
+		    if (cart_count.length == 0) {
+		      $('a#cartIcon').append(cart_el);
+		    }else{
+		      cart_count.text("").text(count);
+			}
+			$('span#CartCount').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+			$('#cartAlert').slideDown(200).delay(2000).slideUp(200);
+	   })
+	  
+	   	
+	}		
+
+	
+	
+	
+})
+</script>
