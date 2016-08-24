@@ -202,7 +202,10 @@ function checkVisible() {
 		  $('.watchArt').show();
 	  		$('#wHands').show();
 	  		$('.backplate').removeClass('fauxHidden');
-	  		analytics.track('changed strap color');
+	  		 analytics.track('changed strap color', {
+		      Name: theColor
+		    });
+
 
  
 	  
@@ -238,6 +241,10 @@ function checkVisible() {
   })
    $('.product-single__thumbnail').click(function () {
 	    currentImage =  $('#ProductPhotoImg').attr('src');
+	    analytics.track('Clicked alternate image', 
+	    {Name: $(this).attr('data-title')
+		    
+	    });
 	    mainType = 'alternate';
    })
   jQuery(function($) {

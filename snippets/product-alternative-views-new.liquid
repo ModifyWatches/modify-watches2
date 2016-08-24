@@ -6,28 +6,28 @@
     <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
         
         <li class="one-whole small--one-fifth small--left">
-            <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail">
+            <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail" data-title="munged watch">
                 <img src="{{ product_preview | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
         <li class="one-whole small--one-fifth small--left">
-            <a href="{{ 'MetalAltAngle_Side.jpg' | asset_url }}" class="product-single__thumbnail">
+            <a href="{{ 'MetalAltAngle_Side.jpg' | asset_url }}" class="product-single__thumbnail" data-title="side view">
                 <img src="{{ 'MetalAltAngle_SideThumb.jpg' | asset_url }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="{{ 'MetalAltAngle_Angle.jpg' | asset_url }}" class="product-single__thumbnail">
+            <a href="{{ 'MetalAltAngle_Angle.jpg' | asset_url }}" class="product-single__thumbnail" data-title="angle view">
                 <img src="{{ 'MetalAltAngle_AngleThumb.jpg' | asset_url }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
           <li class="one-whole small--one-fifth small--left">
-            <a href="{{ product_art | img_url: 'grande' }}" class="product-single__thumbnail">
+            <a href="{{ product_art | img_url: 'grande' }}" class="product-single__thumbnail" data-title="watch art">
                 <img src="{{ product_art | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharms_57beda83-783d-4369-ba5c-6ce748b8428f.jpg?18369852424327589247" class="product-single__thumbnail">
-                <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharmThumb.jpg?15179717835001878061" alt="{{ image.alt | escape }}"><br><b>sizing</b>
+            <a href="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharms_57beda83-783d-4369-ba5c-6ce748b8428f.jpg?18369852424327589247" class="product-single__thumbnail" data-title="sizing">
+                <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharmThumb.jpg?15179717835001878061" alt="{{ image.alt | escape }}"><span class="small--hide"><br><b>sizing</b></span>
             </a>
         </li>
     </ul>
@@ -36,29 +36,29 @@
     <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
         
         <li class="one-whole small--one-fifth small--left">
-            <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail">
+            <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail" data-title="munged watch">
                 <img src="{{ product_preview | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
         <li class="one-whole small--one-fifth small--left">
-            <a href="{{ 'StainlessSteelAltAngle_Side.jpg' | file_url }}" class="product-single__thumbnail">
+            <a href="{{ 'StainlessSteelAltAngle_Side.jpg' | file_url }}" class="product-single__thumbnail" data-title="side view">
                 <img src="{{ 'StainlessSteelAltAngle_Side_thumb.jpg' | file_url }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="{{ 'StainlessSteelAltAngle_Angle.jpg' | file_url }}" class="product-single__thumbnail">
+            <a href="{{ 'StainlessSteelAltAngle_Angle.jpg' | file_url }}" class="product-single__thumbnail" data-title="angle view">
                 <img src="{{ 'StainlessSteelAltAngle_Angle_thumb.jpg' | file_url }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
 
           <li class="one-whole small--one-fifth small--left">
-            <a href="{{ product_art | img_url: 'grande' }}" class="product-single__thumbnail">
+            <a href="{{ product_art | img_url: 'grande' }}" class="product-single__thumbnail" data-title="watch art">
                 <img src="{{ product_art | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="bordered">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharms_57beda83-783d-4369-ba5c-6ce748b8428f.jpg?18369852424327589247" class="product-single__thumbnail">
-                <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharmThumb.jpg?15179717835001878061" alt="{{ image.alt | escape }}"><br><b>sizing</b>
+            <a href="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharms_57beda83-783d-4369-ba5c-6ce748b8428f.jpg?18369852424327589247" class="product-single__thumbnail" data-title="sizing">
+                <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharmThumb.jpg?15179717835001878061" alt="{{ image.alt | escape }}"><span class="small--hide"><br><b>sizing</b></span>
             </a>
         </li>
     </ul>
@@ -68,28 +68,28 @@
 {% if product.type == "Sport Watch" or product.type == "Watch" %}
     <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
        <li class="one-whole small--one-fifth small--left">
-            <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail">
+            <a href="{{ product_preview | img_url: 'grande' }}" class="product-single__thumbnail" data-title="munged art">
                 <img src="{{ product_preview | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="{{ 'SiliconeWatch_Side.jpg' | asset_url }}" class="product-single__thumbnail">
+            <a href="{{ 'SiliconeWatch_Side.jpg' | asset_url }}" class="product-single__thumbnail" data-title="side view">
                 <img src="{{ 'SiliconeWatch_SideThumb.jpg' | asset_url }}" alt="{{ image.alt | escape }}">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="{{ 'SiliconeWatch_Angle.jpg' | asset_url }}" class="product-single__thumbnail">
+            <a href="{{ 'SiliconeWatch_Angle.jpg' | asset_url }}" class="product-single__thumbnail" data-title="angle view">
                 <img src="{{ 'SiliconeWatch_AngleThumb.jpg' | asset_url }}" alt="{{ image.alt | escape }}">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="{{ art_image | img_url: 'grande' }}" class="product-single__thumbnail">
+            <a href="{{ art_image | img_url: 'grande' }}" class="product-single__thumbnail" data-title="watch art">
                 <img src="{{ art_image | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
             </a>
         </li>
          <li class="one-whole small--one-fifth small--left">
-            <a href="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharms_57beda83-783d-4369-ba5c-6ce748b8428f.jpg?18369852424327589247" class="product-single__thumbnail">
-                <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharmThumb.jpg?15179717835001878061" alt="{{ image.alt | escape }}"><br><b>sizing</b>
+            <a href="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharms_57beda83-783d-4369-ba5c-6ce748b8428f.jpg?18369852424327589247" class="product-single__thumbnail" data-title="sizing">
+                <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/watcharmThumb.jpg?15179717835001878061" alt="{{ image.alt | escape }}"><span class="small--hide"><br><b>sizing</b></span>
             </a>
         </li>
          

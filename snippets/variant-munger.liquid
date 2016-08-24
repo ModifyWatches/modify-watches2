@@ -205,7 +205,10 @@ function checkVisible(Scolor, Ssize) {
    $('.product-single__thumbnail').click(function (e) {
 	    currentImage =  $('#ProductPhotoImg').attr('src');
 	    mainType = 'alternate';
-	    analytics.track('Clicked alternate image');
+	    analytics.track('Clicked alternate image', 
+	    {Name: $(this).attr('data-title')
+		    
+	    });
 	    e.preventDefault();
    })
   jQuery(function($) {

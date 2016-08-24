@@ -1,0 +1,78 @@
+<div class="grid__item one-whole">
+		     	{% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
+			 		
+				<ul class="collection-matrix">
+				 {% for product in collections['instantcart'].products  %}
+ 				 	 
+				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
+				  {% include 'product-upsell-new' %}				  
+				 </li>  	
+				 	
+				 {% endfor %}
+				  <div style="clear: both"></div>
+				      
+							
+				</ul>
+				
+				
+			
+	 </div>
+<script>
+	$(document).ready(function() {
+	$('.productsGrid').click(function(event){
+	analytics.track('added upsell product');
+	analytics.track('Added Product to Cart');
+	  Shopify.queue = [];
+	   Shopify.queue.push({
+			 variant_id: $(this).attr('data-id'),
+			 quantity: 1
+    	});
+
+	  event.preventDefault();
+	  Shopify.moveAlong();
+	  
+	});
+	
+	Shopify.moveAlong = function() {
+	  // If we still have requests in the queue, let's process the next one.
+	  if (Shopify.queue.length) {
+	    var request = Shopify.queue.shift();
+	    Shopify.addItem(request.variant_id, request.quantity, Shopify.moveAlong);
+	  }
+	  // If the queue is empty, we will redirect to the cart page.
+	  else {
+	    // update cart value
+	    shopifyUpdateCart();
+	    analytics.track('Added Product to Cart');
+	  //  blink('.header .cart');
+	 //   addedButtonFeedback();
+	  }
+	};
+
+	
+	
+	
+	function shopifyUpdateCart() {
+	  	Shopify.getCart(function(data){
+		    count = data.item_count;
+		    cart_el = '<span id="CartCount">' + count + '</span>';
+		    cart_count = $('span#CartCount');
+			//console.log(cart_count.text());
+		    // if cart count doesn't exist then add it
+		    if (cart_count.length == 0) {
+		      $('a#cartIcon').append(cart_el);
+		    }else{
+		      cart_count.text("").text(count);
+			}
+			$('span#CartCount').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+			$('#cartAlert').slideDown(200).delay(2000).slideUp(200);
+	   })
+	  
+	   	
+	}		
+
+			
+		
+})	
+	
+</script>

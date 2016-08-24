@@ -3691,7 +3691,14 @@ button#AddToCart {
 	position: relative;
 	
 }
-
+.productsGrid:hover {
+	.viewInfo {
+		@include at-query ($min, $small) {
+		display: block;
+		}
+	}	
+	
+}
 .productsInfo {
 	position: relative;
 	float: none;
@@ -3703,6 +3710,86 @@ button#AddToCart {
 	}
 	
 }
+.viewInfo {
+	position: absolute;
+	display: none;
+	bottom: 0px;
+	bottom: 0px;
+	left: 15%;
+	width: 70%;
+	height: auto;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: rgba(255,255,255,0.2);
+	border: 1px solid #ff9a00;
+	border-radius: 13px; 
+	-moz-border-radius: 13px; 
+	-webkit-border-radius: 13px; 
+}
+.viewInfo a {
+	display: block;
+}
+.relativeFrame {
+	position: relative;
+}
+
+
+.productsGrid:hover {
+  img {
+  	opacity: 1;
+  }
+  .overLink {
+	  opacity: 0.5;
+  }	
+}
+.productsGrid:hover button {
+	@include at-query ($min, $small) {
+		 opacity: 1;
+		}
+ 
+}
+
+.productsGrid button { 
+	position: absolute;
+	top:40%;
+	left: 20%;
+	background-color: rgba(0, 0, 0, 0.6);
+	border: 3px solid #fff;
+	text-align: center;
+	padding: 10px 0px;
+	font-size: 16px;   
+	opacity: 0;
+	z-index: 1000;
+	width: 60%;
+	@include at-query ($max, $small) {
+	   	font-size: 12px;
+	   	padding: 6px 20px;
+	   	border: 2px solid #fff;
+	   	margin-top: -120%;
+	   	display: none;
+	   }
+}
+
+.mobile-link {
+	display: none;
+	@include at-query ($max, $small) {
+		position: absolute;
+		left: 0px;
+		top:0px;
+		width: 100%;
+		height: 100%;
+		display: block;	
+	}
+}
+.mobile-link a {
+	display: block;
+	width: 100%;
+	height: 100%
+}
+
+
+
 .cartBTN {
 	@include at-query ($max, $small) {
 		width: 44%;
@@ -4002,6 +4089,7 @@ button#AddToCart {
 	width: 90%;
 	margin-left: 5%;
 	margin-top: 20px;
+	font-size:16px;
 	@include at-query ($max, $medium) {
 		margin-left: 1%;
 		width: 98%;
@@ -4556,8 +4644,23 @@ a.whiteLink {
 }
 .prodName {
 	margin-bottom: 7px !important;
+	@include at-query ($max, $small) {
+		font-size: 18px !important;	
+	}
 }
-
+.mobileAlways {
+	position: fixed;
+	bottom:-15px;
+	left: 0px;
+	width: 100%;
+	z-index: 10000;
+	
+}
+.breadcrumb {
+	@include at-query ($max, $small) {
+		font-size: 11px !important;	
+	}
+}
 .indenter {
 	padding-left:5%;
 	padding-right:5%;
@@ -5111,6 +5214,10 @@ a.redlink {
 .bannerImage {
 	position: relative;
 }
+.bannerImage img{
+	width: 100%;
+	max-width: none;	
+}
 #madeinsf {
 	position: absolute;
 	right: 0px;
@@ -5137,9 +5244,9 @@ a.redlink {
 
 
 #promoBar {
-	background-color: #424242;
+	background-color:#87c89c ;
 	color:#ffffff;
-	font-size: 14px;
+	font-size: 15px;
 	padding-left: 0px !important;
 	line-height: 28px;
 	position: relative;
@@ -5154,7 +5261,8 @@ a.redlink {
 	
 }
 #promoBar  a {
-	color: #F05A22;
+		color: #ffdb79;
+		font-size: 16px;
 
 }
 .hasPromo {
