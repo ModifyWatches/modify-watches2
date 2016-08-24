@@ -20,9 +20,14 @@
 	
    $('.product-single__thumbnail').click(function (e) {
 	  $('#wHands').hide();
+	  $('.backplate').css({opacity:0});
+	  $('.watchArt').hide();
 	    currentImage =  $('#ProductPhotoImg').attr('src');
 	    mainType = 'alternate';
-	    analytics.track('Clicked alternate image');
+	    analytics.track('Clicked alternate image', 
+	    {Name: $(this).attr('data-title')
+		    
+	    });
 	    e.preventDefault();
 	     path = $(this).attr('href');
 	    $('#ProductPhotoImg').attr('src',path );

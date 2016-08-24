@@ -1,0 +1,56 @@
+<!-- /snippets/product-grid-item.liquid -->
+{% assign collab = product.vendor | handleize %}
+
+{% comment %}
+  Set the default grid_item_width if no variable is set
+{% endcomment %}
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
+{% endunless %}
+ 
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<div class="productsGrid" data-product="{{product.title}}">
+  
+  <div class="relativeFrame grid__image">
+	<a href="{{ product.url | within: collection }}" data-title="{{product.title}}">
+	   <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+	</a>
+    <div class="buttonFrame"><button class="btn--secondary" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
+    <div class="viewInfo" ><a href="{{ product.url | within: collection }}" data-title="{{product.title}}">View Product Info</a></div>
+  </div>
+  
+  <div class="productsInfo" style="min-height: 0px;">
+	  <p class="h6 text-center">
+	    <a href="{{ product.url | within: collection }}" data-title="{{product.title}}">{{ product.title  | truncatewords:6 | truncate:35}}</a>
+	  </p>
+	   	 
+	  {% if product.available %}
+	  	<p class="text-center super-small small-margin">
+	
+	  		<b>$50.00</b><br>($15 with discount!)
+		   
+	  </p>
+
+		 {% else %}
+		 	<p class="text-center red-text small-margin">Sold Out</p>
+		 {% endif %}	
+		
+	   	</div>
+	<div class="mobile-link"><a href="{{ product.url | within: collection }}"></a></div>  
+	<div style="clear:both"></div>
+</div>
