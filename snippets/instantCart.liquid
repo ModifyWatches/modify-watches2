@@ -1,0 +1,19 @@
+<div class="one-whole text-center">
+	<h3>Shop some of our faves</h3>
+	
+</div>
+{% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
+		
+				<ul class="collection-matrix">
+						
+				 {% for product in collections['instantCart'].products  %}				 	 
+				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
+				  {% include 'product-grid-add' %}  
+				 </li> 
+				 {% endfor %}
+				
+				<div style="clear: both"></div>  
+				 <div style="clear: both"></div>
+				</ul>
+				
+				<div id="product-list-foot"></div>
