@@ -6,3 +6,5 @@ snippets/index.bkup.liquid
 snippets/theme.bkup.liquid
 
 templates/nhl.html
+
+templates/collection.simple.liquid
