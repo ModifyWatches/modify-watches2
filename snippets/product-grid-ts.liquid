@@ -30,7 +30,7 @@
 	<a href="{{ product.url | within: collection }}" data-title="{{product.title}}">
 	   <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
 	</a>
-    <div class="buttonFrame"><button class="btn--secondary" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
+    <div class="buttonFrame"><button class="btn--secondary trackClick" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
     <div class="viewInfo" ><a href="{{ product.url | within: collection }}" data-title="{{product.title}}">View Product Info</a></div>
   </div>
   
