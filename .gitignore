@@ -8,3 +8,5 @@ snippets/theme.bkup.liquid
 templates/nhl.html
 
 templates/collection.simple.liquid
+
+.DS_Store
