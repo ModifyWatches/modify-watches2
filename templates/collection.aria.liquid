@@ -42,7 +42,7 @@
 						
 				 {% for product in collection.products  %}				 	 
 				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
-				  {% include 'product-grid-item' %}  
+				  {% include 'product-grid-add' %}  
 				 </li> 
 				 {% endfor %}
 				
