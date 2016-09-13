@@ -133,6 +133,7 @@
 		colTags = colTags.replace('WhiteHands', '');
 		colTags = colTags.replace('RedHands', '');
 		colTags = colTags.replace('BlueHands', '');
+		colTags = colTags.replace('Uber', '');
 	//	console.log(colTags);
 		var myParam = location.search.split('arrange=')[1];
 		if(myParam) {
@@ -239,7 +240,7 @@
 			 }
 			 allVals = '';
 		     $('#filterHolder :checked').each(function() {
-		       allVals+=$(this).val()+'+';
+		       allVals+='Uber-'+$(this).val()+'+';
 		       
 		     });
 		     allVals = allVals+viewBy;
