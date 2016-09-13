@@ -240,10 +240,12 @@
 			 }
 			 allVals = '';
 		     $('#filterHolder :checked').each(function() {
+			    
 		       allVals+='Uber-'+$(this).val()+'+';
 		       
 		     });
 		     allVals = allVals+viewBy;
+		     allVals = 'Uber-Circles' + allVals;
 		     allVals = allVals.substring(0,allVals.length - 1);
 		     
 		    // allVals = allVals.slice(0,-1)
