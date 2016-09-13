@@ -458,7 +458,7 @@
     </nav>
 
     <main class="wrapper main-content" role="main">
-
+		
       {{ content_for_layout }}
 
     </main>
@@ -484,7 +484,7 @@
     $(function() {
    
       {% if customer %}
-        var customer_id = customer.id;
+        var customer_id = {{customer.id}};
       {% else %}
         var customer_id = false;
       {% endif %}
