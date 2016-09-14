@@ -3,13 +3,21 @@
 <div class="grid genSection">
 
  <div class="grid__item large--two-thirds push--large--one-sixth text-center">
+{% if customer %}
+	<h1>You're almost there!</h1>
+	<button type="button" class="locksmith-manual-trigger btn btn--full">
+	
+	  Click here to enter your passcode
+	</button>
+{% else %}	
 	  
- <h1>In order to Get your exclusive watches</h1>
- 	<h3>Use the form below to create an account with your Uber email.</h3>
- 	<h3>Once you're finished, go to modifywatches.com/uber</h3>
- 	<h3>That's it, it's that simple</h3>
-   
-    <div class="form-vertical">
+ <h1>To get your exclusive Uber Watches</h1>
+ <h3>1) Create an account with your Uber email</h3>
+ <h3>2) Check for your exclusive passcode in your inbox</h3>
+ <h3>3) Go to Modifywatches.com/UBER</h3> 	
+
+    
+    <div class="form-vertical medium-margin">
       {% form 'create_customer' %}
 
         {{ form.errors | default_errors }}
@@ -34,7 +42,7 @@
 
       {% endform %}
     </div>
-
+{% endif %}
   </div>
 
 </div>
@@ -43,3 +51,4 @@
 <script type="text/javascript">
     analytics.track('Viewed Registration');
 </script>
+
