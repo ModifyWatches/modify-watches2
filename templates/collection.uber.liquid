@@ -53,6 +53,60 @@
     	{% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
 		{% paginate collection.products by 44 %}	
 				<ul class="collection-matrix">
+				
+				<div id="genericOnes" style="display:none;">
+					<li id="MetalWatch" class="grid__item large--one-quarter medium--one-third small--one-half theProducts MetalWatch" data-tags="BlackHandsbrandGreyMetalWatchmungedUberUber Circles">
+						<div class="productsGrid" data-product="Uber Circles Watch">
+							 <a href="/collections/uber/products/uber-circles-watch-1" class="grid__image">
+							    <img src="//cdn.shopify.com/s/files/1/0358/9733/products/MetalWatch_8fc59cfe-60d8-464c-84a7-959c377fad4e_large.jpg?v=1473804074" alt="Uber Circles Watch">
+							  </a>
+							  <div class="productsInfo">
+							  <p class="h6 text-center">
+							    <a href="/collections/uber/products/uber-circles-watch-1">Uber Circles Watch</a>
+							  </p>
+							   	  <p class="super-small text-center hide">
+								 By, <a href="/collections/uber" > Uber </a>
+								
+							  </p>
+							  	<p class="text-center super-small small-margin">
+							        	$75.00 
+							  </p>
+							  <p class="super-small text-center hide">
+								 (face only)  
+							  </p>
+						 </div>
+						<div style="clear:both"></div>
+					</div>
+  
+				 </li> 
+				 				 	 
+				 <li id="SportWatch" class="grid__item large--one-quarter medium--one-third small--one-half theProducts SportWatch" data-tags="BlackHandsbrandGreymungedSportWatchUberUber Circles">
+					<div class="productsGrid" data-product="Uber Circles Sport Watch">					  
+					  <a href="/collections/uber/products/uber-circles-sport-watch-1" class="grid__image">
+					    <img src="//cdn.shopify.com/s/files/1/0358/9733/products/SportWatch_e9ba2309-55a5-4d3c-90c5-47b0fc8eb553_large.jpg?v=1473804083" alt="Uber Circles Sport Watch">
+					  </a>
+					 
+					  <div class="productsInfo">
+						  <p class="h6 text-center">
+						    <a href="/collections/uber/products/uber-circles-sport-watch-1">Uber Circles Sport Watch</a>
+						  </p>
+						   	  <p class="super-small text-center hide">
+							 By, <a href="/collections/uber" > Uber </a>
+							
+						  </p>
+						  
+						  	<p class="text-center super-small small-margin">	
+						    		 $50.00   
+						  </p>
+							  <p class="super-small text-center hide">
+								 (face only)  
+							  </p>
+						   	</div>
+						<div style="clear:both"></div>
+					</div>
+  
+				 </li> 
+				</div>
 						
 				 {% for product in collection.products  %}				 	 
 				 <li id="product-{{ forloop.index | plus:paginate.current_offset }}" class="grid__item {{ grid_item_width }} theProducts" data-tags="{{product.tags}}">
