@@ -137,6 +137,7 @@
 	//	console.log(colTags);
 		var myParam = location.search.split('arrange=')[1];
 		if(myParam) {
+			
 			 $('#which-Grid i').removeClass('selected');
 			 $('#which-Grid i[data-arrange="'+myParam+'"]').addClass('selected');
 			
@@ -147,10 +148,11 @@
 			 
 			 
 		 }
-		 
+		 $('#genericOnes').hide();
 		 $('#filterHolder input').each(function() {
 		//	 $(this).parent('label').css('display', 'none');
 			$(this).prop('checked', false);
+			
 			 if (colTags.toLowerCase().indexOf($(this).val().toLowerCase()) >= 0 ) {
 			  		$(this).parent('label').css('display', 'block');
 			  }
@@ -160,11 +162,13 @@
 			 
 			 if (urlTags.toLowerCase().indexOf($(this).val().toLowerCase()) >= 0 ) {
 			  		$(this).prop('checked', true);
+			  		$('#genericOnes').show();
 			  		$(this).parent('label').css('display', 'block');
 			  		$('span#sFilters').show();
 			  		$('#selectedTags').append('<div class="activeTag">'+$(this).val()+'<i class="fa fa-times-circle"></i></div>');
 			  }else if (urlTags.toLowerCase().indexOf($(this).attr('name').toLowerCase()) >= 0 ) {
 			  		$(this).prop('checked', true);
+			  		$('#genericOnes').show();
 			  		$(this).parent('label').css('display', 'block');
 			  		$('span#sFilters').show();
 			  		$('#selectedTags').append('<div class="activeTag">'+$(this).val()+'<i class="fa fa-times-circle"></i></div>');
@@ -176,6 +180,15 @@
 			  if (urlTags.toLowerCase().indexOf($(this).attr('data-tag').toLowerCase()) >= 0 ) {
 			  		$('.viewBy').removeClass('selected');
 			  		$(this).addClass('selected');
+			  		 
+			  		 if($(this).attr('data-tag')!='') {
+				  		 $('#genericOnes li').hide();
+				  		 theStyle =  $(this).attr('data-tag');
+				  		 console.log(theStyle);
+				  		$('#'+theStyle).show();
+				  	} 
+
+			  		
 			  }
 
 		  })
