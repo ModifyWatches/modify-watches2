@@ -38,7 +38,10 @@
 
         <label for="CreatePassword" class="hidden-label">{{ 'customer.register.password' | t }}</label>
         <input type="password" name="customer[password]" id="CreatePassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.register.password' | t }}">
-
+		<div id="accepts_marketing " class="clearfix large_form"> 
+		<h5>	<label for="marketing" style="font-weight:normal">Subscribe to our newsletter</label> 
+			<input type="checkbox" name="customer[accepts_marketing]" checked value="true" id="marketing" /></h5>
+		</div> 
         <p>
           <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn btn--full">
         </p>
