@@ -4,11 +4,16 @@
 
  <div class="grid__item large--two-thirds push--large--one-sixth text-center">
 {% if customer %}
+	{% if customer.email contains "uber.com"  or customer.email contains "modifywatches.com" %}
 	<h1>You're almost there!</h1>
 	<button type="button" class="locksmith-manual-trigger btn btn--full">
 	
 	  Click here to enter your passcode
 	</button>
+	{% else %}
+		<h1>This Collection is for Uber employees and drivers only</h1>
+		<h3>To create an account, log out of our existing account by <a href="/account/logout/">clicking here</a>. The go to Modifywatches.com/UBER and sign in with your uber email</h3>
+	{% endif %}
 {% else %}	
 	  
  <h1>To get your exclusive Uber Watches</h1>
