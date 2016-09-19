@@ -17,10 +17,11 @@
 			<img src="{{ 'madeinsfwhite.png' | asset_url}}" />
 		</div>
 	</div>
+	{% if locksmith_access_granted %}
 	<div class="text-center miniPromo" style="background-color: #000000; margin-bottom: 0px;">
-				  	Get 50% off your UBER watches. Use code <b style="color:#26e2ff;">UberAllDay</b> at checkout
-			  	</div>
-
+	  	Get 50% off your UBER watches. Use code <b style="color:#26e2ff;">UberAllDay</b> at checkout
+  	</div>
+	{% endif %}
  	<div class="one-whole text-center medium-padding hide">
 	 	
 	 	<h1 class="small--text-center hide">{{ collection.title }}</h1>
