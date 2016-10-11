@@ -1,7 +1,9 @@
 {% comment %}
 	assign all initial variables 
 {% endcomment %}	
-
+{% include 'inventory' %}
+	
+	
 <script>
 	var strapArray = {};
 	
@@ -329,11 +331,27 @@ $(window).load(function() {
 	
 	}
 	if($('#ProductPhotoImg').attr('data-type') == 'watch') {
+		var thecolors = "{{Sport}}";
+		var colors = thecolors.split("_");
+		$.each(colors, function( index, value ) {
+		//	console.log( index + ": " + value );
+			$('.'+value.toLowerCase()+'').hide();
+			
+		})
+		$('.swatch-element:visible:first').find('input').click();
 	//	$('.sky-blue').hide();
 	}else {	
+		var thecolors = "{{Nylon}}";
+		var colors = thecolors.split("_");
+		$.each(colors, function( index, value ) {
+		//	console.log( index + ": " + value );
+			$('.'+value.toLowerCase()+'').hide();
+			
+		})
+		$('.swatch-element:visible:first').find('input').click();
 		//$('.orange').hide();
-		$('.black').hide();
-		$('.swatch :radio[value="White"]').click();
+		//$('.black').hide();
+		//$('.swatch :radio[value="White"]').click();
 		
 	
 	}
