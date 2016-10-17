@@ -1,0 +1,90 @@
+	<div id="emailContainer">
+		<div id="emailClose">
+			<i class="fa fa-close"></i>
+		</div>		
+		 <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/logoletter.png?5964164503643044811" alt="{{ shop.name }}" itemprop="logo" style="width:85%; margin-bottom: 0px;" class="show small--hide">
+		 <img src="https://cdn.shopify.com/s/files/1/0358/9733/files/logoletter_mobile.png?5964164503643044811" alt="{{ shop.name }}" itemprop="logo" style="width:55%; margin-bottom: 0px;" class="hide small--show">
+		 <b style="margin-left: 8px; line-height: 10px;">Informative. Gluten Free. Cool?</b>
+		 {% if settings.footer_newsletter_enable %}
+		 <div class="two-thirds" style="padding-top: 50px; margin-left: 8px;">              
+		{% if settings.newsletter_form_action != blank %}
+		  {% assign form_action = settings.newsletter_form_action %}
+		{% else %}
+		  {% assign form_action = '#' %}
+		{% endif %}
+		
+				<div id="formCallout"><b class=""style="margin-top:15px; text-transform: uppercase">Sign up now and get 20% off on us</b></div>
+				<div id="formError">Sorry, that email is already in use.</div>
+
+		<form action="{{ form_action }}" method="get"  name="form" target="_blank" class="input-group" id="form">
+			
+		  <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Email" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+		  <span class="input-group-btn">
+		    <input type="submit" class="btn--secondary" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+		  </span>
+		</form>
+		<div id="coupon"><h2>Congratulations!</h2><br> Here is your 20% off code<br>
+			<h3>MODIFYx3k20</h3>
+		</div>    
+		
+		
+				
+		</div>
+		{% endif %}
+		<img src="https://cdn.shopify.com/s/files/1/0358/9733/files/newsletter.jpg?6495194103736532286" class="theImage" />
+</div>
+
+<script>
+
+$(document).ready( function () {
+   
+	$('#emailClose').click(function() {
+		$('#emailPopup').fadeOut(100);
+	})	
+    $('#form').submit(function(e) {
+      e.preventDefault();
+        register($(this));  
+    })
+
+    $('#emailPopup').on('click', function(e) {
+	  if (e.target !== this)
+	    return;
+	   $('#emailPopup').fadeOut(100);
+	});
+	
+	if ( (!$.cookie('newsPopup')) ) {
+        setTimeout(function() {
+	        $('#emailPopup').fadeIn(500);
+          $.cookie('newsPopup', 'true');
+		  
+      });
+	}
+	
+	
+});
+
+function register($form) {
+	console.log($form.serialize());
+    $.ajax({
+        type: 'get',
+        url: 'http://dev.modifywatches.com/sadhorse/mailchimp/index.php?callback=shoes',
+        data: $form.serialize(),
+        cache       : false,
+        dataType    : 'jsonp',
+       // error       : function(err) { alert("Could not connect to the registration server. Please try again later."); console.log(err)},
+        success     : function(data) {
+	        console.log(data);
+            if (data.status != "subscribed") {
+               $('#formError').show();
+            } else {
+	            console.log('bing');
+	            $('#formError').hide();
+				$('#form').hide();
+				$('#coupon').show();
+				$('#formCallout').hide();
+                // It worked, carry on...
+            }
+        }
+    });
+}
+</script>
