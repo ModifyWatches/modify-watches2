@@ -16,7 +16,7 @@
                 <input type="submit" class="btn--secondary" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
               </span>
             </form>
-               <b class="orange-text"style="margin-top:5px;">Get $10 off</b>
+               <b class="orange-text"style="margin-top:5px;">Get 20% off</b>
        
 
             <span class="small"> - Sign up and check your email for your code!</span>
@@ -105,7 +105,9 @@
     </div>
   </div>
 </footer>
-
+<div id="emailPopup">
+	{% include 'newsletterSignup' %}
+</div>
 
 <script type="text/javascript">
   
