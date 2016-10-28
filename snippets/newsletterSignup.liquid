@@ -55,7 +55,7 @@ $(document).ready( function () {
 	if ( (!$.cookie('newsPopup')) ) {
         setTimeout(function() {
 	        $('#emailPopup').fadeIn(500);
-          $.cookie('newsPopup', 'true');
+          $.cookie('newsPopup', 'true', { expires: 200, path: '/', domain: 'modifywatches.com', secure: true });
 		  
       });
 	}
