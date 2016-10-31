@@ -1,4 +1,4 @@
-{% include 'locksmith-variables' %}
+
 <meta charset=utf-8>
 
 
@@ -17,10 +17,12 @@
 			<img src="{{ 'madeinsfwhite.png' | asset_url}}" />
 		</div>
 	</div>
-	{% if locksmith_access_granted %}
+	{% if customer %}
+		{% if customer.email contains "uber.com"  or customer.email contains "modifywatches.com" or customer.email contains "Uber.com"  or customer.email contains "Uber.COM" %}
 	<div class="text-center miniPromo" style="background-color: #18cde5; margin-bottom: 0px;">
 	  	Get 50% off your UBER watches. Use code <b style="color:#000000;">UberAllDay</b> at checkout
   	</div>
+		{% endif %}
 	{% endif %}
  	<div class="one-whole text-center medium-padding hide">
 	 	
@@ -36,7 +38,8 @@
 </div>
 
  <main class="wrapper main-content small-margin" role="main">
-{% if locksmith_access_granted %}
+{% if customer %}
+		{% if customer.email contains "uber.com"  or customer.email contains "modifywatches.com" or customer.email contains "Uber.com"  or customer.email contains "Uber.COM" %}
 
 
 	 {% include 'state-filter' %}
@@ -147,6 +150,16 @@
   </div>
 </div>
 <div style="clear:both"></div>
+{% else %}
+<div class="grid--rev">
+	
+  <div class="one-whole text-center">
+
+	<h1>This Collection is for Uber employees and drivers only</h1>
+	<h3>To create an account, log out of our existing account by <b><a href="/account/logout/">clicking here</a></b>. Then go to Modifywatches.com/UBER and sign in with your uber email</h3>
+  </div>
+</div>
+{% endif %}
 {% else %}
 	
 	{% include 'uber-register' %}
