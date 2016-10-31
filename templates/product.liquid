@@ -191,12 +191,25 @@
 				{% endif %}
         </div>
         <div class="hide small--show mobileAlways" >
-	        
-	     		
-          <button type="submit" name="add" id="AddToCart" class="btn trackClick">
-
-            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-          </button>
+	      {% if product.vendor =='Uber' %}
+		{% if customer %}
+				{% if customer.email contains "uber.com"  or customer.email contains "modifywatches.com" or customer.email contains "Uber.com"  or customer.email contains "UBER.COM" %}
+	          <button type="submit" name="add" id="AddToCart" class="btn trackClick">
+	
+	            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+	          </button>
+	          {% else %}
+	          	
+			  {% endif %}
+			  {% else %}
+	          	
+		  {% endif %}
+		 {% else %}
+		 <button type="submit" name="add" id="AddToCart" class="btn trackClick">
+	
+	            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+	          </button>
+		  {% endif %}
         
         </div>
         {% if collab == 'today-show' %}
@@ -228,13 +241,32 @@
         </div>
 
 		<div class="show small--hide">	
-		
-          <button type="submit" name="add" id="AddToCart" class="btn trackClick">
-
-            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-          </button>
-        
-
+		{% if product.vendor =='Uber' %}
+		{% if customer %}
+				{% if customer.email contains "uber.com"  or customer.email contains "modifywatches.com" or customer.email contains "Uber.com"  or customer.email contains "UBER.COM" %}
+	          <button type="submit" name="add" id="AddToCart" class="btn trackClick">
+	
+	            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+	          </button>
+	          {% else %}
+	          <div style="padding-top: 20px; padding-bottom: 20px;">
+	          	<h3>This Product is for Uber employees only</h3>
+	          	<p>Please log in with an uber.com email to purchase</p>
+	          </div>
+			  {% endif %}
+			  {% else %}
+			   <div style="padding-top: 20px; padding-bottom: 20px;">
+	          	<h3>This Product is for Uber employees only</h3>
+	          		<p>Please log in with an uber.com email to purchase</p>
+			   </div>
+		  {% endif %}
+		 {% else %}
+		 
+		 <button type="submit" name="add" id="AddToCart" class="btn trackClick">
+	
+	            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+	          </button>
+		  {% endif %}
 		</div>
           <div style="clear: both"></div>
        
