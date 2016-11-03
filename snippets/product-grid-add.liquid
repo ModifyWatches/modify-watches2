@@ -30,11 +30,11 @@
 	   <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
 	</a>
 	 {% if  product.type == 'Alloy watch' %}
-		{% if  product.variants[0].option1 == 'Black' or product.variants[0].option1 == 'White' or product.variants[0].option1 == 'Grey' or product.variants[0].option1 == 'Red'%}
+		{% if  product.variants[0].option1 == 'super sport'%}
 		 <div class="buttonFrame"><button class="btn--secondary" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
 		 {% endif %}
 	 {% else %}
-	{% if  product.variants[0].option1 == 'Black' or product.variants[0].option1 == 'White' or product.variants[0].option1 == 'Red' or product.variants[0].option1 == 'Seafoam' or product.variants[0].option1 == 'Turquoise'%}
+	{% if  product.variants[0].option1 == 'stuffington'%}
 		 <div class="buttonFrame"><button class="btn--secondary" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
 		 {% endif %}
 
