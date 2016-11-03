@@ -30,11 +30,14 @@
 	   <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
 	</a>
 	 {% if  product.type == 'Alloy watch' %}
-		{% if  product.variants[0].option1 != 'Black' and product.variants[0].option1 != 'Orange' and product.variants[0].option1 != 'Navy'%}
+		{% if  product.variants[0].option1 == 'Black' or product.variants[0].option1 == 'White' or product.variants[0].option1 == 'Grey' or product.variants[0].option1 == 'Red'%}
 		 <div class="buttonFrame"><button class="btn--secondary" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
 		 {% endif %}
 	 {% else %}
-	 <div class="buttonFrame"><button class="btn--secondary" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
+	{% if  product.variants[0].option1 == 'Black' or product.variants[0].option1 == 'White' or product.variants[0].option1 == 'Red' or product.variants[0].option1 == 'Seafoam' or product.variants[0].option1 == 'Turquoise'%}
+		 <div class="buttonFrame"><button class="btn--secondary" data-id="{{product.variants[0].id}}" data-title="{{product.title}}">Add To Cart</button></div>
+		 {% endif %}
+
 	 {% endif %}
     <div class="viewInfo" ><a href="{{ product.url | within: collection }}" data-title="{{product.title}}">View Product Info</a></div>
   </div>
