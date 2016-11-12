@@ -4506,6 +4506,42 @@ a.whiteLink {
 	 
 	
 }
+
+
+
+#photos {
+  /* Prevent vertical gaps */
+  line-height: 0;
+   
+  -webkit-column-count: 5;
+  -webkit-column-gap:   0px;
+  -moz-column-count:    5;
+  -moz-column-gap:      0px;
+  column-count:         5;
+  column-gap:           0px;  
+  @include at-query ($max, $small) {
+	   -webkit-column-count: 3;
+	  -webkit-column-gap:   0px;
+	  -moz-column-count:    3;
+	  -moz-column-gap:      0px;
+	  column-count:         3;
+	  column-gap:           0px;  
+
+	  
+	}
+  
+}
+
+#photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+
+
+
 #faq ul {
 	padding-left: 20px;
 }
